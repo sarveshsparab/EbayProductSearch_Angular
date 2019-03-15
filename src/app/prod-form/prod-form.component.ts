@@ -7,6 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdFormComponent implements OnInit {
 
+  categoryTypes = [
+    'All Categories',
+    'Art',
+    'Baby',
+    'Books',
+    'Clothing, Shoes & Accessories',
+    'Computers/Tablets & Networking',
+    'Health & Beauty',
+    'Music',
+    'Video Games & Consoles'
+  ];
+
   constructor() { }
 
   ngOnInit() {

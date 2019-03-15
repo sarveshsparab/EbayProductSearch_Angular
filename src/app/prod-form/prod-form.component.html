@@ -14,8 +14,7 @@
       <label for="ps-category" class="col-sm-3 col-form-label">Category</label>
       <div class="col-sm-3">
         <select id="ps-category" class="form-control">
-          <option>All Categories</option>
-          <option>Music</option>
+          <option *ngFor="let cat of categoryTypes" [value]="cat|catToVal">{{cat}}</option>
         </select>
       </div>
     </div>
