@@ -5,7 +5,7 @@
     <div class="form-group row">
       <label for="ps-keyword" class="col-sm-3 col-form-label">Keyword<span class="ps-reqd-field">*</span></label>
       <div class="col-sm-7">
-        <input type="text" class="form-control" id="ps-keyword" placeholder="Enter Product Name (eg. iPhone 8)">
+        <input type="text" class="form-control" id="ps-keyword" name="ps-keyword" placeholder="Enter Product Name (eg. iPhone 8)">
       </div>
     </div>
 
@@ -13,7 +13,7 @@
     <div class="form-group row">
       <label for="ps-category" class="col-sm-3 col-form-label">Category</label>
       <div class="col-sm-3">
-        <select id="ps-category" class="form-control">
+        <select id="ps-category" name="ps-category" class="form-control">
           <option *ngFor="let cat of categoryTypes" [value]="cat|catToVal">{{cat}}</option>
         </select>
       </div>
@@ -24,15 +24,15 @@
       <label for="ps-cond-row" class="col-sm-3 col-form-label">Condition</label>
       <div class="col-sm-6" id="ps-cond-row">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="ps-new" value="new">
+          <input class="form-check-input" type="checkbox" id="ps-new" name="ps-new" value="new">
           <label class="form-check-label" for="ps-new">New</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="ps-used" value="used">
+          <input class="form-check-input" type="checkbox" id="ps-used" name="ps-used" value="used">
           <label class="form-check-label" for="ps-used">Used</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="ps-unspecified" value="unspecified">
+          <input class="form-check-input" type="checkbox" id="ps-unspecified" name="ps-unspecified" value="unspecified">
           <label class="form-check-label" for="ps-unspecified">Unspecified</label>
         </div>
       </div>
@@ -44,11 +44,11 @@
       <label for="ps-ship-row" class="col-sm-3 col-form-label">Shipping Options</label>
       <div class="col-sm-6" id="ps-ship-row">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="ps-local" value="local">
+          <input class="form-check-input" type="checkbox" id="ps-local" name="ps-local" value="local">
           <label class="form-check-label" for="ps-local">Local Pickup</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="ps-free" value="free">
+          <input class="form-check-input" type="checkbox" id="ps-free" name="ps-free" value="free">
           <label class="form-check-label" for="ps-free">Free Shipping</label>
         </div>
       </div>
@@ -58,7 +58,7 @@
     <div class="form-group row">
       <label for="ps-miles" class="col-sm-3 col-form-label">Distance (Miles)</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" id="ps-miles" placeholder="10">
+        <input type="text" class="form-control" id="ps-miles" name="ps-miles" placeholder="10">
       </div>
     </div>
 
@@ -75,7 +75,7 @@
           <label class="form-check-label" for="ps-cust-loc">Other. Please specify zip code:</label>
         </div>
         <div class="col-sm-7">
-          <input class="form-control" type="text" id="ps-cust-zip" disabled>
+          <input class="form-control" type="text" id="ps-cust-zip" name="ps-cust-zip" disabled>
         </div>
       </div>
     </div>
