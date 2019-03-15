@@ -19,6 +19,51 @@
   color: red;
 }
 
+.ps-search-btn, .ps-clear-btn{
+  display: flex;
+  background-color: white;
+  color: #1d1d1d;
+  border-color: white;
+}
+.ps-search-btn span, .ps-clear-btn span{
+  margin-left: 3px;
+}
+.ps-clear-btn{
+  margin-left: 30px;
+}
+
+
+.ps-search-btn:hover, .ps-clear-btn:hover {
+  color: #000;
+  background-color: #d3d3d3;
+  border-color: #d3d3d3;
+}
+.ps-search-btn:focus, .ps-search-btn.focus, .ps-clear-btn:focus, .ps-clear-btn.focus {
+  box-shadow: 0 0 0 0.2rem rgba(111, 111, 111, 0.5);
+}
+.ps-search-btn.disabled, .ps-search-btn:disabled, .ps-clear-btn.disabled, .ps-clear-btn:disabled {
+  color: #000;
+  background-color: #343434;
+  border-color: #343434;
+}
+.ps-search-btn:not(:disabled):not(.disabled):active, .ps-search-btn:not(:disabled):not(.disabled).active,
+.show > .ps-search-btn.dropdown-toggle {
+  color: #000;
+  background-color: #d3d3d3;
+  border-color: #c6c6c6;
+}
+.ps-clear-btn:not(:disabled):not(.disabled):active, .ps-clear-btn:not(:disabled):not(.disabled).active,
+.show > .ps-clear-btn.dropdown-toggle {
+  color: #000;
+  background-color: #d3d3d3;
+  border-color: #c6c6c6;
+}
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(111, 111, 111, 0.5);
+}
+
+
 /* Overriding BS properties*/
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9,
 .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2,
