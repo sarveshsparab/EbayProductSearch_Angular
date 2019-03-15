@@ -7,5 +7,6 @@ export const ProductForm = {
   condUnspecified: false,
   localPickup: false,
   freeShipping: false,
+  zipCodeType: '',
   zipCode: ''
 };
