@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { ProdFormComponent } from './prod-form/prod-form.component';
 import { CatToValPipe } from './pipes/cat-to-val.pipe';
 import { IsEmptyDirective } from './directives/is-empty.directive';
+import { IsZipValidDirective } from './directives/is-zip-valid.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProdFormComponent,
     CatToValPipe,
-    IsEmptyDirective
+    IsEmptyDirective,
+    IsZipValidDirective
   ],
   imports: [
     BrowserModule,
