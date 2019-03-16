@@ -12,6 +12,8 @@ export class ProdFormComponent implements OnInit {
 
   zipCode = '';
   isZipCodeFetched = false;
+  zipCodeType = 'curr';
+  category = -1;
 
   constructor(private pss: ProdSearchService, private cdRef: ChangeDetectorRef) { }
 
@@ -34,13 +36,16 @@ export class ProdFormComponent implements OnInit {
   }
   fetchCurrentZipCode() {
       this.pss.fetchZipFromIPAPI().subscribe(data => {
-      this.zipCode = data['zip'];
-      this.pForm.currZipCode = this.zipCode;
-      this.isZipCodeFetched = true;
+        this.zipCode = data['zip'];
+        this.pForm.currZipCode = this.zipCode;
+        this.isZipCodeFetched = true;
     });
   }
   clearPSForm() {
     this.pss.pssClear();
+    this.zipCode = '';
+    this.zipCodeType = 'curr';
+    this.category = -1;
   }
   ngOnInit() {
     this.fetchCurrentZipCode();

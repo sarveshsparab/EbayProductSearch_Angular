@@ -5,9 +5,10 @@
     <div class="form-group row">
       <label for="psKeyword" class="col-sm-3 col-form-label">Keyword<span class="ps-reqd-field">*</span></label>
       <div class="col-sm-7">
-        <input type="text" id="psKeyword" name="psKeyword"
+        <input type="text" id="psKeyword" name="psKeyword" isNonEmpty
                [ngClass]="{'form-control': true, 'is-invalid': psKeyword.invalid && (psKeyword.dirty || psKeyword.touched)}"
                placeholder="Enter Product Name (eg. iPhone 8)" [(ngModel)]="pForm.keyword" #psKeyword="ngModel">
+        <div class="invalid-feedback">Please enter a keyword.</div>
       </div>
     </div>
 
@@ -76,18 +77,21 @@
       <label for="ps-from-rows" class="col-sm-3 col-form-label">From<span class="ps-reqd-field">*</span></label>
       <div class="col-sm-9" id="ps-from-rows">
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="ps-from-radio" id="psCurrLoc" checked
-                 [value]="curr" [(ngModel)]="pForm.zipCodeType">
+          <input class="form-check-input" type="radio" name="psFromRadio" id="psCurrLoc" checked
+                 value="curr" [(ngModel)]="pForm.zipCodeType">
           <label class="form-check-label" for="psCurrLoc">Current Location</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="ps-from-radio" id="psCustLoc"
-                 [value]="cust" [(ngModel)]="pForm.zipCodeType">
+          <input class="form-check-input" type="radio" name="psFromRadio" id="psCustLoc"
+                 value="cust" [(ngModel)]="pForm.zipCodeType">
           <label class="form-check-label" for="psCustLoc">Other. Please specify zip code:</label>
         </div>
         <div class="col-sm-7">
-          <input class="form-control" type="text" id="psCustZip" name="psCustZip" disabled>
-          <input class="form-control" type="text" id="psCurrZip" name="psCurrZip" hidden>
+          <input [ngClass]="{'form-control': true, 'is-invalid': psCustZip.invalid && (psCustZip.dirty || psCustZip.touched)}" type="text"
+                 id="psCustZip" name="psCustZip" required isNonEmpty [disabled]="pForm.zipCodeType=='curr'"
+                 placeholder="Enter a zip code" [(ngModel)]="pForm.custZipCode" #psCustZip="ngModel">
+                 <!-- appAutocomplete (setAddress)="getAddressOnChange($event, location)">-->
+          <div class="invalid-feedback">Please enter a zip code.</div>
         </div>
       </div>
     </div>
