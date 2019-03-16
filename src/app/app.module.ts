@@ -8,12 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ProdFormComponent } from './prod-form/prod-form.component';
 import { CatToValPipe } from './pipes/cat-to-val.pipe';
+import { IsEmptyDirective } from './directives/is-empty.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProdFormComponent,
-    CatToValPipe
+    CatToValPipe,
+    IsEmptyDirective
   ],
   imports: [
     BrowserModule,
