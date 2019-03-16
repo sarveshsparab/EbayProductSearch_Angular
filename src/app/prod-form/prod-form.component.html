@@ -88,7 +88,7 @@
         </div>
         <div class="col-sm-7">
           <input [ngClass]="{'form-control': true, 'is-invalid': psCustZip.invalid && (psCustZip.dirty || psCustZip.touched)}" type="text"
-                 id="psCustZip" name="psCustZip" required isNonEmpty [disabled]="pForm.zipCodeType=='curr'"
+                 id="psCustZip" name="psCustZip" required isNonEmpty isValidZip [disabled]="pForm.zipCodeType=='curr'"
                  placeholder="Enter a zip code" [(ngModel)]="pForm.custZipCode" #psCustZip="ngModel">
                  <!-- appAutocomplete (setAddress)="getAddressOnChange($event, location)">-->
           <div class="invalid-feedback">Please enter a zip code.</div>
