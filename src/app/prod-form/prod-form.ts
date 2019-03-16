@@ -8,5 +8,6 @@ export const ProductForm = {
   localPickup: false,
   freeShipping: false,
   zipCodeType: '',
-  zipCode: ''
+  currZipCode: '',
+  custZipCode: ''
 };
