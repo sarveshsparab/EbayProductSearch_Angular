@@ -1,19 +1,22 @@
 <div class="container ps-form-container">
   <p class="ps-form-header">Product Search</p>
-  <form class="ps-form">
+  <form class="ps-form" (ngSubmit)="psSubmit()" #psForm=ngForm>
     <!-- Keyword row -->
     <div class="form-group row">
-      <label for="ps-keyword" class="col-sm-3 col-form-label">Keyword<span class="ps-reqd-field">*</span></label>
+      <label for="psKeyword" class="col-sm-3 col-form-label">Keyword<span class="ps-reqd-field">*</span></label>
       <div class="col-sm-7">
-        <input type="text" class="form-control" id="ps-keyword" name="ps-keyword" placeholder="Enter Product Name (eg. iPhone 8)">
+        <input type="text" id="psKeyword" name="psKeyword"
+               [ngClass]="{'form-control': true, 'is-invalid': psKeyword.invalid && (psKeyword.dirty || psKeyword.touched)}"
+               placeholder="Enter Product Name (eg. iPhone 8)" [(ngModel)]="pForm.keyword" #psKeyword="ngModel">
       </div>
     </div>
 
     <!-- Category row -->
     <div class="form-group row">
-      <label for="ps-category" class="col-sm-3 col-form-label">Category</label>
+      <label for="psCategory" class="col-sm-3 col-form-label">Category</label>
       <div class="col-sm-3">
-        <select id="ps-category" name="ps-category" class="form-control">
+        <select id="psCategory" name="psCategory" class="form-control"
+                [(ngModel)]="pForm.category" #psCategory="ngModel">
           <option *ngFor="let cat of categoryTypes" [value]="cat|catToVal">{{cat}}</option>
         </select>
       </div>
@@ -24,16 +27,19 @@
       <label for="ps-cond-row" class="col-sm-3 col-form-label">Condition</label>
       <div class="col-sm-6" id="ps-cond-row">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="ps-new" name="ps-new" value="new">
-          <label class="form-check-label" for="ps-new">New</label>
+          <input class="form-check-input" type="checkbox" id="psNew" name="psNew" value="new"
+                 [(ngModel)]="pForm.condNew" #psNew="ngModel">
+          <label class="form-check-label" for="psNew">New</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="ps-used" name="ps-used" value="used">
-          <label class="form-check-label" for="ps-used">Used</label>
+          <input class="form-check-input" type="checkbox" id="psUsed" name="psUsed" value="used"
+                 [(ngModel)]="pForm.condUsed" #psUsed="ngModel">
+          <label class="form-check-label" for="psUsed">Used</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="ps-unspecified" name="ps-unspecified" value="unspecified">
-          <label class="form-check-label" for="ps-unspecified">Unspecified</label>
+          <input class="form-check-input" type="checkbox" id="psUnspecified" name="psUnspecified" value="unspecified"
+                 [(ngModel)]="pForm.condUnspecified" #psUnspecified="ngModel">
+          <label class="form-check-label" for="psUnspecified">Unspecified</label>
         </div>
       </div>
     </div>
@@ -44,21 +50,24 @@
       <label for="ps-ship-row" class="col-sm-3 col-form-label">Shipping Options</label>
       <div class="col-sm-6" id="ps-ship-row">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="ps-local" name="ps-local" value="local">
-          <label class="form-check-label" for="ps-local">Local Pickup</label>
+          <input class="form-check-input" type="checkbox" id="psLocal" name="psLocal" value="local"
+                 [(ngModel)]="pForm.localPickup" #psLocal="ngModel">
+          <label class="form-check-label" for="psLocal">Local Pickup</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="ps-free" name="ps-free" value="free">
-          <label class="form-check-label" for="ps-free">Free Shipping</label>
+          <input class="form-check-input" type="checkbox" id="psFree" name="psFree" value="free"
+                 [(ngModel)]="pForm.freeShipping" #psFree="ngModel">
+          <label class="form-check-label" for="psFree">Free Shipping</label>
         </div>
       </div>
     </div>
 
     <!-- Distance(Miles) row -->
     <div class="form-group row">
-      <label for="ps-miles" class="col-sm-3 col-form-label">Distance (Miles)</label>
+      <label for="psMiles" class="col-sm-3 col-form-label">Distance (Miles)</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" id="ps-miles" name="ps-miles" placeholder="10">
+        <input type="text" class="form-control" id="psMiles" name="psMiles" placeholder="10"
+               value="" [(ngModel)]="pForm.miles" #psMiles="ngModel">
       </div>
     </div>
 
@@ -67,26 +76,28 @@
       <label for="ps-from-rows" class="col-sm-3 col-form-label">From<span class="ps-reqd-field">*</span></label>
       <div class="col-sm-9" id="ps-from-rows">
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="ps-from-radio" id="ps-curr-loc" value="option1" checked>
-          <label class="form-check-label" for="ps-curr-loc">Current Location</label>
+          <input class="form-check-input" type="radio" name="ps-from-radio" id="psCurrLoc" checked
+                 [value]="curr" [(ngModel)]="pForm.zipCodeType">
+          <label class="form-check-label" for="psCurrLoc">Current Location</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="ps-from-radio" id="ps-cust-loc" value="option2">
-          <label class="form-check-label" for="ps-cust-loc">Other. Please specify zip code:</label>
+          <input class="form-check-input" type="radio" name="ps-from-radio" id="psCustLoc"
+                 [value]="cust" [(ngModel)]="pForm.zipCodeType">
+          <label class="form-check-label" for="psCustLoc">Other. Please specify zip code:</label>
         </div>
         <div class="col-sm-7">
-          <input class="form-control" type="text" id="ps-cust-zip" name="ps-cust-zip" disabled>
-          <input class="form-control" type="text" id="ps-curr-zip" name="ps-curr-zip" hidden>
+          <input class="form-control" type="text" id="psCustZip" name="psCustZip" disabled>
+          <input class="form-control" type="text" id="psCurrZip" name="psCurrZip" hidden>
         </div>
       </div>
     </div>
 
     <!-- Buttons row -->
     <div class="form-group row">
-      <button class="btn btn-primary ps-search-btn" type="submit">
+      <button class="btn btn-primary ps-search-btn" type="submit" [disabled]="!isZipCodeFetched || psForm.invalid">
         <i class="material-icons">search</i><span>Search</span>
       </button>
-      <button class="btn btn-primary ps-clear-btn" type="">
+      <button class="btn btn-primary ps-clear-btn" type="reset" (click)="clearPSForm()">
         <i class="material-icons">clear_all</i><span>Clear</span>
       </button>
     </div>

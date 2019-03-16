@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { ProductForm } from './prod-form';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
+import { ProdSearchService } from '../services/prod-search.service';
 
 @Component({
   selector: 'app-prod-form',
@@ -6,6 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./prod-form.component.css']
 })
 export class ProdFormComponent implements OnInit {
+
+  zipCode = '';
+  isZipCodeFetched = false;
+
+  constructor(private pss: ProdSearchService, private cdRef: ChangeDetectorRef) { }
+
+  pForm = ProductForm;
 
   categoryTypes = [
     'All Categories',
@@ -19,9 +29,21 @@ export class ProdFormComponent implements OnInit {
     'Video Games & Consoles'
   ];
 
-  constructor() { }
-
+  psSubmit() {
+    this.pss.search(this.pForm);
+  }
+  fetchCurrentZipCode() {
+    this.pss.fetchCurrentZipCode().subscribe(data => {
+      this.zipCode = data['zip'];
+      this.pForm.currZipCode = this.zipCode;
+      this.isZipCodeFetched = true;
+    });
+  }
+  clearPSForm() {
+    this.pss.pssClear();
+  }
   ngOnInit() {
+    this.fetchCurrentZipCode();
   }
 
 }
