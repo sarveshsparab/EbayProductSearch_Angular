@@ -17,7 +17,7 @@ export class ProdSearchService {
     console.log(psForm);
   }
 
-  fetchCurrentZipCode() {
+  fetchZipFromIPAPI() {
     const url = 'http://ip-api.com/json';
     return this.http.get(url);
   }

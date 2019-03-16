@@ -33,7 +33,7 @@ export class ProdFormComponent implements OnInit {
     this.pss.search(this.pForm);
   }
   fetchCurrentZipCode() {
-    this.pss.fetchCurrentZipCode().subscribe(data => {
+      this.pss.fetchZipFromIPAPI().subscribe(data => {
       this.zipCode = data['zip'];
       this.pForm.currZipCode = this.zipCode;
       this.isZipCodeFetched = true;
