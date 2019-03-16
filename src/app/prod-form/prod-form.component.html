@@ -5,7 +5,7 @@
     <div class="form-group row">
       <label for="psKeyword" class="col-sm-3 col-form-label">Keyword<span class="ps-reqd-field">*</span></label>
       <div class="col-sm-7">
-        <input type="text" id="psKeyword" name="psKeyword" isNonEmpty
+        <input type="text" id="psKeyword" name="psKeyword" isNonEmpty autocomplete="off"
                [ngClass]="{'form-control': true, 'is-invalid': psKeyword.invalid && (psKeyword.dirty || psKeyword.touched)}"
                placeholder="Enter Product Name (eg. iPhone 8)" [(ngModel)]="pForm.keyword" #psKeyword="ngModel">
         <div class="invalid-feedback">Please enter a keyword.</div>
@@ -87,10 +87,20 @@
           <label class="form-check-label" for="psCustLoc">Other. Please specify zip code:</label>
         </div>
         <div class="col-sm-7">
-          <input [ngClass]="{'form-control': true, 'is-invalid': psCustZip.invalid && (psCustZip.dirty || psCustZip.touched)}" type="text"
-                 id="psCustZip" name="psCustZip" required isNonEmpty isValidZip [disabled]="pForm.zipCodeType=='curr'"
-                 placeholder="Enter a zip code" [(ngModel)]="pForm.custZipCode" #psCustZip="ngModel">
-                 <!-- appAutocomplete (setAddress)="getAddressOnChange($event, location)">-->
+          <!--<mat-form-field>-->
+            <input [ngClass]="{'form-control': true, 'is-invalid': psCustZip.invalid && (psCustZip.dirty || psCustZip.touched)}" type="text"
+                 id="psCustZip" name="psCustZip" required isNonEmpty isValidZip autocomplete="off"
+                 [disabled]="pForm.zipCodeType=='curr'"
+                 placeholder="Enter a zip code" [(ngModel)]="pForm.custZipCode" #psCustZip="ngModel"
+                 >
+                 <!-- autoZipCode (setZipCode)="getZipCodeOnChange($event, psCustZip)" -->
+          <!--</mat-form-field>-->
+          <!--<mat-autocomplete #zipCodeAuto="matAutocomplete">-->
+            <!--<mat-option *ngFor="let zip of filteredZipCodes | async" [value]="zip">-->
+              <!--{{zip}}-->
+            <!--</mat-option>-->
+          <!--</mat-autocomplete>-->
+
           <div class="invalid-feedback">Please enter a zip code.</div>
         </div>
       </div>

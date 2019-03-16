@@ -47,6 +47,9 @@ export class ProdFormComponent implements OnInit {
     this.zipCodeType = 'curr';
     this.category = -1;
   }
+  getZipCodeOnChange(event, psCustZip) {
+    this.pForm.custZipCode = (document.getElementById('psCustZip') as HTMLInputElement).value;
+  }
   ngOnInit() {
     this.fetchCurrentZipCode();
   }
