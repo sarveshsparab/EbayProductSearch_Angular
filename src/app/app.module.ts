@@ -14,6 +14,7 @@ import { CatToValPipe } from './pipes/cat-to-val.pipe';
 import { IsEmptyDirective } from './directives/is-empty.directive';
 import { IsZipValidDirective } from './directives/is-zip-valid.directive';
 import { ZipCodeAutoCompleteDirective } from './directives/zip-code-auto-complete.directive';
+import { DisableZipCodeDirective } from './directives/disable-zip-code.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ZipCodeAutoCompleteDirective } from './directives/zip-code-auto-complet
     CatToValPipe,
     IsEmptyDirective,
     IsZipValidDirective,
-    ZipCodeAutoCompleteDirective
+    ZipCodeAutoCompleteDirective,
+    DisableZipCodeDirective
   ],
   imports: [
     BrowserModule,
