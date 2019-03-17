@@ -108,7 +108,7 @@
 
     <!-- Buttons row -->
     <div class="form-group row">
-      <button class="btn btn-primary ps-search-btn" type="submit" [disabled]="!isZipCodeFetched || psForm.invalid">
+      <button class="btn btn-primary ps-search-btn" type="submit" [disabled]="!isZipCodeFetched || psForm.invalid || zipAutoCompleteControl.invalid">
         <i class="material-icons">search</i><span>Search</span>
       </button>
       <button class="btn btn-primary ps-clear-btn" type="reset" (click)="clearPSForm()">

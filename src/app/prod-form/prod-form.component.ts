@@ -3,6 +3,7 @@ import { ProductForm } from './prod-form';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { Validators } from '@angular/forms';
 import { ProdSearchService } from '../services/prod-search.service';
+import { ZipAutoCompleteService } from '../services/zip-auto-complete.service';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -21,9 +22,10 @@ export class ProdFormComponent implements OnInit {
 
   zipAutoCompleteControl = new FormControl('', Validators.required);
   options: string[] = ['One', 'Two', 'Three'];
+  zipOptions: string[];
   fetchedZips: Observable<string[]>;
 
-  constructor(private pss: ProdSearchService, private cdRef: ChangeDetectorRef) { }
+  constructor(private pss: ProdSearchService, private cdRef: ChangeDetectorRef, private zacs: ZipAutoCompleteService) { }
 
   pForm = ProductForm;
 
@@ -55,10 +57,11 @@ export class ProdFormComponent implements OnInit {
     this.zipCodeType = 'curr';
     this.category = -1;
   }
-  getZipCodeOnChange(event, psCustZip) {
-    this.pForm.custZipCode = (document.getElementById('psCustZip') as HTMLInputElement).value;
-  }
+  // getZipCodeOnChange(event, psCustZip) {
+  //   this.pForm.custZipCode = (document.getElementById('psCustZip') as HTMLInputElement).value;
+  // }
   ngOnInit() {
+    this.zipOptions = [];
     this.fetchCurrentZipCode();
 
     this.fetchedZips = this.zipAutoCompleteControl.valueChanges
@@ -73,7 +76,14 @@ export class ProdFormComponent implements OnInit {
       return null;
     }
     const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().startsWith(filterValue));
+    this.zacs.fetchResponseFromGeoName(value).subscribe(data => {
+      this.zipOptions = [];
+      data['postalCodes'].forEach(element => {
+        this.zipOptions.push(element.postalCode);
+      });
+      console.log(this.zipOptions);
+    });
+    return this.zipOptions.filter(option => option.toLowerCase().startsWith(filterValue));
   }
 
 }
