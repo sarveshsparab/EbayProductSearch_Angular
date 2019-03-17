@@ -13,7 +13,6 @@ import { ProdFormComponent } from './components/prod-form/prod-form.component';
 import { CatToValPipe } from './pipes/cat-to-val.pipe';
 import { IsEmptyDirective } from './directives/is-empty.directive';
 import { IsZipValidDirective } from './directives/is-zip-valid.directive';
-import { ZipCodeAutoCompleteDirective } from './directives/zip-code-auto-complete.directive';
 import { DisableZipCodeDirective } from './directives/disable-zip-code.directive';
 import { ProdResultsComponent } from './components/prod-results/prod-results.component';
 
@@ -24,7 +23,6 @@ import { ProdResultsComponent } from './components/prod-results/prod-results.com
     CatToValPipe,
     IsEmptyDirective,
     IsZipValidDirective,
-    ZipCodeAutoCompleteDirective,
     DisableZipCodeDirective,
     ProdResultsComponent
   ],
