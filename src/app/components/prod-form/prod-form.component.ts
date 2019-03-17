@@ -2,8 +2,9 @@ import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@ang
 import { ProductForm } from './prod-form';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { Validators } from '@angular/forms';
-import { ProdSearchService } from '../services/prod-search.service';
-import { ZipAutoCompleteService } from '../services/zip-auto-complete.service';
+import { ProdSearchService } from '../../services/prod-search.service';
+import { ZipAutoCompleteService } from '../../services/zip-auto-complete.service';
+import { IPAPIService } from '../../services/ipapi.service';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -25,7 +26,8 @@ export class ProdFormComponent implements OnInit {
   zipOptions: string[];
   fetchedZips: Observable<string[]>;
 
-  constructor(private pss: ProdSearchService, private cdRef: ChangeDetectorRef, private zacs: ZipAutoCompleteService) { }
+  constructor(private pss: ProdSearchService, private cdRef: ChangeDetectorRef, private zacs: ZipAutoCompleteService,
+              private ipapis: IPAPIService) { }
 
   pForm = ProductForm;
 
@@ -45,7 +47,7 @@ export class ProdFormComponent implements OnInit {
     this.pss.search(this.pForm);
   }
   fetchCurrentZipCode() {
-      this.pss.fetchZipFromIPAPI().subscribe(data => {
+      this.ipapis.fetchZipFromIPAPI().subscribe(data => {
         this.zipCode = data['zip'];
         this.pForm.currZipCode = this.zipCode;
         this.isZipCodeFetched = true;
