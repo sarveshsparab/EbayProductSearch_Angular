@@ -64,7 +64,7 @@
 }
 
 
-/* Overriding BS properties*/
+/* Overriding BS/Imported properties*/
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9,
 .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2,
 .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8,
@@ -77,4 +77,9 @@
 .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11,
 .col-xl-12, .col-xl, .col-xl-auto{
   padding-left: 0;
+}
+
+/* To remove the red cross on right end of text field */
+.was-validated .form-control:invalid, .form-control.is-invalid {
+  background-image: none;
 }
