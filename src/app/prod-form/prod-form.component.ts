@@ -2,6 +2,9 @@ import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@ang
 import { ProductForm } from './prod-form';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { ProdSearchService } from '../services/prod-search.service';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-prod-form',
@@ -14,6 +17,10 @@ export class ProdFormComponent implements OnInit {
   isZipCodeFetched = false;
   zipCodeType = 'curr';
   category = -1;
+
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
 
   constructor(private pss: ProdSearchService, private cdRef: ChangeDetectorRef) { }
 
@@ -52,6 +59,20 @@ export class ProdFormComponent implements OnInit {
   }
   ngOnInit() {
     this.fetchCurrentZipCode();
+
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    if (filterValue === '') {
+      return null;
+    }
+    return this.options.filter(option => option.toLowerCase().startsWith(filterValue));
   }
 
 }

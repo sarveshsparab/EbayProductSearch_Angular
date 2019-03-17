@@ -93,6 +93,17 @@
                  [disabled]="pForm.zipCodeType=='curr'"
                  placeholder="Enter a zip code" [(ngModel)]="pForm.custZipCode" #psCustZip="ngModel"
                  >
+
+
+          <mat-form-field>
+          <input type="text" placeholder="Pick one" matInput [formControl]="myControl" [matAutocomplete]="auto1">
+          <mat-autocomplete #auto1="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+          </mat-form-field>
+
                  <!-- autoZipCode (setZipCode)="getZipCodeOnChange($event, psCustZip)" -->
           <!--</mat-form-field>-->
           <!--<mat-autocomplete #zipCodeAuto="matAutocomplete">-->
