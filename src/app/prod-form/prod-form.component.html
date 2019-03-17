@@ -87,31 +87,20 @@
           <label class="form-check-label" for="psCustLoc">Other. Please specify zip code:</label>
         </div>
         <div class="col-sm-7">
-          <!--<mat-form-field>-->
-            <input [ngClass]="{'form-control': true, 'is-invalid': psCustZip.invalid && (psCustZip.dirty || psCustZip.touched)}" type="text"
-                 id="psCustZip" name="psCustZip" required isNonEmpty isValidZip autocomplete="off"
+          <input type="text" [formControl]="zipAutoCompleteControl"
+                 id="psCustZip" name="psCustZip"
+                 required isNonEmpty isValidZip
+                 autocomplete="off"
+                 [matAutocomplete]="zipAuto"
                  [disabled]="pForm.zipCodeType=='curr'"
-                 placeholder="Enter a zip code" [(ngModel)]="pForm.custZipCode" #psCustZip="ngModel"
-                 >
+                 [ngClass]="{'form-control': true, 'is-invalid': zipAutoCompleteControl.invalid
+                 && (zipAutoCompleteControl.dirty || zipAutoCompleteControl.touched)}" >
 
-
-          <mat-form-field>
-          <input type="text" placeholder="Pick one" matInput [formControl]="myControl" [matAutocomplete]="auto1">
-          <mat-autocomplete #auto1="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
+          <mat-autocomplete #zipAuto="matAutocomplete">
+            <mat-option *ngFor="let zip of fetchedZips | async" [value]="zip">
+              {{zip}}
             </mat-option>
           </mat-autocomplete>
-          </mat-form-field>
-
-                 <!-- autoZipCode (setZipCode)="getZipCodeOnChange($event, psCustZip)" -->
-          <!--</mat-form-field>-->
-          <!--<mat-autocomplete #zipCodeAuto="matAutocomplete">-->
-            <!--<mat-option *ngFor="let zip of filteredZipCodes | async" [value]="zip">-->
-              <!--{{zip}}-->
-            <!--</mat-option>-->
-          <!--</mat-autocomplete>-->
-
           <div class="invalid-feedback">Please enter a zip code.</div>
         </div>
       </div>

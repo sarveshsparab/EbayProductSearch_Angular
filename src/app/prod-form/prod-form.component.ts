@@ -18,9 +18,9 @@ export class ProdFormComponent implements OnInit {
   zipCodeType = 'curr';
   category = -1;
 
-  myControl = new FormControl();
+  zipAutoCompleteControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
+  fetchedZips: Observable<string[]>;
 
   constructor(private pss: ProdSearchService, private cdRef: ChangeDetectorRef) { }
 
@@ -39,6 +39,7 @@ export class ProdFormComponent implements OnInit {
   ];
 
   psSubmit() {
+    this.pForm.custZipCode = this.zipAutoCompleteControl.value;
     this.pss.search(this.pForm);
   }
   fetchCurrentZipCode() {
@@ -60,7 +61,7 @@ export class ProdFormComponent implements OnInit {
   ngOnInit() {
     this.fetchCurrentZipCode();
 
-    this.filteredOptions = this.myControl.valueChanges
+    this.fetchedZips = this.zipAutoCompleteControl.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value))
