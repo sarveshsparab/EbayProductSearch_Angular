@@ -7,7 +7,7 @@ import { ZipAutoCompleteService } from '../../services/zip-auto-complete.service
 import { IPAPIService } from '../../services/ipapi.service';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-prod-form',
@@ -20,14 +20,33 @@ export class ProdFormComponent implements OnInit {
   isZipCodeFetched = false;
   zipCodeType = 'curr';
   category = -1;
+  isZipAutoCompleteDisabled = true;
 
   zipAutoCompleteControl = new FormControl('', Validators.required);
-  options: string[] = ['One', 'Two', 'Three'];
-  zipOptions: string[];
-  fetchedZips: Observable<string[]>;
+  fetchedZips: string[];
 
   constructor(private pss: ProdSearchService, private cdRef: ChangeDetectorRef, private zacs: ZipAutoCompleteService,
-              private ipapis: IPAPIService) { }
+              private ipapis: IPAPIService) {
+    this.zacs.resultJsonOb.pipe(
+        debounceTime(300),
+        distinctUntilChanged()
+      ).subscribe(data => {
+        this.fetchedZips = [];
+        if (data === null) {
+          this.isZipAutoCompleteDisabled = true;
+        } else if (data === undefined) {
+          this.isZipAutoCompleteDisabled = true;
+        } else if (data['status'] === 'ZERO_RESULTS') {
+          this.isZipAutoCompleteDisabled = true;
+        } else {
+          data['postalCodes'].forEach(element => {
+            this.fetchedZips.push(element.postalCode);
+          });
+          console.log(this.fetchedZips);
+          this.isZipAutoCompleteDisabled = false;
+        }
+    });
+  }
 
   pForm = ProductForm;
 
@@ -46,11 +65,14 @@ export class ProdFormComponent implements OnInit {
   psSubmit() {
     this.pss.search(this.pForm);
   }
+  fetchNewZips(enteredValue) {
+    this.zacs.fetchResponseFromGeoName(enteredValue);
+  }
   fetchCurrentZipCode() {
-      this.ipapis.fetchZipFromIPAPI().subscribe(data => {
-        this.zipCode = data['zip'];
-        this.pForm.currZipCode = this.zipCode;
-        this.isZipCodeFetched = true;
+    this.ipapis.fetchZipFromIPAPI().subscribe(data => {
+      this.zipCode = data['zip'];
+      this.pForm.currZipCode = this.zipCode;
+      this.isZipCodeFetched = true;
     });
   }
   clearPSForm() {
@@ -58,34 +80,11 @@ export class ProdFormComponent implements OnInit {
     this.zipCode = '';
     this.zipCodeType = 'curr';
     this.category = -1;
+    this.isZipAutoCompleteDisabled = true;
   }
-  // getZipCodeOnChange(event, psCustZip) {
-  //   this.pForm.custZipCode = (document.getElementById('psCustZip') as HTMLInputElement).value;
-  // }
   ngOnInit() {
-    this.zipOptions = [];
     this.fetchCurrentZipCode();
-
-    this.fetchedZips = this.zipAutoCompleteControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this.filterZips(value))
-      );
-  }
-
-  private filterZips(value: string): string[] {
-    if (value === '') {
-      return null;
-    }
-    const filterValue = value.toLowerCase();
-    this.zacs.fetchResponseFromGeoName(value).subscribe(data => {
-      this.zipOptions = [];
-      data['postalCodes'].forEach(element => {
-        this.zipOptions.push(element.postalCode);
-      });
-      console.log(this.zipOptions);
-    });
-    return this.zipOptions.filter(option => option.toLowerCase().startsWith(filterValue));
+    this.zacs.loadResponseFromGeoName();
   }
 
 }

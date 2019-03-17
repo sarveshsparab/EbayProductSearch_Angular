@@ -93,11 +93,13 @@
                  autocomplete="off"
                  [disabled]="pForm.zipCodeType=='curr'"
                  [matAutocomplete]="zipAuto"
+                 [matAutocompleteDisabled]="isZipAutoCompleteDisabled"
+                 (keydown)="fetchNewZips(zipAutoCompleteControl.value)"
                  [ngClass]="{'form-control': true, 'is-invalid': zipAutoCompleteControl.invalid
                  && (zipAutoCompleteControl.dirty || zipAutoCompleteControl.touched)}" >
 
           <mat-autocomplete #zipAuto="matAutocomplete">
-            <mat-option *ngFor="let zip of fetchedZips | async" [value]="zip">
+            <mat-option *ngFor="let zip of fetchedZips" [value]="zip">
               {{zip}}
             </mat-option>
           </mat-autocomplete>
