@@ -1,5 +1,5 @@
 <div class="container ps-form-container">
-  <p class="ps-form-header">Product Search</p>
+  <p class="ps-form-header">Product Search {{ psForm.status }}</p>
   <form class="ps-form" (ngSubmit)="psSubmit()" #psForm=ngForm>
     <!-- Keyword row -->
     <div class="form-group row">
@@ -118,7 +118,3 @@
 
   </form>
 </div>
-
-<p>
-  Form Status: {{ psForm.status }}
-</p>
