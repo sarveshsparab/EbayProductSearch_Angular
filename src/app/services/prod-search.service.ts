@@ -17,11 +17,6 @@ export class ProdSearchService {
     console.log(psForm);
   }
 
-  fetchZipFromIPAPI() {
-    const url = 'http://ip-api.com/json';
-    return this.http.get(url);
-  }
-
   pssClear() {
     console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxx');
   }
