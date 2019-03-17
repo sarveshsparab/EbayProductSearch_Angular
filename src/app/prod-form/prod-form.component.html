@@ -91,8 +91,8 @@
                  id="psCustZip" name="psCustZip"
                  required isNonEmpty isValidZip
                  autocomplete="off"
-                 [matAutocomplete]="zipAuto"
                  [disabled]="pForm.zipCodeType=='curr'"
+                 [matAutocomplete]="zipAuto"
                  [ngClass]="{'form-control': true, 'is-invalid': zipAutoCompleteControl.invalid
                  && (zipAutoCompleteControl.dirty || zipAutoCompleteControl.touched)}" >
 
@@ -118,3 +118,7 @@
 
   </form>
 </div>
+
+<p>
+  Form Status: {{ psForm.status }}
+</p>

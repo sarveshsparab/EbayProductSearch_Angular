@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { ProductForm } from './prod-form';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
+import { Validators } from '@angular/forms';
 import { ProdSearchService } from '../services/prod-search.service';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
@@ -18,7 +19,7 @@ export class ProdFormComponent implements OnInit {
   zipCodeType = 'curr';
   category = -1;
 
-  zipAutoCompleteControl = new FormControl();
+  zipAutoCompleteControl = new FormControl('', Validators.required);
   options: string[] = ['One', 'Two', 'Three'];
   fetchedZips: Observable<string[]>;
 
@@ -39,7 +40,6 @@ export class ProdFormComponent implements OnInit {
   ];
 
   psSubmit() {
-    this.pForm.custZipCode = this.zipAutoCompleteControl.value;
     this.pss.search(this.pForm);
   }
   fetchCurrentZipCode() {
@@ -64,15 +64,15 @@ export class ProdFormComponent implements OnInit {
     this.fetchedZips = this.zipAutoCompleteControl.valueChanges
       .pipe(
         startWith(''),
-        map(value => this._filter(value))
+        map(value => this.filterZips(value))
       );
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    if (filterValue === '') {
+  private filterZips(value: string): string[] {
+    if (value === '') {
       return null;
     }
+    const filterValue = value.toLowerCase();
     return this.options.filter(option => option.toLowerCase().startsWith(filterValue));
   }
 
