@@ -1,3 +1,70 @@
-<p>
-  search-listing works!
-</p>
+<div class="alert alert-danger" role="alert" *ngIf="errorState && displayListings"> {{ error_msg }} </div>
+
+<div class="details-btn" *ngIf="displayListings && !errorState">
+  <button class="btn btn-outline-secondary" [disabled]="!selectedRow">Details
+    <!--(click)="showDetails()"-->
+    <i class="material-icons">chevron_right</i>
+  </button>
+</div>
+
+<div id="results-div" *ngIf="displayListings && !errorState" class="table-responsive">
+
+  <div class="alert alert-warning" role="alert" *ngIf="!resultJson"> {{ error_msg }} </div>
+
+  <table class="table" *ngIf="resultJson && resultJson != 'loading'">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Category</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Shipping</th>
+      <th scope="col">Zip</th>
+      <th scope="col">Seller</th>
+      <th scope="col">Wish List</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let rowdata of resultJson; index as i">
+      <!--[class.table-warning]="rowdata.place_id == selectedRow"-->
+      <th scope="row">{{i+1}}</th>
+      <td>
+        A
+      </td>
+      <td>B</td>
+      <td>C</td>
+      <td>
+        <!--<button type="button" class="btn btn-outline" >-->
+        <!--&lt;!&ndash;(click)="setFavorite(i)" [class.favorited]="isFavorite[i]"&ndash;&gt;-->
+        <!--<i class="fas fa-star"></i>-->
+        <!--</button>-->
+        C
+      </td>
+      <td>
+        <!--<button type="button" class="btn btn-outline" (click)="getDetails(rowdata.place_id)">-->
+        <!--<i class="fas fa-angle-right"></i>-->
+        <!--</button>-->
+        D
+      </td>
+      <td>E</td>
+      <td>F</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+
+</div>
+

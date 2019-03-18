@@ -63,7 +63,7 @@ export class ProdFormComponent implements OnInit {
   ];
 
   psSubmit() {
-    this.pss.search(this.pForm);
+    this.pss.fetchFromEbay(this.pForm);
   }
   fetchNewZips(enteredValue) {
     this.zacs.fetchResponseFromGeoName(enteredValue);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-wish-list',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wish-list.component.css']
 })
 export class WishListComponent implements OnInit {
+  @Output() slide = new EventEmitter<string>();
 
   constructor() { }
 

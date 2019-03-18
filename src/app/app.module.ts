@@ -15,6 +15,9 @@ import { IsEmptyDirective } from './directives/is-empty.directive';
 import { IsZipValidDirective } from './directives/is-zip-valid.directive';
 import { DisableZipCodeDirective } from './directives/disable-zip-code.directive';
 import { ProdResultsComponent } from './components/prod-results/prod-results.component';
+import { ItemDetailsComponent } from './components/item-details/item-details.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
+import { SearchListingComponent } from './components/search-listing/search-listing.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { ProdResultsComponent } from './components/prod-results/prod-results.com
     IsEmptyDirective,
     IsZipValidDirective,
     DisableZipCodeDirective,
-    ProdResultsComponent
+    ProdResultsComponent,
+    ItemDetailsComponent,
+    WishListComponent,
+    SearchListingComponent
   ],
   imports: [
     BrowserModule,

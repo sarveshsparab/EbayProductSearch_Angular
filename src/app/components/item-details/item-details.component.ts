@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+
 
 @Component({
   selector: 'app-item-details',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item-details.component.css']
 })
 export class ItemDetailsComponent implements OnInit {
+  @Output() slide = new EventEmitter<string>();
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
+
   }
 
 }

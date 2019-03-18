@@ -1,0 +1,10 @@
+.prodResult_container{
+  margin-top: 35px;
+}
+.resultsAndWishList {
+  text-align: center;
+  margin: auto auto 50px;
+}
+.hide {
+  display: none;
+}
