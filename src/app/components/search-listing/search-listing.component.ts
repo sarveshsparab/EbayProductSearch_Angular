@@ -20,10 +20,11 @@ export class SearchListingComponent implements OnInit {
   service: any;
   isFavorite: any;
   errorState: boolean = false;
+  error_msg: any;
 
   constructor(private pss: ProdSearchService, private ids: ItemDetailsService, private wls: WishListService) {
     this.pss.resultJsonOb.subscribe(data => {
-      console.log("EbayFindingsApi");
+      console.log("EbayFindingsApi results");
       console.log(data);
       if (data === null) {
         this.errorState = true;
@@ -31,20 +32,19 @@ export class SearchListingComponent implements OnInit {
       } else if (data === undefined) {
 
       }
-      // else if (data["response"]["status"] == 'EMPTY') {
-      //   // console.log("3");
-      //   this.resultJson = null;
-      //   this.displayListings = true;
-      // }
+      else if (data["responseStatus"] == 'Error') {
+        this.errorState = true;
+        this.error_msg = data["responseContent"];
+        this.resultJson = null;
+        this.displayListings = true;
+      }
       else if(data == 'clear') {
-        // console.log("4");
         this.resultJson = null;
         this.displayListings = true;
         this.selectedRow = null;
       }
       else {
-        // console.log("5");
-        this.resultJson = ["one", "two", "three"];
+        this.resultJson = data["responseContent"];
         //this.checkFavorite();
         this.errorState = false;
         this.displayListings = true;
