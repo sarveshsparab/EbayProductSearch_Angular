@@ -34,3 +34,8 @@
 .table {
   overflow: scroll;
 }
+
+.clickableTitle {
+  color: blue;
+  cursor: pointer;
+}
