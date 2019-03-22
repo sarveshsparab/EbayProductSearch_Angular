@@ -15,7 +15,7 @@
     <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Category</th>
+      <th scope="col">Image</th>
       <th scope="col">Title</th>
       <th scope="col">Price</th>
       <th scope="col">Shipping</th>
@@ -27,27 +27,25 @@
     <tbody>
     <tr *ngFor="let rowdata of resultJson; index as i">
       <!--[class.table-warning]="rowdata.place_id == selectedRow"-->
-      <th scope="row">{{i+1}}</th>
-      <td>
-        A
-      </td>
-      <td>B</td>
-      <td>C</td>
+      <td scope="row">{{i+1}}</td>
+      <td>{{rowdata.image}}</td>
+      <td>{{rowdata.title}}</td>
+      <td>{{rowdata.price}}</td>
       <td>
         <!--<button type="button" class="btn btn-outline" >-->
         <!--&lt;!&ndash;(click)="setFavorite(i)" [class.favorited]="isFavorite[i]"&ndash;&gt;-->
         <!--<i class="fas fa-star"></i>-->
         <!--</button>-->
-        C
+        {{rowdata.shipping}}
       </td>
+      <td>{{rowdata.zip}}</td>
+      <td>{{rowdata.seller}}</td>
       <td>
-        <!--<button type="button" class="btn btn-outline" (click)="getDetails(rowdata.place_id)">-->
-        <!--<i class="fas fa-angle-right"></i>-->
-        <!--</button>-->
-        D
+        <button type="button" class="btn btn-outline" >
+          <!--(click)="getDetails(rowdata.place_id)"-->
+          <i class="material-icons">add_shopping_cart</i>
+        </button>
       </td>
-      <td>E</td>
-      <td>F</td>
     </tr>
     </tbody>
   </table>
