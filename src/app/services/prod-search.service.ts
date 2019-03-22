@@ -63,9 +63,21 @@ export class ProdSearchService {
     response.subscribe(
       data => {
         this.jsonDataFetched = data;
-        this.resultJsonSub.next(this.jsonDataFetched);
+        // this.resultJsonSub.next(this.jsonDataFetched);
         this.isDataReceivedSub.next(true);
         this.listingResults = data;
+
+        let ebayErrorCheck = this.isThereAnyEbayError(this.jsonDataFetched);
+        let responseValidityCheck = this.isFetchedResponseValid(this.jsonDataFetched);
+        if (ebayErrorCheck[0]) {
+          console.log(ebayErrorCheck[1]);
+          this.resultJsonSub.next({"responseStatus": "Error", "responseContent":  "" + ebayErrorCheck[1] + "" });
+        } else if (!responseValidityCheck[0]) {
+          this.resultJsonSub.next({"responseStatus": "Error", "responseContent": "" + responseValidityCheck[1] + "" });
+        } else {
+          this.resultJsonSub.next({"responseStatus": "Success", "responseContent": this.jsonDataFetched.findItemsAdvancedResponse[0].searchResult[0].item });
+        }
+
       },
       err => {
         this.resultJsonSub.next(null);
