@@ -10,8 +10,9 @@ import { ProdSearchService } from '../../services/prod-search.service';
 })
 export class SearchListingComponent implements OnInit {
   @Output() slide = new EventEmitter<string>();
-  @Input("place") selectedRow: any;
+  @Input("itemId") selectedItem: any;
 
+  selectedItemJsonObj: any;
   displayListings = false;
   resultJson = null;
   nextPage: any;
@@ -41,7 +42,7 @@ export class SearchListingComponent implements OnInit {
       else if(data == 'clear') {
         this.resultJson = null;
         this.displayListings = true;
-        this.selectedRow = null;
+        this.selectedItem = null;
       }
       else {
         this.resultJson = data["responseContent"];
@@ -54,12 +55,12 @@ export class SearchListingComponent implements OnInit {
     });
   }
 
-  highlightRow(placeId) {
-    this.selectedRow = placeId;
+  highlightRow(itemId) {
+    this.selectedItem = itemId;
   }
 
   // showDetails() {
-  //   this.slide.emit({ slide: "left", place: this.selectedRow });
+  //   this.slide.emit({ slide: "left", place: this.selectedItem });
   // }
 
   // getDetails(placeId) {
@@ -159,5 +160,21 @@ export class SearchListingComponent implements OnInit {
     } else {
       return jsonObj["title"][0];
     }
+  }
+
+  toggleItemInWishList(jsonObj) {
+    alert(jsonObj.itemId[0]);
+    this.slide.emit(JSON.stringify({ slide: "left", itemId: this.selectedItem }));
+  }
+
+  fetchItemDetails(jsonObj){
+    this.selectedItem = jsonObj.itemId[0];
+    this.selectedItemJsonObj = jsonObj;
+    this.getItemDetails();
+  }
+
+  getItemDetails() {
+    alert("Details for :" + this.selectedItem);
+    console.log(this.selectedItemJsonObj);
   }
 }
