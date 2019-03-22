@@ -1,8 +1,7 @@
 <div class="alert alert-danger" role="alert" *ngIf="errorState && displayListings"> {{ error_msg }} </div>
 
 <div class="details-btn" *ngIf="displayListings && !errorState">
-  <button class="btn btn-outline-secondary" [disabled]="!selectedRow">Details
-    <!--(click)="showDetails()"-->
+  <button class="btn btn-outline-secondary" [disabled]="!selectedItem" (click)="getItemDetails()" >Details
     <i class="material-icons">chevron_right</i>
   </button>
 </div>
@@ -25,18 +24,20 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let rowdata of resultJson; index as i">
-      <!--[class.table-warning]="rowdata.place_id == selectedRow"-->
+    <tr *ngFor="let rowdata of resultJson; index as i" [class.table-warning]="rowdata.itemId[0] == selectedItem">
       <td scope="row">{{i+1}}</td>
       <td [innerHTML]="processImage(rowdata)"></td>
-      <td><span placement="bottom" ngbTooltip="{{processTooltip(rowdata)}}">{{processTitle(rowdata)}}</span></td>
+      <td>
+        <span placement="bottom" ngbTooltip="{{processTooltip(rowdata)}}">
+          <a (click)="fetchItemDetails(rowdata)" class="clickableTitle" style="color: blue">{{processTitle(rowdata)}}</a>
+        </span>
+      </td>
       <td>{{processPrice(rowdata)}}</td>
       <td>{{processShipping(rowdata)}}</td>
       <td>{{processZip(rowdata)}}</td>
       <td>{{processSeller(rowdata)}}</td>
       <td>
-        <button type="button" class="btn btn-outline" >
-          <!--(click)="getDetails(rowdata.place_id)"-->
+        <button type="button" class="btn btn-outline" (click)="toggleItemInWishList(rowdata)">
           <i class="material-icons">add_shopping_cart</i>
         </button>
       </td>
@@ -52,6 +53,8 @@
       <li class="page-item"><a class="page-link" href="#">1</a></li>
       <li class="page-item"><a class="page-link" href="#">2</a></li>
       <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">4</a></li>
+      <li class="page-item"><a class="page-link" href="#">5</a></li>
       <li class="page-item">
         <a class="page-link" href="#">Next</a>
       </li>
