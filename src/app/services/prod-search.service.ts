@@ -103,12 +103,12 @@ export class ProdSearchService {
     tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').name=MaxDistance';
     tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value=' + (psForm.miles || '10');
     itemFilterNameCount++;
-    if (!psForm.freeShipping) {
+    if (psForm.freeShipping == "true") {
       tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').name=FreeShippingOnly';
       tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value=true';
       itemFilterNameCount++;
     }
-    if (!psForm.localPickup) {
+    if (psForm.localPickup == "true") {
       tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').name=LocalPickupOnly';
       tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value=true';
       itemFilterNameCount++;
@@ -116,19 +116,19 @@ export class ProdSearchService {
     tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').name=HideDuplicateItems';
     tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value=true';
     itemFilterNameCount++;
-    if (psForm.condNew || psForm.condUsed || psForm.condUnspecified ){
-      tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').name=LocalPickupOnly';
+    if (psForm.condNew == "true" || psForm.condUsed == "true" || psForm.condUnspecified == "true" ){
+      tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').name=Condition';
       let itemFilterValueCount = 0;
 
-      if (psForm.condNew) {
+      if (psForm.condNew == "true") {
         tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value(' + itemFilterValueCount + ')=New';
         itemFilterValueCount++;
       }
-      if (psForm.condUsed) {
+      if (psForm.condUsed == "true") {
         tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value(' + itemFilterValueCount + ')=Used';
         itemFilterValueCount++;
       }
-      if (psForm.condUnspecified) {
+      if (psForm.condUnspecified == "true") {
         tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value(' + itemFilterValueCount + ')=Unspecified';
         itemFilterValueCount++;
       }
