@@ -63,7 +63,6 @@ export class ProdSearchService {
     response.subscribe(
       data => {
         this.jsonDataFetched = data;
-        // this.resultJsonSub.next(this.jsonDataFetched);
         this.isDataReceivedSub.next(true);
         this.listingResults = data;
 
@@ -103,12 +102,12 @@ export class ProdSearchService {
     tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').name=MaxDistance';
     tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value=' + (psForm.miles || '10');
     itemFilterNameCount++;
-    if (psForm.freeShipping == "true") {
+    if (psForm.freeShipping == true) {
       tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').name=FreeShippingOnly';
       tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value=true';
       itemFilterNameCount++;
     }
-    if (psForm.localPickup == "true") {
+    if (psForm.localPickup == true) {
       tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').name=LocalPickupOnly';
       tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value=true';
       itemFilterNameCount++;
@@ -116,19 +115,19 @@ export class ProdSearchService {
     tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').name=HideDuplicateItems';
     tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value=true';
     itemFilterNameCount++;
-    if (psForm.condNew == "true" || psForm.condUsed == "true" || psForm.condUnspecified == "true" ){
+    if (psForm.condNew == true || psForm.condUsed == true || psForm.condUnspecified == true ){
       tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').name=Condition';
       let itemFilterValueCount = 0;
 
-      if (psForm.condNew == "true") {
+      if (psForm.condNew == true) {
         tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value(' + itemFilterValueCount + ')=New';
         itemFilterValueCount++;
       }
-      if (psForm.condUsed == "true") {
+      if (psForm.condUsed == true) {
         tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value(' + itemFilterValueCount + ')=Used';
         itemFilterValueCount++;
       }
-      if (psForm.condUnspecified == "true") {
+      if (psForm.condUnspecified == true) {
         tempEbayUrl += '&itemFilter(' + itemFilterNameCount + ').value(' + itemFilterValueCount + ')=Unspecified';
         itemFilterValueCount++;
       }
