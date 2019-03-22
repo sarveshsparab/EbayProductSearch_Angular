@@ -28,18 +28,12 @@
     <tr *ngFor="let rowdata of resultJson; index as i">
       <!--[class.table-warning]="rowdata.place_id == selectedRow"-->
       <td scope="row">{{i+1}}</td>
-      <td>{{rowdata.image}}</td>
-      <td>{{rowdata.title}}</td>
-      <td>{{rowdata.price}}</td>
-      <td>
-        <!--<button type="button" class="btn btn-outline" >-->
-        <!--&lt;!&ndash;(click)="setFavorite(i)" [class.favorited]="isFavorite[i]"&ndash;&gt;-->
-        <!--<i class="fas fa-star"></i>-->
-        <!--</button>-->
-        {{rowdata.shipping}}
-      </td>
-      <td>{{rowdata.zip}}</td>
-      <td>{{rowdata.seller}}</td>
+      <td [innerHTML]="processImage(rowdata)"></td>
+      <td><span placement="bottom" ngbTooltip="{{processTooltip(rowdata)}}">{{processTitle(rowdata)}}</span></td>
+      <td>{{processPrice(rowdata)}}</td>
+      <td>{{processShipping(rowdata)}}</td>
+      <td>{{processZip(rowdata)}}</td>
+      <td>{{processSeller(rowdata)}}</td>
       <td>
         <button type="button" class="btn btn-outline" >
           <!--(click)="getDetails(rowdata.place_id)"-->

@@ -73,4 +73,91 @@ export class SearchListingComponent implements OnInit {
     this.curPage = 1;
   }
 
+  processImage(jsonObj) {
+    if(jsonObj.galleryURL !=null && jsonObj.galleryURL != "" && jsonObj.galleryURL.length != 0){
+      let imageElem = document.createElement('img');
+      imageElem.setAttribute("src", jsonObj.galleryURL[0]);
+      return imageElem.outerHTML;
+    } else {
+      return 'N/A';
+    }
+  }
+
+  processTitle(jsonObj) {
+    if (jsonObj.title == null || jsonObj.title.length == 0) {
+      return "N/A";
+    } else {
+      let titleLen = jsonObj["title"][0].length;
+      if (titleLen < 35)
+        return jsonObj["title"][0];
+      else{
+        if(jsonObj["title"][0].substring(0,35).slice(-1) == ''){
+          return jsonObj["title"][0].substring(0,35) + "...";
+        } else {
+          return jsonObj["title"][0].substring(0,jsonObj["title"][0].substring(0,35).lastIndexOf(" ")) + "...";
+        }
+      }
+    }
+  }
+
+  processPrice(jsonObj) {
+    let currStr = '';
+    if (jsonObj.sellingStatus == null || jsonObj.sellingStatus.length == 0) {
+      currStr = 'N/A';
+    } else if (jsonObj.sellingStatus[0].currentPrice == null ||
+      jsonObj.sellingStatus[0].currentPrice.length == 0) {
+      currStr = 'N/A';
+    } else {
+      currStr = '$';
+      currStr += jsonObj.sellingStatus[0].currentPrice[0].__value__;
+    }
+    return currStr;
+  }
+
+  processShipping(jsonObj) {
+    let shipStr = '';
+    if(jsonObj.shippingInfo == null || jsonObj.shippingInfo.length == 0) {
+      shipStr = 'N/A';
+    } else if(jsonObj.shippingInfo[0].shippingServiceCost == null ||
+      jsonObj.shippingInfo[0].shippingServiceCost.length == 0) {
+      shipStr = 'N/A';
+    } else {
+      if(jsonObj.shippingInfo[0].shippingServiceCost[0].__value__ > 0) {
+        shipStr = '$';
+        shipStr += jsonObj.shippingInfo[0].shippingServiceCost[0].__value__;
+      }else{
+        shipStr = 'Free Shipping';
+      }
+    }
+    return shipStr;
+  }
+
+  processZip(jsonObj) {
+    if(jsonObj.postalCode !=null && jsonObj.postalCode != "" && jsonObj.postalCode.length != 0){
+      return jsonObj.postalCode;
+    } else {
+      return "N/A";
+    }
+  }
+
+  processSeller(jsonObj) {
+    let sellerStr = '';
+    if(jsonObj.sellerInfo == null || jsonObj.sellerInfo.length == 0) {
+      sellerStr = 'N/A';
+    } else if(jsonObj.sellerInfo[0].sellerUserName == null ||
+      jsonObj.sellerInfo[0].sellerUserName.length == 0) {
+      sellerStr = 'N/A';
+    } else {
+      sellerStr = jsonObj.sellerInfo[0].sellerUserName[0];
+    }
+    return sellerStr;
+  }
+
+  processTooltip(jsonObj) {
+    if (jsonObj.title == null || jsonObj.title.length == 0) {
+      return "N/A";
+    } else {
+      return jsonObj["title"][0];
+    }
+  }
 }
