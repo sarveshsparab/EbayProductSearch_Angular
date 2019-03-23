@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-product-tab-details',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-tab-details.component.css']
 })
 export class ProductTabDetailsComponent implements OnInit {
+  @Input("productTab_content") selectedItem: any;
 
   constructor() { }
 
