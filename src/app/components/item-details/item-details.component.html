@@ -20,9 +20,9 @@
     </div>
   </div>
   <nav>
-    <div class="nav nav-tabs justify-content-end" id="nav-tabs" role="tablist">
+    <div class="nav nav-pills mb-3 justify-content-end" id="nav-tabs" role="tablist">
       <a href="#" *ngFor="let tab of itemDetailsTabs" [id]="tab.id" class="nav-item nav-link" [class.active]="tab.id === activeTab"
-         role="tab" data-toggle="tab" [attr.aria-controls]="tab.id+'-panel'" (click)="setActiveTab(tab.id)">{{tab.title}}</a>
+         role="tab" data-toggle="pill" [attr.aria-controls]="tab.id+'-panel'" (click)="setActiveTab(tab.id)">{{tab.title}}</a>
     </div>
   </nav>
   <br>
