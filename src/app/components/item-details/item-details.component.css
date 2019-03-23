@@ -1,7 +1,11 @@
-.left {
+.leftButtons {
   float: left;
 }
 
-.right {
+.rightButtons {
   float: right;
+}
+
+.fb_btn {
+  width: 25%;
 }

@@ -42,4 +42,12 @@ export class ItemDetailsComponent implements OnInit {
   backToListings() {
     this.slide.emit("right");
   }
+
+  toggleWishList() {
+
+  }
+
+  shareOnFB() {
+
+  }
 }

@@ -3,20 +3,18 @@
     <h3>{{itemName}}</h3>
   </div>
   <div id="details-button">
-    <div class="left">
+    <div class="leftButtons">
       <button class="btn btn-outline-secondary" (click)="backToListings()">
         <i class="material-icons">chevron_left</i>
         List
       </button>
     </div>
-    <div class="right">
-      <button class="btn btn-outline" >
-        <!--(click)="setFavorite()" [class.favorited]="isFavorited"-->
-        <!--<i class="fas fa-star"></i>-->
+    <div class="rightButtons">
+      <button class="btn btn-outline" (click)="toggleWishList()">
+        <i class="material-icons">add_shopping_cart</i>
       </button>
-      <button class="btn" >
-        <!--(click)="tweet()"-->
-        <!--<img id="tweet" src="http://cs-server.usc.edu:45678/hw/hw8/images/Twitter.png" alt="tweet">-->
+      <button class="btn" (click)="shareOnFB()">
+        <img id="fb_btn" class="fb_btn" src="http://csci571.com/hw/hw8/Images/facebook.png" alt="fb_btn">
       </button>
 
     </div>
@@ -24,32 +22,35 @@
   <nav>
     <div class="nav nav-tabs justify-content-end" id="nav-tabs" role="tablist">
       <a href="#" *ngFor="let tab of itemDetailsTabs" [id]="tab.id" class="nav-item nav-link" [class.active]="tab.id === activeTab"
-         role="tab"
-         data-toggle="tab" [attr.aria-controls]="tab.id+'-panel'" (click)="setActiveTab(tab.id)">{{tab.title}}</a>
+         role="tab" data-toggle="tab" [attr.aria-controls]="tab.id+'-panel'" (click)="setActiveTab(tab.id)">{{tab.title}}</a>
     </div>
   </nav>
   <br>
-  <!-- <div class="tab-content" id="nav-tab-content">
-    <div *ngFor="let tab of tabs" class="tab-pane" [class.active]="tab.id === activeId" role="tabpanel" [id]="tab.id+'-panel'" [attr.aria-labelledby]="tab.id">
-      <ng-container *ngComponentOutlet="tab.component"></ng-container>
-    </div>
-  </div> -->
-  <!--<div class="tab-content" id="nav-tab-content">-->
-    <!--<div class="tab-pane" [class.active]="activeId==='info-tab'" role="tabpanel" id="info-tab-panel"-->
-         <!--aria-labelledby="info-tab">-->
+  <div class="tab-content" id="nav-tab-content">
+    <div class="tab-pane" [class.active]="activeTab==='productTab_itemDetails'" role="tabpanel" id="productTab_itemDetails-panel"
+         aria-labelledby="productTab_itemDetails">
+      Product Details
       <!--<app-info-tab [info]="infoJson"></app-info-tab>-->
-    <!--</div>-->
-    <!--<div class="tab-pane" [class.active]="activeId==='photos-tab'" role="tabpanel" id="photos-tab-panel"-->
-         <!--aria-labelledby="photos-tab">-->
+    </div>
+    <div class="tab-pane" [class.active]="activeTab==='photosTab_itemDetails'" role="tabpanel" id="photosTab_itemDetails-panel"
+         aria-labelledby="photosTab_itemDetails">
+      Photos Details
       <!--<app-photos-tab [photos]="photoJson"></app-photos-tab>-->
-    <!--</div>-->
-    <!--<div class="tab-pane" [class.active]="activeId==='map-tab'" role="tabpanel" id="map-tab-panel"-->
-         <!--aria-labelledby="map-tab">-->
+    </div>
+    <div class="tab-pane" [class.active]="activeTab==='shippingTab_itemDetails'" role="tabpanel" id="shippingTab_itemDetails-panel"
+         aria-labelledby="shippingTab_itemDetails">
+      Shipping Details
       <!--<app-map-tab [directions]="mapJson"></app-map-tab>-->
-    <!--</div>-->
-    <!--<div class="tab-pane" [class.active]="activeId==='reviews-tab'" role="tabpanel" id="reviews-tab-panel"-->
-         <!--aria-labelledby="reviews-tab">-->
+    </div>
+    <div class="tab-pane" [class.active]="activeTab==='sellerTab_itemDetails'" role="tabpanel" id="sellerTab_itemDetails-panel"
+         aria-labelledby="sellerTab_itemDetails">
+      Seller Details
       <!--<app-reviews-tab [ggReviews]="reviewJson"></app-reviews-tab>-->
-    <!--</div>-->
-  <!--</div>-->
+    </div>
+    <div class="tab-pane" [class.active]="activeTab==='similarTab_itemDetails'" role="tabpanel" id="similarTab_itemDetails-panel"
+         aria-labelledby="similarTab_itemDetails">
+      Similar items Details
+      <!--<app-reviews-tab [ggReviews]="reviewJson"></app-reviews-tab>-->
+    </div>
+  </div>
 </div>
