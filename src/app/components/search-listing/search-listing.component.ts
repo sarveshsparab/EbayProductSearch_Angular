@@ -22,6 +22,8 @@ export class SearchListingComponent implements OnInit {
   isFavorite: any;
   errorState: boolean = false;
   error_msg: any;
+  currPage = 1;
+  pageSize = 10;
 
   constructor(private pss: ProdSearchService, private ids: ItemDetailsService, private wls: WishListService) {
     this.pss.resultJsonOb.subscribe(data => {
@@ -55,9 +57,6 @@ export class SearchListingComponent implements OnInit {
     });
   }
 
-  highlightRow(itemId) {
-    this.selectedItem = itemId;
-  }
 
   // showDetails() {
   //   this.slide.emit({ slide: "left", place: this.selectedItem });
@@ -92,7 +91,7 @@ export class SearchListingComponent implements OnInit {
       if (titleLen < 35)
         return jsonObj["title"][0];
       else{
-        if(jsonObj["title"][0].substring(0,35).slice(-1) == ''){
+        if(jsonObj["title"][0].substring(0,35).slice(-1) == ' '){
           return jsonObj["title"][0].substring(0,35) + "...";
         } else {
           return jsonObj["title"][0].substring(0,jsonObj["title"][0].substring(0,35).lastIndexOf(" ")) + "...";
@@ -170,11 +169,14 @@ export class SearchListingComponent implements OnInit {
   fetchItemDetails(jsonObj){
     this.selectedItem = jsonObj.itemId[0];
     this.selectedItemJsonObj = jsonObj;
+    this.ids.preFetchedItemDetailsData = jsonObj;
     this.getItemDetails();
   }
 
   getItemDetails() {
     alert("Details for :" + this.selectedItem);
     console.log(this.selectedItemJsonObj);
+    this.ids.getAllItemDetails();
+   // this.slide.emit({ slide: "left", itemId: this.selectedItem });
   }
 }

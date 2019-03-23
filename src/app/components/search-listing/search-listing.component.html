@@ -24,8 +24,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let rowdata of resultJson; index as i" [class.table-warning]="rowdata.itemId[0] == selectedItem">
-      <td scope="row">{{i+1}}</td>
+    <tr *ngFor="let rowdata of resultJson |
+                   slice: (currPage-1) * pageSize : (currPage-1) * pageSize + pageSize; index as i"
+        [class.table-warning]="rowdata.itemId[0] == selectedItem">
+      <td scope="row">{{(currPage-1)*10 + i + 1}}</td>
       <td [innerHTML]="processImage(rowdata)"></td>
       <td>
         <span placement="bottom" ngbTooltip="{{processTooltip(rowdata)}}">
@@ -45,21 +47,13 @@
     </tbody>
   </table>
 
-  <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1">Previous</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">4</a></li>
-      <li class="page-item"><a class="page-link" href="#">5</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">Next</a>
-      </li>
-    </ul>
-  </nav>
+  <ngb-pagination [collectionSize]="resultJson.length" [(page)]="currPage" [pageSize]="pageSize"
+                  class="d-flex justify-content-center"
+                  aria-label="Dynamic Pagination">
+    <ng-template ngbPaginationPrevious>Prev</ng-template>
+    <ng-template ngbPaginationNext>Next</ng-template>
+    <ng-template ngbPaginationNumber let-p>{{p}}</ng-template>
+  </ngb-pagination>
 
 </div>
 
