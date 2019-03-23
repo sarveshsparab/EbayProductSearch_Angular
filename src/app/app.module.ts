@@ -19,6 +19,11 @@ import { ProdResultsComponent } from './components/prod-results/prod-results.com
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { SearchListingComponent } from './components/search-listing/search-listing.component';
+import { PhotosTabDetailsComponent } from './components/item-details/photos-tab-details/photos-tab-details.component';
+import { ShippingTabDetailsComponent } from './components/item-details/shipping-tab-details/shipping-tab-details.component';
+import { SellerTabDetailsComponent } from './components/item-details/seller-tab-details/seller-tab-details.component';
+import { SimilarItemsTabDetailsComponent } from './components/item-details/similar-items-tab-details/similar-items-tab-details.component';
+import { ProductTabDetailsComponent } from './components/item-details/product-tab-details/product-tab-details.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,12 @@ import { SearchListingComponent } from './components/search-listing/search-listi
     ProdResultsComponent,
     ItemDetailsComponent,
     WishListComponent,
-    SearchListingComponent
+    SearchListingComponent,
+    PhotosTabDetailsComponent,
+    ShippingTabDetailsComponent,
+    SellerTabDetailsComponent,
+    SimilarItemsTabDetailsComponent,
+    ProductTabDetailsComponent
   ],
   imports: [
     BrowserModule,
