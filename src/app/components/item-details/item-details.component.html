@@ -2,7 +2,7 @@
   <div id="place-name">
     <h3>{{itemName}}</h3>
   </div>
-  <div id="details-button">
+  <div id="navAndInfoButtons" class="navAndInfoButtons">
     <div class="leftButtons">
       <button class="btn btn-outline-secondary" (click)="backToListings()">
         <i class="material-icons">chevron_left</i>
@@ -10,13 +10,12 @@
       </button>
     </div>
     <div class="rightButtons">
-      <button class="btn btn-outline" (click)="toggleWishList()">
-        <i class="material-icons">add_shopping_cart</i>
-      </button>
       <button class="btn" (click)="shareOnFB()">
         <img id="fb_btn" class="fb_btn" src="http://csci571.com/hw/hw8/Images/facebook.png" alt="fb_btn">
       </button>
-
+      <button class="btn wishListBtn" (click)="toggleWishList()">
+        <i class="material-icons">add_shopping_cart</i>
+      </button>
     </div>
   </div>
   <nav>
