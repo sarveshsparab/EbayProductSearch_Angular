@@ -15,9 +15,6 @@ export class SearchListingComponent implements OnInit {
   selectedItemJsonObj: any;
   displayListings = false;
   resultJson = null;
-  nextPage: any;
-  prevPage: any = false;
-  curPage = 1;
   service: any;
   isFavorite: any;
   errorState: boolean = false;
@@ -70,7 +67,7 @@ export class SearchListingComponent implements OnInit {
 
   ngOnInit() {
     this.pss.loadFetchedJsonData();
-    this.curPage = 1;
+    this.currPage = 1;
   }
 
   processImage(jsonObj) {
@@ -177,6 +174,6 @@ export class SearchListingComponent implements OnInit {
     alert("Details for :" + this.selectedItem);
     console.log(this.selectedItemJsonObj);
     this.ids.getAllItemDetails();
-   // this.slide.emit({ slide: "left", itemId: this.selectedItem });
+    this.slide.emit({ slide: "left", itemId: this.selectedItem });
   }
 }
