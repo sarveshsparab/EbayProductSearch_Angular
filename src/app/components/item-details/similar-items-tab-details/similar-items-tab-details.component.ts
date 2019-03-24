@@ -96,11 +96,13 @@ export class SimilarItemsTabDetailsComponent implements OnInit, OnChanges {
     let newArray = [];
     for (var i = 0; i < original.length; i++) {
       let sic = new SimilarItemContent();
+      sic.Item_Id = original[i].Item_Id;
       sic.Image_URL = original[i].Image_URL;
       sic.Product_Name = original[i].Product_Name;
       sic.Price = original[i].Price;
       sic.Shipping_Cost = original[i].Shipping_Cost;
       sic.Days_Left = original[i].Days_Left;
+      sic.View_Item_URL = original[i].View_Item_URL;
       sic.Response_Status = original[i].Response_Status;
       sic.Response_Message = original[i].Response_Message;
 

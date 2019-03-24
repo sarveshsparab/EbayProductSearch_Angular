@@ -17,18 +17,29 @@
     </div>
   </form>
 
-  <div *ngFor="let item of orderedSimItems | slice:0:itemCount">
+  <div *ngFor="let item of orderedSimItems | slice:0:itemCount" [id]="'item-'+item.Item_Id">
     <div class="card card-row-div">
       <div class="row no-gutters card-row">
         <div class="col-auto card-image">
-          <img src="{{item.Image_URL}}" class="img-fluid" alt="">
+          <img *ngIf="item.Image_URL!=''" src="{{item.Image_URL}}" class="img-fluid" alt="">
+          <span *ngIf="item.Image_URL==''">N/A</span>
         </div>
         <div class="col card-contents" style="text-align: left;">
           <div class="card-block px-2 card-content-items">
-            <p class="card-text card-product-name">{{item.Product_Name}}</p>
-            <p class="card-text card-price">Price: ${{item.Price}}</p>
-            <p class="card-text card-shipping-cost">Shipping Cost: ${{item.Shipping_Cost}}</p>
-            <p class="card-text card-days-left">Days Left: {{item.Days_Left}}</p>
+            <p *ngIf="item.Product_Name!=''" class="card-text card-product-name">
+              <a href="{{item.View_Item_URL}}" target="_blank">{{item.Product_Name}}</a>
+            </p>
+            <p *ngIf="item.Product_Name==''" class="card-text card-product-name">N/A</p>
+
+            <p *ngIf="item.Price!=''" class="card-text card-price">Price: ${{item.Price}}</p>
+            <p *ngIf="item.Price==''" class="card-text card-price">Price: N/A</p>
+
+            <p *ngIf="item.Shipping_Cost!=''" class="card-text card-shipping-cost">Shipping Cost:
+              ${{item.Shipping_Cost}}</p>
+            <p *ngIf="item.Shipping_Cost==''" class="card-text card-shipping-cost">Shipping Cost: N/A</p>
+
+            <p *ngIf="item.Days_Left!=''" class="card-text card-days-left">Days Left: {{item.Days_Left}}</p>
+            <p *ngIf="item.Days_Left==''" class="card-text card-days-left">Days Left: N/A</p>
           </div>
         </div>
       </div>

@@ -47,6 +47,10 @@ export class SimilarItemContentService {
             let simCont = new SimilarItemContent();
             simCont.Response_Status = 'Success';
 
+            if (similarItems[s].itemId != null) {
+              simCont.Item_Id = similarItems[s].itemId;
+            }
+
             if (similarItems[s].imageURL != null) {
               simCont.Image_URL = similarItems[s].imageURL;
             }
@@ -65,6 +69,10 @@ export class SimilarItemContentService {
 
             if (similarItems[s].timeLeft != null) {
               simCont.Days_Left = similarItems[s].timeLeft.substring(1,similarItems[s].timeLeft.indexOf("D"));
+            }
+
+            if (similarItems[s].viewItemURL != null) {
+              simCont.View_Item_URL = similarItems[s].viewItemURL;
             }
 
             simItemObjsArray.push(simCont);

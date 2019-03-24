@@ -19,6 +19,8 @@
 .card-image{
   margin: 15px;
   height: 130px;
+  width: 130px;
+  text-align: center;
 }
 .card-image img{
   height: 130px;
