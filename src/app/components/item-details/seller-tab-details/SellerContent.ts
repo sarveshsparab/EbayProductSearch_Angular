@@ -5,4 +5,5 @@ export class SellerContent {
   Top_Rated: string;
   Store_Name: string;
   Buy_Product_At: string;
+  Seller_User_Name: string;
 }
