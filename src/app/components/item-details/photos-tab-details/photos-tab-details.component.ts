@@ -6,7 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./photos-tab-details.component.css']
 })
 export class PhotosTabDetailsComponent implements OnInit {
-  @Input("photosTab_content") selectedItem: any;
+  @Input("photosTab_content") content: any;
 
   constructor() { }
 

@@ -6,7 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./seller-tab-details.component.css']
 })
 export class SellerTabDetailsComponent implements OnInit {
-  @Input("sellerTab_content") selectedItem: any;
+  @Input("sellerTab_content") content: any;
 
   constructor() { }
 

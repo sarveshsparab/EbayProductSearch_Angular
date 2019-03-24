@@ -1,16 +1,25 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, ChangeDetectorRef, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-product-tab-details',
   templateUrl: './product-tab-details.component.html',
   styleUrls: ['./product-tab-details.component.css']
 })
-export class ProductTabDetailsComponent implements OnInit {
-  @Input("productTab_content") selectedItem: any;
+export class ProductTabDetailsComponent implements OnChanges{
+  @Input("productTab_content") content: any;
 
   constructor() { }
 
-  ngOnInit() {
+
+  ngOnChanges(): void {
+
+    if(!this.content){
+      return;
+    }
+
+    alert(this.content);
+
+
   }
 
 }
