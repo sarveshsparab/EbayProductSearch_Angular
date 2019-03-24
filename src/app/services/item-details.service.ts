@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
 import {ShippingContent} from '../components/item-details/shipping-tab-details/ShippingContent';
+import {SellerContent} from '../components/item-details/seller-tab-details/SellerContent';
+import {SellerTabDetailsComponent} from '../components/item-details/seller-tab-details/seller-tab-details.component';
 
 @Injectable({
   providedIn: 'root'
@@ -92,6 +94,68 @@ export class ItemDetailsService {
   }
 
   generateSellerInformation(jsonObj) {
+    let jsonContent = new SellerContent();
+    if (jsonObj.sellerInfo != null) {
+      if (jsonObj.sellerInfo[0] != null){
 
+        // Checking Feedback Score
+        if (jsonObj.sellerInfo[0].feedbackScore != null ){
+          if (jsonObj.sellerInfo[0].feedbackScore[0] != null){
+            jsonContent.Feedback_Score = jsonObj.sellerInfo[0].feedbackScore[0];
+          }
+        }
+
+        // Checking Popularity
+        if (jsonObj.sellerInfo[0].positiveFeedbackPercent != null ){
+          if (jsonObj.sellerInfo[0].positiveFeedbackPercent[0] != null){
+            jsonContent.Popularity = jsonObj.sellerInfo[0].positiveFeedbackPercent[0];
+          }
+        }
+
+        // Checking Feedback Rating Star
+        if (jsonObj.sellerInfo[0].feedbackRatingStar != null ){
+          if (jsonObj.sellerInfo[0].feedbackRatingStar[0] != null){
+            jsonContent.Feedback_Rating_Star = jsonObj.sellerInfo[0].feedbackRatingStar[0];
+          }
+        }
+
+        // Checking Top Rated
+        if (jsonObj.sellerInfo[0].topRatedSeller != null ){
+          if (jsonObj.sellerInfo[0].topRatedSeller[0] != null){
+            jsonContent.Top_Rated = jsonObj.sellerInfo[0].topRatedSeller[0];
+          }
+        }
+
+        // Checking Seller User NAme
+        if (jsonObj.sellerInfo[0].sellerUserName != null ){
+          if (jsonObj.sellerInfo[0].sellerUserName[0] != null){
+            jsonContent.Seller_User_Name = jsonObj.sellerInfo[0].sellerUserName[0];
+          }
+        }
+
+      }
+    }
+
+    if (jsonObj.storeInfo != null) {
+      if (jsonObj.storeInfo[0] != null) {
+
+        // Checking Store Name
+        if (jsonObj.storeInfo[0].storeName != null) {
+          if (jsonObj.storeInfo[0].storeName[0] != null) {
+            jsonContent.Store_Name = jsonObj.storeInfo[0].storeName[0];
+          }
+        }
+
+        // Checking Buy Product At
+        if (jsonObj.storeInfo[0].storeURL != null) {
+          if (jsonObj.storeInfo[0].storeURL[0] != null) {
+            jsonContent.Buy_Product_At = jsonObj.storeInfo[0].storeURL[0];
+          }
+        }
+
+      }
+    }
+
+    return jsonContent;
   }
 }
