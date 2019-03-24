@@ -6,7 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./similar-items-tab-details.component.css']
 })
 export class SimilarItemsTabDetailsComponent implements OnInit {
-  @Input("similarItemsTab_content") selectedItem: any;
+  @Input("similarItemsTab_content") content: any;
 
   constructor() { }
 
