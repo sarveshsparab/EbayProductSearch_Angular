@@ -93,6 +93,8 @@ export class ProductContentService {
     tempEbayUrl += '&ItemID=' + itemId;
     tempEbayUrl += '&IncludeSelector=Description,Details,ItemSpecifics';
 
+    console.log(tempEbayUrl);
+
     return tempEbayUrl;
   }
 
