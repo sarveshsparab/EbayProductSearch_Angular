@@ -4,6 +4,7 @@ import {ShippingContent} from '../components/item-details/shipping-tab-details/S
 import {SellerContent} from '../components/item-details/seller-tab-details/SellerContent';
 import {ProductContentService} from './product-content.service';
 import {SimilarItemContentService} from './similar-item-content.service';
+import {PhotosContentService} from './photos-content.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ItemDetailsService {
   preFetchedItemDetailsData: any;
 
 
-  constructor(private pcs: ProductContentService, private sics: SimilarItemContentService) {
+  constructor(private pcs: ProductContentService, private sics: SimilarItemContentService, private phcs: PhotosContentService) {
   }
 
   getAllItemDetails() {
@@ -32,6 +33,7 @@ export class ItemDetailsService {
 
     this.pcs.fetchProductDetails(this.preFetchedItemDetailsData.itemId[0]);
     this.sics.fetchSimilarItems(this.preFetchedItemDetailsData.itemId[0]);
+    this.phcs.fetchPhotos(this.preFetchedItemDetailsData.title[0]);
   }
 
   generateShippingContent(jsonObj) {
