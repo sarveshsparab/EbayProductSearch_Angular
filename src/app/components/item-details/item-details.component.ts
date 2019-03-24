@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, NgZone, OnInit, Output} from '@angular/core';
 import {ItemDetailsService} from '../../services/item-details.service';
+import {ProductContentService} from '../../services/product-content.service';
+import {SimilarItemContentService} from '../../services/similar-item-content.service';
 
 
 @Component({
@@ -28,22 +30,44 @@ export class ItemDetailsComponent implements OnInit {
   sellerTab_content: any;
   similarItemsTab_content: any;
 
-  constructor(private ids: ItemDetailsService, private zone: NgZone) {
+  isItemDetailsFetched = false;
+  isProductContentFetched = false;
+  isSimilarContentFetched = false;
+  isPhotoContentFetched = false;
+
+  constructor(private ids: ItemDetailsService, private zone: NgZone, private pcs: ProductContentService,
+              private sics: SimilarItemContentService) {
     this.ids.itemDetailsDataOb.subscribe(data=> {
       this.zone.run(() => {
         this.itemDetailsData = data;
         this.itemName = data['misc_content']['title'];
-        this.setProductContent(data['productTab_content']);
-        this.setPhotosContent(data['photosTab_content']);
         this.setShippingContent(data['shippingTab_content']);
         this.setSellerContent(data['sellerTab_content']);
-        this.setSimilarItemsContent(data['similarTab_content']);
         console.log(data);
+        this.isItemDetailsFetched = true;
+      });
+    });
+
+    this.pcs.resultJsonOb.subscribe(data => {
+      this.zone.run(()=>{
+        this.setProductContent(data);
+        this.isProductContentFetched = true;
+      });
+    });
+
+    this.sics.resultJsonOb.subscribe(data => {
+      this.zone.run(()=>{
+        this.setSimilarItemsContent(data);
+        this.isSimilarContentFetched = true;
       });
     });
   }
 
   ngOnInit() {
+    this.isItemDetailsFetched = false;
+    this.isPhotoContentFetched = true;
+    this.isProductContentFetched = false;
+    this.isSimilarContentFetched = false;
   }
 
   setActiveTab(id) {
@@ -59,7 +83,10 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   shareOnFB() {
-
+    // FB.ui({
+    //   method: 'share',
+    //   href: 'https://developers.facebook.com/docs/'
+    // }, function(response){});
   }
 
   private setProductContent(jsonObj) {
