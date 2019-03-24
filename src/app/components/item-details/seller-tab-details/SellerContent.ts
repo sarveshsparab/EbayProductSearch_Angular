@@ -1,4 +1,4 @@
-export class ShippingContent {
+export class SellerContent {
   Feedback_Score: string;
   Popularity: string;
   Feedback_Rating_Star: string;
