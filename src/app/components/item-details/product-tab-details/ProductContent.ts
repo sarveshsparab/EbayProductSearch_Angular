@@ -5,4 +5,6 @@ export class ProductContent {
   Location: string;
   Return_Policy: string;
   Item_Specifics: [];
+  Response_Status: string;
+  Response_Message: string;
 }
