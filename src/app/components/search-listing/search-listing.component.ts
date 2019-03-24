@@ -9,7 +9,7 @@ import { ProdSearchService } from '../../services/prod-search.service';
   styleUrls: ['./search-listing.component.css']
 })
 export class SearchListingComponent implements OnInit {
-  @Output() slide = new EventEmitter<string>();
+  @Output() slide = new EventEmitter<any>();
   @Input("itemId") selectedItem: any;
 
   selectedItemJsonObj: any;
@@ -160,7 +160,7 @@ export class SearchListingComponent implements OnInit {
 
   toggleItemInWishList(jsonObj) {
     alert(jsonObj.itemId[0]);
-    this.slide.emit(JSON.stringify({ slide: "left", itemId: this.selectedItem }));
+    this.slide.emit({ slide: "left", itemId: this.selectedItem });
   }
 
   fetchItemDetails(jsonObj){
