@@ -1,0 +1,27 @@
+.redCross{
+  color: red;
+}
+
+.greenTick{
+  color: green;
+}
+
+.star-icon{
+  font-size: 30px;
+}
+
+.popularity-outer-div{
+  position: relative;
+}
+
+.popularity-label-div{
+  position: absolute;
+  color: #bbb;
+  font-weight: 100;
+  line-height: 1;
+  top: 50%;
+  bottom: auto;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  font-size: 17.1429px;
+}

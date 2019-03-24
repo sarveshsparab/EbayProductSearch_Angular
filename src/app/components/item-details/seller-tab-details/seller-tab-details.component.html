@@ -9,15 +9,35 @@
   </tr>
   <tr *ngIf="content.Popularity">
     <td>Popularity</td>
-    <td>{{content.Popularity}}</td>
+    <td>
+      <div class="popularity-outer-div">
+        <div class="popularity-label-div">
+          {{content.Popularity}}
+        </div>
+        <round-progress style="margin: auto"
+          [current]="content.Popularity"
+          [max]="100"
+          [color]="'#45ccce'"
+          [background]="'#eaeaea'"
+          [radius]="22"
+          [stroke]="2">
+          {{content.Popularity}}
+        </round-progress>
+      </div>
+    </td>
   </tr>
   <tr *ngIf="content.Feedback_Rating_Star">
     <td>Feedback Rating Star</td>
-    <td>{{content.Feedback_Rating_Star}}</td>
+    <td *ngIf="content.Feedback_Score > 10000"><i class="material-icons star-icon"
+                                                  [ngStyle]="{'color': content.Feedback_Rating_Star}">stars</i></td>
+    <td *ngIf="content.Feedback_Score <= 10000"><i class="material-icons star-icon"
+                                                   [ngStyle]="{'color': content.Feedback_Rating_Star}">star_border</i>
+    </td>
   </tr>
   <tr *ngIf="content.Top_Rated">
     <td>Top Rated</td>
-    <td>{{content.Top_Rated}}</td>
+    <td *ngIf="'true'==content.Top_Rated"><i class="material-icons greenTick">check</i></td>
+    <td *ngIf="'false'==content.Top_Rated"><i class="material-icons redCross">close</i></td>
   </tr>
   <tr *ngIf="content.Store_Name">
     <td>Store Name</td>
