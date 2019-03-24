@@ -8,6 +8,7 @@ import {MatButtonModule, MatFormFieldModule, MatInputModule, MatNativeDateModule
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {RoundProgressModule} from 'angular-svg-round-progressbar';
 
 import { AppComponent } from './app.component';
 import { ProdFormComponent } from './components/prod-form/prod-form.component';
@@ -55,7 +56,8 @@ import { ProductTabDetailsComponent } from './components/item-details/product-ta
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
-    NgbModule
+    NgbModule,
+    RoundProgressModule
   ],
   exports: [
     MatButtonModule,
