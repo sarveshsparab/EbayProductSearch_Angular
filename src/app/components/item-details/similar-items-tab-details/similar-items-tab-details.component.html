@@ -1,3 +1,44 @@
-<p>
-  similar-items-tab-details works!
-</p>
+<div>
+  <form>
+    <div class="row">
+      <div class="col-auto my-1">
+        <select id="simItemSortPref" name="simItemSortPref" class="form-control"
+                [(ngModel)]="simItemSortPref" (change)="sortItems()">
+          <option *ngFor="let cat of sortPref; index as i" [value]="i">{{cat}}</option>
+        </select>
+      </div>
+      <div class="col-auto my-1">
+        <select id="simItemSortOrder" name="simItemSortOrder" class="form-control"
+                [(ngModel)]="simItemOrderPref" (change)="sortItems()" [disabled]="orderSortDisabled">
+          <option *ngFor="let cat of orderPref; index as i" [value]="i">{{cat}}</option>
+        </select>
+      </div>
+
+    </div>
+  </form>
+
+  <div *ngFor="let item of orderedSimItems | slice:0:itemCount">
+    <div class="card card-row-div">
+      <div class="row no-gutters card-row">
+        <div class="col-auto card-image">
+          <img src="{{item.Image_URL}}" class="img-fluid" alt="">
+        </div>
+        <div class="col card-contents" style="text-align: left;">
+          <div class="card-block px-2 card-content-items">
+            <p class="card-text card-product-name">{{item.Product_Name}}</p>
+            <p class="card-text card-price">Price: ${{item.Price}}</p>
+            <p class="card-text card-shipping-cost">Shipping Cost: ${{item.Shipping_Cost}}</p>
+            <p class="card-text card-days-left">Days Left: {{item.Days_Left}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="showMoreLessBtn" *ngIf="isMoreLessBtnNeeded">
+    <button type="button" class="btn btn-outline-secondary" data-toggle="button" (click)="moreLessBtnClick()">
+      {{moreLessBtnLabel}}
+    </button>
+  </div>
+
+</div>

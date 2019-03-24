@@ -1,0 +1,43 @@
+.card-row-div{
+  margin-bottom: 8px;
+}
+
+.card-row{
+  background-color: #1d1d1d;
+  text-align: unset;
+}
+
+.card-contents{
+  text-align: unset;
+  margin: 15px;
+}
+
+.card-content-items p{
+  margin-bottom: 0;
+}
+
+.card-image{
+  margin: 15px;
+  height: 130px;
+}
+.card-image img{
+  height: 130px;
+  width: 130px;
+}
+
+.card-product-name{
+  color: blue;
+}
+.card-price{
+  color: green;
+}
+.card-shipping-cost{
+  color: yellow;
+}
+.card-days-left{
+  color: white;
+}
+
+.showMoreLessBtn{
+  text-align: center;
+}
