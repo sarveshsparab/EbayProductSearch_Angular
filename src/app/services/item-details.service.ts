@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
 import {ShippingContent} from '../components/item-details/shipping-tab-details/ShippingContent';
 import {SellerContent} from '../components/item-details/seller-tab-details/SellerContent';
-import {SellerTabDetailsComponent} from '../components/item-details/seller-tab-details/seller-tab-details.component';
+import {ProductContentService} from './product-content.service';
+import {SimilarItemContentService} from './similar-item-content.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class ItemDetailsService {
   preFetchedItemDetailsData: any;
 
 
-  constructor() {
+  constructor(private pcs: ProductContentService, private sics: SimilarItemContentService) {
   }
 
   getAllItemDetails() {
@@ -23,14 +24,14 @@ export class ItemDetailsService {
       'misc_content': {
         'title': this.preFetchedItemDetailsData.title
       },
-      'productTab_content': 'products',
-      'photosTab_content': 'photos',
       'shippingTab_content': this.generateShippingContent(this.preFetchedItemDetailsData),
-      'sellerTab_content': this.generateSellerInformation(this.preFetchedItemDetailsData),
-      'similarTab_content': 'similar'
+      'sellerTab_content': this.generateSellerInformation(this.preFetchedItemDetailsData)
     };
 
     this.itemDetailsDataSub.next(allItemDetails);
+
+    this.pcs.fetchProductDetails(this.preFetchedItemDetailsData.itemId[0]);
+    this.sics.fetchSimilarItems(this.preFetchedItemDetailsData.itemId[0]);
   }
 
   generateShippingContent(jsonObj) {
@@ -158,4 +159,5 @@ export class ItemDetailsService {
 
     return jsonContent;
   }
+
 }
