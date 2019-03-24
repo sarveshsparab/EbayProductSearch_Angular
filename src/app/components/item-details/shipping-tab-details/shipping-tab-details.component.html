@@ -14,15 +14,18 @@
     </tr>
     <tr>
       <td>Expedited Shipping</td>
-      <td>{{content.Expedited_Shipping}}</td>
+      <td *ngIf="'true'==content.Expedited_Shipping"><i class="material-icons greenTick">check</i></td>
+      <td *ngIf="'false'==content.Expedited_Shipping"><i class="material-icons redCross">close</i></td>
     </tr>
     <tr>
       <td>One Day Shipping</td>
-      <td>{{content.One_Day_Shipping}}</td>
+      <td *ngIf="'true'==content.One_Day_Shipping"><i class="material-icons greenTick">check</i></td>
+      <td *ngIf="'false'==content.One_Day_Shipping"><i class="material-icons redCross">close</i></td>
     </tr>
     <tr>
       <td>Return Accepted</td>
-      <td>{{content.Return_Accepted}}</td>
+      <td *ngIf="'true'==content.Return_Accepted"><i class="material-icons greenTick">check</i></td>
+      <td *ngIf="'false'==content.Return_Accepted"><i class="material-icons redCross">close</i></td>
     </tr>
   </tbody>
 </table>
