@@ -16,7 +16,6 @@ export class SearchListingComponent implements OnInit {
   displayListings = false;
   resultJson = null;
   service: any;
-  isFavorite: any;
   errorState: boolean = false;
   error_msg: any;
   currPage = 1;
@@ -45,7 +44,6 @@ export class SearchListingComponent implements OnInit {
       }
       else {
         this.resultJson = data["responseContent"];
-        //this.checkFavorite();
         this.errorState = false;
         this.displayListings = true;
       }
@@ -53,17 +51,6 @@ export class SearchListingComponent implements OnInit {
 
     });
   }
-
-
-  // showDetails() {
-  //   this.slide.emit({ slide: "left", place: this.selectedItem });
-  // }
-
-  // getDetails(placeId) {
-  //   this.highlightRow(placeId);
-  //   //this.dService.getDetails(placeId, this.startLocation, this.geoJson);
-  //   this.slide.emit({ slide: "left", place: placeId });
-  // }
 
   ngOnInit() {
     this.pss.loadFetchedJsonData();
