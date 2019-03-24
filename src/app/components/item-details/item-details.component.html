@@ -20,35 +20,43 @@
   </div>
   <nav>
     <div class="nav nav-pills mb-3 justify-content-end" id="nav-tabs" role="tablist">
-      <a href="#" *ngFor="let tab of itemDetailsTabs" [id]="tab.id" class="nav-item nav-link" [class.active]="tab.id === activeTab"
-         role="tab" data-toggle="pill" [attr.aria-controls]="tab.id+'-panel'" (click)="setActiveTab(tab.id)">{{tab.title}}</a>
+      <a href="#" *ngFor="let tab of itemDetailsTabs" [id]="tab.id" class="nav-item nav-link"
+         [class.active]="tab.id === activeTab"
+         role="tab" data-toggle="pill" [attr.aria-controls]="tab.id+'-panel'"
+         (click)="setActiveTab(tab.id)">{{tab.title}}</a>
     </div>
   </nav>
-  <br>
-  <div class="tab-content" id="nav-tab-content">
-    <div class="tab-pane" [class.active]="activeTab==='productTab_itemDetails'" role="tabpanel" id="productTab_itemDetails-panel"
-         aria-labelledby="productTab_itemDetails">
-      <app-product-tab-details [productTab_content]="productTab_content"></app-product-tab-details>
-    </div>
-    <div class="tab-pane" [class.active]="activeTab==='photosTab_itemDetails'" role="tabpanel" id="photosTab_itemDetails-panel"
-         aria-labelledby="photosTab_itemDetails">
-      Photos Details
-      <app-photos-tab-details [photosTab_content]="photosTab_content"></app-photos-tab-details>
-    </div>
-    <div class="tab-pane" [class.active]="activeTab==='shippingTab_itemDetails'" role="tabpanel" id="shippingTab_itemDetails-panel"
-         aria-labelledby="shippingTab_itemDetails">
-      Shipping Details
-      <app-shipping-tab-details [shippingTab_content]="shippingTab_content"></app-shipping-tab-details>
-    </div>
-    <div class="tab-pane" [class.active]="activeTab==='sellerTab_itemDetails'" role="tabpanel" id="sellerTab_itemDetails-panel"
-         aria-labelledby="sellerTab_itemDetails">
-      Seller Details
-      <app-seller-tab-details [sellerTab_content]="sellerTab_content"></app-seller-tab-details>
-    </div>
-    <div class="tab-pane" [class.active]="activeTab==='similarTab_itemDetails'" role="tabpanel" id="similarTab_itemDetails-panel"
-         aria-labelledby="similarTab_itemDetails">
-      Similar items Details
-      <app-similar-items-tab-details [similarItemsTab_content]="similarItemsTab_content"></app-similar-items-tab-details>
+  <div *ngIf="!(isProductContentFetched && isItemDetailsFetched && isSimilarContentFetched && isPhotoContentFetched)">
+    Showing loader!!!!!
+  </div>
+  <div *ngIf="(isProductContentFetched && isItemDetailsFetched && isSimilarContentFetched && isPhotoContentFetched)">
+    <div class="tab-content" id="nav-tab-content">
+      <div class="tab-pane" [class.active]="activeTab==='productTab_itemDetails'" role="tabpanel"
+           id="productTab_itemDetails-panel"
+           aria-labelledby="productTab_itemDetails">
+        <app-product-tab-details [productTab_content]="productTab_content"></app-product-tab-details>
+      </div>
+      <div class="tab-pane" [class.active]="activeTab==='photosTab_itemDetails'" role="tabpanel"
+           id="photosTab_itemDetails-panel"
+           aria-labelledby="photosTab_itemDetails">
+        <app-photos-tab-details [photosTab_content]="photosTab_content"></app-photos-tab-details>
+      </div>
+      <div class="tab-pane" [class.active]="activeTab==='shippingTab_itemDetails'" role="tabpanel"
+           id="shippingTab_itemDetails-panel"
+           aria-labelledby="shippingTab_itemDetails">
+        <app-shipping-tab-details [shippingTab_content]="shippingTab_content"></app-shipping-tab-details>
+      </div>
+      <div class="tab-pane" [class.active]="activeTab==='sellerTab_itemDetails'" role="tabpanel"
+           id="sellerTab_itemDetails-panel"
+           aria-labelledby="sellerTab_itemDetails">
+        <app-seller-tab-details [sellerTab_content]="sellerTab_content"></app-seller-tab-details>
+      </div>
+      <div class="tab-pane" [class.active]="activeTab==='similarTab_itemDetails'" role="tabpanel"
+           id="similarTab_itemDetails-panel"
+           aria-labelledby="similarTab_itemDetails">
+        <app-similar-items-tab-details
+          [similarItemsTab_content]="similarItemsTab_content"></app-similar-items-tab-details>
+      </div>
     </div>
   </div>
 </div>
