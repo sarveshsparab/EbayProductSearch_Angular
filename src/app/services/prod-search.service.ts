@@ -30,8 +30,6 @@ export class ProdSearchService {
   constructor(private http: HttpClient) { }
 
   private listingResults: any;
-  private listingPages: Array<string> = [];
-  currPage = 1;
 
   fetchFromEbay(psForm) {
     console.log(psForm);
