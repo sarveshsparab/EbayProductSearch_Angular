@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, NgZone, OnInit, Output} from '@angular/core';
 import {ItemDetailsService} from '../../services/item-details.service';
 
 
@@ -22,13 +22,24 @@ export class ItemDetailsComponent implements OnInit {
   itemDetailsData: any;
   itemName: any;
 
+  productTab_content: any;
+  photosTab_content: any;
+  shippingTab_content: any;
+  sellerTab_content: any;
+  similarItemsTab_content: any;
 
-  constructor(private ids: ItemDetailsService) {
+  constructor(private ids: ItemDetailsService, private zone: NgZone) {
     this.ids.itemDetailsDataOb.subscribe(data=> {
-      this.itemDetailsData = data;
-      this.itemName = data['title'][0];
-      console.log("888888888888888888888888888888888888888888888888");
-      console.log(data);
+      this.zone.run(() => {
+        this.itemDetailsData = data;
+        this.itemName = data['misc_content']['title'];
+        this.setProductContent(data['productTab_content']);
+        this.setPhotosContent(data['photosTab_content']);
+        this.setShippingContent(data['shippingTab_content']);
+        this.setSellerContent(data['sellerTab_content']);
+        this.setSimilarItemsContent(data['similarTab_content']);
+        console.log(data);
+      });
     });
   }
 
@@ -49,5 +60,25 @@ export class ItemDetailsComponent implements OnInit {
 
   shareOnFB() {
 
+  }
+
+  private setProductContent(jsonObj) {
+    this.productTab_content = jsonObj;
+  }
+
+  private setPhotosContent(jsonObj) {
+    this.photosTab_content = jsonObj;
+  }
+
+  private setShippingContent(jsonObj) {
+    this.shippingTab_content = jsonObj;
+  }
+
+  private setSellerContent(jsonObj) {
+    this.sellerTab_content = jsonObj;
+  }
+
+  private setSimilarItemsContent(jsonObj) {
+    this.similarItemsTab_content = jsonObj;
   }
 }

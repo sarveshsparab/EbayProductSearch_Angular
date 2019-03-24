@@ -28,28 +28,27 @@
   <div class="tab-content" id="nav-tab-content">
     <div class="tab-pane" [class.active]="activeTab==='productTab_itemDetails'" role="tabpanel" id="productTab_itemDetails-panel"
          aria-labelledby="productTab_itemDetails">
-      Product Details
-      <!--<app-info-tab [info]="infoJson"></app-info-tab>-->
+      <app-product-tab-details [productTab_content]="productTab_content"></app-product-tab-details>
     </div>
     <div class="tab-pane" [class.active]="activeTab==='photosTab_itemDetails'" role="tabpanel" id="photosTab_itemDetails-panel"
          aria-labelledby="photosTab_itemDetails">
       Photos Details
-      <!--<app-photos-tab [photos]="photoJson"></app-photos-tab>-->
+      <app-photos-tab-details [photosTab_content]="photosTab_content"></app-photos-tab-details>
     </div>
     <div class="tab-pane" [class.active]="activeTab==='shippingTab_itemDetails'" role="tabpanel" id="shippingTab_itemDetails-panel"
          aria-labelledby="shippingTab_itemDetails">
       Shipping Details
-      <!--<app-map-tab [directions]="mapJson"></app-map-tab>-->
+      <app-shipping-tab-details [shippingTab_content]="shippingTab_content"></app-shipping-tab-details>
     </div>
     <div class="tab-pane" [class.active]="activeTab==='sellerTab_itemDetails'" role="tabpanel" id="sellerTab_itemDetails-panel"
          aria-labelledby="sellerTab_itemDetails">
       Seller Details
-      <!--<app-reviews-tab [ggReviews]="reviewJson"></app-reviews-tab>-->
+      <app-seller-tab-details [sellerTab_content]="sellerTab_content"></app-seller-tab-details>
     </div>
     <div class="tab-pane" [class.active]="activeTab==='similarTab_itemDetails'" role="tabpanel" id="similarTab_itemDetails-panel"
          aria-labelledby="similarTab_itemDetails">
       Similar items Details
-      <!--<app-reviews-tab [ggReviews]="reviewJson"></app-reviews-tab>-->
+      <app-similar-items-tab-details [similarItemsTab_content]="similarItemsTab_content"></app-similar-items-tab-details>
     </div>
   </div>
 </div>
