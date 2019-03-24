@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {SellerContent} from './SellerContent';
 
 @Component({
   selector: 'app-seller-tab-details',
@@ -6,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./seller-tab-details.component.css']
 })
 export class SellerTabDetailsComponent implements OnInit {
-  @Input("sellerTab_content") content: any;
+  @Input("sellerTab_content") content: SellerContent;
 
   constructor() { }
 
