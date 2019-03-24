@@ -1,4 +1,28 @@
-<p>
-  hi<br>
-{{content}}
-</p>
+<table class="table table-dark">
+  <tbody>
+  <tr>
+    <td>Product Images</td>
+    <td>View Product Images Here</td>
+  </tr>
+  <tr *ngIf="content.Subtitle!=''">
+    <td>Subtitle</td>
+    <td>{{content.Subtitle}}</td>
+  </tr>
+  <tr *ngIf="content.Price!=''">
+    <td>Price</td>
+    <td>{{content.Price}}</td>
+  </tr>
+  <tr *ngIf="content.Location!=''">
+    <td>Location</td>
+    <td>{{content.Location}}</td>
+  </tr>
+  <tr *ngIf="content.Return_Policy!=''">
+    <td>Return Policy</td>
+    <td>{{content.Return_Policy}}</td>
+  </tr>
+  <tr *ngFor="let spec of content.Item_Specifics">
+    <td>{{spec[0]}}</td>
+    <td>{{spec[1]}}</td>
+  </tr>
+  </tbody>
+</table>

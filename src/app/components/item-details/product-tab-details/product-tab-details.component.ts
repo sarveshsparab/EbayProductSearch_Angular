@@ -1,4 +1,5 @@
 import {Component, Input, OnChanges, ChangeDetectorRef, SimpleChanges} from '@angular/core';
+import {ProductContent} from './ProductContent';
 
 @Component({
   selector: 'app-product-tab-details',
@@ -6,7 +7,7 @@ import {Component, Input, OnChanges, ChangeDetectorRef, SimpleChanges} from '@an
   styleUrls: ['./product-tab-details.component.css']
 })
 export class ProductTabDetailsComponent implements OnChanges{
-  @Input("productTab_content") content: any;
+  @Input("productTab_content") content: ProductContent;
 
   constructor() { }
 
