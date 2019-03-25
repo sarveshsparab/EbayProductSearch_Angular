@@ -45,7 +45,6 @@ export class ItemDetailsComponent implements OnInit {
         this.itemName = data['misc_content']['title'];
         this.setShippingContent(data['shippingTab_content']);
         this.setSellerContent(data['sellerTab_content']);
-        console.log(data);
         this.isItemDetailsFetched = true;
       });
     });
