@@ -89,7 +89,7 @@ export class PhotosContentService {
   }
 
   private isFetchedResponseValid(jsonObj) {
-    let errMsg = '';
+    let errMsg = 'No Error';
     let retrievedPhotos = true;
 
     if(jsonObj == null) {
