@@ -10,8 +10,10 @@
       </button>
     </div>
     <div class="rightButtons">
-      <button class="btn" (click)="shareOnFB()">
-        <img id="fb_btn" class="fb_btn" src="http://csci571.com/hw/hw8/Images/facebook.png" alt="fb_btn">
+      <button class="btn">
+        <a [href]="fbShareLink" target="_blank">
+          <img id="fb_btn" class="fb_btn" src="http://csci571.com/hw/hw8/Images/facebook.png" alt="fb_btn">
+        </a>
       </button>
       <button class="btn wishListBtn" (click)="toggleWishList()">
         <i class="material-icons">add_shopping_cart</i>
