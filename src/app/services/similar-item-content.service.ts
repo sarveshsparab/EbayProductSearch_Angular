@@ -35,9 +35,16 @@ export class SimilarItemContentService {
         let responseValidityCheck = this.isFetchedResponseValid(this.jsonDataFetched);
         if (!responseValidityCheck[0]) {
           let simCont = new SimilarItemContent();
+          let simItemObjsArray = new Array();
+
           simCont.Response_Status = 'Error';
           simCont.Response_Message = responseValidityCheck[1] + '';
-          this.resultJsonSub.next(simCont);
+
+          simItemObjsArray.push(simCont);
+
+          console.log(simItemObjsArray);
+
+          this.resultJsonSub.next(simItemObjsArray);
         } else {
 
           let simItemObjsArray = new Array();

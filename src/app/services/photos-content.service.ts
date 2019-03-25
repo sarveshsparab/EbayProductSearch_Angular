@@ -30,10 +30,17 @@ export class PhotosContentService {
         this.jsonDataFetched = data;
         let responseValidityCheck = this.isFetchedResponseValid(this.jsonDataFetched);
         if (responseValidityCheck[0]) {
+          let photosArray = new Array();
           let photoCont = new PhotoContent();
+
           photoCont.Response_Status = "Error";
           photoCont.Response_Message = responseValidityCheck[1]+"";
-          this.resultJsonSub.next(photoCont);
+
+          photosArray.push(photoCont);
+
+          console.log(photosArray);
+
+          this.resultJsonSub.next(photosArray);
         } else {
 
           let photosArray = new Array();
