@@ -18,9 +18,6 @@ export class ProductTabDetailsComponent implements OnChanges{
       return;
     }
 
-    alert(this.content);
-
-
   }
 
 }

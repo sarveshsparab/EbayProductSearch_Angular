@@ -146,7 +146,6 @@ export class SearchListingComponent implements OnInit {
   }
 
   toggleItemInWishList(jsonObj) {
-    alert(jsonObj.itemId[0]);
     this.slide.emit({ slide: "left", itemId: this.selectedItem });
   }
 
@@ -158,7 +157,6 @@ export class SearchListingComponent implements OnInit {
   }
 
   getItemDetails() {
-    alert("Details for :" + this.selectedItem);
     console.log(this.selectedItemJsonObj);
     this.ids.getAllItemDetails();
     this.slide.emit({ slide: "left", itemId: this.selectedItem });
