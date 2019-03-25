@@ -45,6 +45,10 @@ export class ProductContentService {
             }
           }
 
+          if(this.jsonDataFetched.Item.Title != null) {
+            prodCont.Title = this.jsonDataFetched.Item.Title;
+          }
+
           if(this.jsonDataFetched.Item.Subtitle != null) {
             prodCont.Subtitle = this.jsonDataFetched.Item.Subtitle;
           }
@@ -71,6 +75,10 @@ export class ProductContentService {
                 prodCont.Item_Specifics.push([specificsRows[r].Name, specificsRows[r].Value[0]]);
               }
             }
+          }
+
+          if(this.jsonDataFetched.Item.ViewItemURLForNaturalSearch != null) {
+            prodCont.Link = this.jsonDataFetched.Item.ViewItemURLForNaturalSearch;
           }
 
           console.log(prodCont);
