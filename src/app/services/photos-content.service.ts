@@ -29,7 +29,7 @@ export class PhotosContentService {
       data => {
         this.jsonDataFetched = data;
         let responseValidityCheck = this.isFetchedResponseValid(this.jsonDataFetched);
-        if (!responseValidityCheck[0]) {
+        if (responseValidityCheck[0]) {
           let photoCont = new PhotoContent();
           photoCont.Response_Status = "Error";
           photoCont.Response_Message = responseValidityCheck[1]+"";
