@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, NgZone, OnInit, Output} from '@angular/c
 import {ItemDetailsService} from '../../services/item-details.service';
 import {ProductContentService} from '../../services/product-content.service';
 import {SimilarItemContentService} from '../../services/similar-item-content.service';
+import {PhotosContentService} from '../../services/photos-content.service';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class ItemDetailsComponent implements OnInit {
   private activeTab = "productTab_itemDetails";
   itemDetailsData: any;
   itemName: any;
+  fbShareLink: any;
 
   productTab_content: any;
   photosTab_content: any;
@@ -36,7 +38,7 @@ export class ItemDetailsComponent implements OnInit {
   isPhotoContentFetched = false;
 
   constructor(private ids: ItemDetailsService, private zone: NgZone, private pcs: ProductContentService,
-              private sics: SimilarItemContentService) {
+              private sics: SimilarItemContentService, private phcs: PhotosContentService) {
     this.ids.itemDetailsDataOb.subscribe(data=> {
       this.zone.run(() => {
         this.itemDetailsData = data;
@@ -51,6 +53,7 @@ export class ItemDetailsComponent implements OnInit {
     this.pcs.resultJsonOb.subscribe(data => {
       this.zone.run(()=>{
         this.setProductContent(data);
+        this.setFBShareLink(data);
         this.isProductContentFetched = true;
       });
     });
@@ -61,11 +64,18 @@ export class ItemDetailsComponent implements OnInit {
         this.isSimilarContentFetched = true;
       });
     });
+
+    this.phcs.resultJsonOb.subscribe(data => {
+      this.zone.run(()=>{
+        this.setPhotosContent(data);
+        this.isPhotoContentFetched = true;
+      });
+    });
   }
 
   ngOnInit() {
     this.isItemDetailsFetched = false;
-    this.isPhotoContentFetched = true;
+    this.isPhotoContentFetched = false;
     this.isProductContentFetched = false;
     this.isSimilarContentFetched = false;
   }
@@ -80,13 +90,6 @@ export class ItemDetailsComponent implements OnInit {
 
   toggleWishList() {
 
-  }
-
-  shareOnFB() {
-    // FB.ui({
-    //   method: 'share',
-    //   href: 'https://developers.facebook.com/docs/'
-    // }, function(response){});
   }
 
   private setProductContent(jsonObj) {
@@ -107,5 +110,17 @@ export class ItemDetailsComponent implements OnInit {
 
   private setSimilarItemsContent(jsonObj) {
     this.similarItemsTab_content = jsonObj;
+  }
+
+  private setFBShareLink(jsonData) {
+    let link ='';
+
+    link += 'https://www.facebook.com/dialog/share?';
+    link += 'app_id=' + '437955393676463';
+    link += '&display=popup';
+    link += '&href=' + encodeURI(jsonData.Link);
+    link += '&quote=' + 'Buy ' + jsonData.Title + ' at ' + jsonData.Price + ' from the link below';
+
+    this.fbShareLink = link;
   }
 }
