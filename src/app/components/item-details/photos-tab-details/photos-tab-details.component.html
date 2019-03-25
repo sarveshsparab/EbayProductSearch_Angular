@@ -1,3 +1,36 @@
-<p>
-  photos-tab-details works!
-</p>
+<div id="photos-container">
+
+  <div class="photo-row">
+    <div class="photo-column">
+      <a *ngIf="content[0].Photo_Link!=''" target="_blank" [href]="content[0].Photo_Link">
+        <img [src]="content[0].Photo_Link" style="width:100%">
+      </a>
+      <a *ngIf="content[1].Photo_Link!=''" target="_blank" [href]="content[1].Photo_Link">
+        <img [src]="content[1].Photo_Link" style="width:100%">
+      </a>
+    </div>
+    <div class="photo-column">
+      <a *ngIf="content[2].Photo_Link!=''" target="_blank" [href]="content[2].Photo_Link">
+        <img [src]="content[2].Photo_Link" style="width:100%">
+      </a>
+      <a *ngIf="content[3].Photo_Link!=''" target="_blank" [href]="content[3].Photo_Link">
+        <img [src]="content[3].Photo_Link" style="width:100%">
+      </a>
+      <a *ngIf="content[4].Photo_Link!=''" target="_blank" [href]="content[4].Photo_Link">
+        <img [src]="content[4].Photo_Link" style="width:100%">
+      </a>
+    </div>
+    <div class="photo-column">
+      <a *ngIf="content[5].Photo_Link!=''" target="_blank" [href]="content[5].Photo_Link">
+        <img [src]="content[5].Photo_Link" style="width:100%">
+      </a>
+      <a *ngIf="content[6].Photo_Link!=''" target="_blank" [href]="content[6].Photo_Link">
+        <img [src]="content[6].Photo_Link" style="width:100%">
+      </a>
+      <a *ngIf="content[7].Photo_Link!=''" target="_blank" [href]="content[7].Photo_Link">
+        <img [src]="content[7].Photo_Link" style="width:100%">
+      </a>
+    </div>
+  </div>
+
+</div>
