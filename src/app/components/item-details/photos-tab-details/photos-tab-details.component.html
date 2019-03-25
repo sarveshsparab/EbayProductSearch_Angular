@@ -1,4 +1,5 @@
-<div id="photos-container">
+<div class="alert alert-danger" role="alert" *ngIf="errorState"> {{ error_msg }} </div>
+<div id="photos-container" *ngIf="!errorState">
 
   <div class="photo-row">
     <div class="photo-column">
