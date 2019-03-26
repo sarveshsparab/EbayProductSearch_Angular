@@ -8,3 +8,16 @@
 .hide {
   display: none;
 }
+
+
+
+/* Overriding Imported Style Sheets */
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: #343a40;
+}
+a {
+  color: #000;
+}
+a:hover {
+  color: #2c2c2c;
+}
