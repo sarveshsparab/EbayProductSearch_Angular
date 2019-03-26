@@ -10,7 +10,7 @@
 
   <div class="alert alert-warning" role="alert" *ngIf="!resultJson"> {{ error_msg }} </div>
 
-  <table class="table table-dark" *ngIf="resultJson && resultJson != 'loading'">
+  <table class="table table-dark table-striped table-hover searchListingTable" *ngIf="resultJson && resultJson != 'loading'">
     <thead>
     <tr>
       <th scope="col">#</th>
@@ -31,7 +31,7 @@
       <td [innerHTML]="processImage(rowdata)"></td>
       <td>
         <span placement="bottom" ngbTooltip="{{processTooltip(rowdata)}}">
-          <a (click)="fetchItemDetails(rowdata)" class="clickableTitle" style="color: blue">{{processTitle(rowdata)}}</a>
+          <a (click)="fetchItemDetails(rowdata)" class="clickableTitle" style="color: #6495ed;">{{processTitle(rowdata)}}</a>
         </span>
       </td>
       <td>{{processPrice(rowdata)}}</td>
@@ -39,8 +39,9 @@
       <td>{{processZip(rowdata)}}</td>
       <td>{{processSeller(rowdata)}}</td>
       <td>
-        <button type="button" class="btn btn-outline" (click)="toggleItemInWishList(rowdata)">
-          <i class="material-icons">add_shopping_cart</i>
+        <button type="button" class="btn btn-outline" (click)="toggleItemInWishList(i)">
+          <i class="material-icons" *ngIf="!isAlreadyInWishList[i]">add_shopping_cart</i>
+          <i class="material-icons" *ngIf="isAlreadyInWishList[i]" style="color: red">remove_shopping_cart</i>
         </button>
       </td>
     </tr>
@@ -56,4 +57,3 @@
   </ngb-pagination>
 
 </div>
-
