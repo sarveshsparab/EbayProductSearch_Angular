@@ -15,6 +15,7 @@ export class WishListComponent implements OnInit {
   wishListArray: any;
   isAnyWishListItem: boolean;
   error_msg: any;
+  totalShoppingVal: string;
 
   constructor(private wls: WishListService, private ids: ItemDetailsService) {
     this.wls.wishListOb.subscribe(data => {
@@ -24,13 +25,18 @@ export class WishListComponent implements OnInit {
         if(this.wishListArray[0].Response_Status == 'Error'){
           this.isAnyWishListItem = false;
           this.error_msg = this.wishListArray[0].Response_Message;
+          this.totalShoppingVal = '0';
         } else {
           this.isAnyWishListItem = true;
-          this.error_msg = 'Hi2';
+          this.error_msg = '';
+          this.totalShoppingVal = this.wishListArray[0].Price;
         }
       } else {
         this.isAnyWishListItem = true;
-        this.error_msg = 'Hi';
+        this.error_msg = '';
+        this.totalShoppingVal = this.wishListArray
+          .map(data => parseFloat(data.Price.substring(1)))
+          .reduce((acc, currVal) => acc + currVal).toString();
       }
     });
   }
