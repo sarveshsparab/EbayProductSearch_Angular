@@ -1,0 +1,43 @@
+#results-div {
+  margin: 30px auto auto;
+}
+
+.details-btn-div {
+  text-align: right;
+  margin-bottom: 10px;
+  float: right;
+  display: block;
+}
+
+.details-btn {
+  display: flex;
+}
+
+.category-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.btn-outline {
+  border: 1px solid darkgray;
+  background-color: whitesmoke;
+  padding: 5px 10px 0;
+}
+
+.searchListingThumbnail {
+  width: 135px;
+  height: 135px;
+}
+
+.table {
+  overflow: scroll;
+}
+
+.searchListingTable{
+  text-align: left;
+}
+
+.clickableTitle {
+  color: #6495ed;
+  cursor: pointer;
+}
