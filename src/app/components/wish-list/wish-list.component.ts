@@ -25,7 +25,7 @@ export class WishListComponent implements OnInit {
         if(this.wishListArray[0].Response_Status == 'Error'){
           this.isAnyWishListItem = false;
           this.error_msg = this.wishListArray[0].Response_Message;
-          this.totalShoppingVal = '0';
+          this.totalShoppingVal = '$0';
         } else {
           this.isAnyWishListItem = true;
           this.error_msg = '';
@@ -34,7 +34,7 @@ export class WishListComponent implements OnInit {
       } else {
         this.isAnyWishListItem = true;
         this.error_msg = '';
-        this.totalShoppingVal = this.wishListArray
+        this.totalShoppingVal = '$' + this.wishListArray
           .map(data => parseFloat(data.Price.substring(1)))
           .reduce((acc, currVal) => acc + currVal).toString();
       }
