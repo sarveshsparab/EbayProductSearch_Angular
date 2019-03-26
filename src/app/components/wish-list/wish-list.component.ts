@@ -55,11 +55,12 @@ export class WishListComponent implements OnInit {
 
   getItemDetails() {
     this.ids.getAllItemDetailsForWishList(this.selectedItemInfo);
-    this.slide.emit({slide: 'left', itemId: this.selectedItemInfo.ItemId, itemInfo: this.selectedItemInfo});
+    this.slide.emit({slide: 'left', itemId: this.selectedItemId, itemInfo: this.selectedItemInfo});
   }
 
   fetchItemDetails(rowdata) {
     this.selectedItemInfo = rowdata;
+    this.selectedItemId = rowdata.ItemID;
     this.getItemDetails();
   }
 

@@ -41,3 +41,9 @@
   color: #6495ed;
   cursor: pointer;
 }
+
+
+/* Overriding Imported Style Sheets */
+.table-warning, .table-warning > th, .table-warning > td {
+  background-color: #d0d0d0;
+}
