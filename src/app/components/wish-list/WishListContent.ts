@@ -12,4 +12,5 @@ export class WishListContent {
   Shipping_Content_Obj: ShippingContent;
   Response_Status = '';
   Response_Message = '';
+  TS: Date;
 }
