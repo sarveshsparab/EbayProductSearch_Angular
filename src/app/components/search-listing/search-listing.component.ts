@@ -1,7 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { ItemDetailsService } from '../../services/item-details.service';
-import { WishListService } from '../../services/wish-list.service';
-import { ProdSearchService } from '../../services/prod-search.service';
+import {ItemDetailsService} from '../../services/item-details.service';
+import {WishListService} from '../../services/wish-list.service';
+import {ProdSearchService} from '../../services/prod-search.service';
+import {WishListContent} from '../wish-list/WishListContent';
+import {SellerContent} from '../item-details/seller-tab-details/SellerContent';
 
 @Component({
   selector: 'app-search-listing',
@@ -10,7 +12,7 @@ import { ProdSearchService } from '../../services/prod-search.service';
 })
 export class SearchListingComponent implements OnInit {
   @Output() slide = new EventEmitter<any>();
-  @Input("itemId") selectedItem: any;
+  @Input('itemId') selectedItem: any;
 
   selectedItemJsonObj: any;
   displayListings = false;
@@ -20,35 +22,35 @@ export class SearchListingComponent implements OnInit {
   error_msg: any;
   currPage = 1;
   pageSize = 10;
+  isAlreadyInWishList: any;
 
   constructor(private pss: ProdSearchService, private ids: ItemDetailsService, private wls: WishListService) {
     this.pss.resultJsonOb.subscribe(data => {
-      console.log("EbayFindingsApi results");
+      console.log('EbayFindingsApi results');
       console.log(data);
       if (data === null) {
         this.errorState = true;
         this.displayListings = true;
       } else if (data === undefined) {
 
-      }
-      else if (data["responseStatus"] == 'Error') {
+      } else if (data['responseStatus'] == 'Error') {
         this.errorState = true;
-        this.error_msg = data["responseContent"];
+        this.error_msg = data['responseContent'];
         this.resultJson = null;
         this.displayListings = true;
-      }
-      else if(data == 'clear') {
+      } else if (data == 'clear') {
         this.resultJson = null;
         this.displayListings = true;
         this.selectedItem = null;
-      }
-      else {
-        this.resultJson = data["responseContent"];
+      } else {
+        this.resultJson = data['responseContent'];
+        this.checkAndUpdateWishList();
         this.errorState = false;
         this.displayListings = true;
       }
-
-
+    });
+    this.wls.wishListModifiedOb.subscribe(data => {
+      this.checkAndUpdateWishList();
     });
   }
 
@@ -58,9 +60,10 @@ export class SearchListingComponent implements OnInit {
   }
 
   processImage(jsonObj) {
-    if(jsonObj.galleryURL !=null && jsonObj.galleryURL != "" && jsonObj.galleryURL.length != 0){
+    if (jsonObj.galleryURL != null && jsonObj.galleryURL != '' && jsonObj.galleryURL.length != 0) {
       let imageElem = document.createElement('img');
-      imageElem.setAttribute("src", jsonObj.galleryURL[0]);
+      imageElem.setAttribute('src', jsonObj.galleryURL[0]);
+      imageElem.setAttribute('style', 'height: 135px; width: 135px;');
       return imageElem.outerHTML;
     } else {
       return 'N/A';
@@ -69,16 +72,16 @@ export class SearchListingComponent implements OnInit {
 
   processTitle(jsonObj) {
     if (jsonObj.title == null || jsonObj.title.length == 0) {
-      return "N/A";
+      return 'N/A';
     } else {
-      let titleLen = jsonObj["title"][0].length;
-      if (titleLen < 35)
-        return jsonObj["title"][0];
-      else{
-        if(jsonObj["title"][0].substring(0,35).slice(-1) == ' '){
-          return jsonObj["title"][0].substring(0,35) + "...";
+      let titleLen = jsonObj['title'][0].length;
+      if (titleLen < 35) {
+        return jsonObj['title'][0];
+      } else {
+        if (jsonObj['title'][0].substring(0, 35).slice(-1) == ' ') {
+          return jsonObj['title'][0].substring(0, 35) + '...';
         } else {
-          return jsonObj["title"][0].substring(0,jsonObj["title"][0].substring(0,35).lastIndexOf(" ")) + "...";
+          return jsonObj['title'][0].substring(0, jsonObj['title'][0].substring(0, 35).lastIndexOf(' ')) + '...';
         }
       }
     }
@@ -100,16 +103,16 @@ export class SearchListingComponent implements OnInit {
 
   processShipping(jsonObj) {
     let shipStr = '';
-    if(jsonObj.shippingInfo == null || jsonObj.shippingInfo.length == 0) {
+    if (jsonObj.shippingInfo == null || jsonObj.shippingInfo.length == 0) {
       shipStr = 'N/A';
-    } else if(jsonObj.shippingInfo[0].shippingServiceCost == null ||
+    } else if (jsonObj.shippingInfo[0].shippingServiceCost == null ||
       jsonObj.shippingInfo[0].shippingServiceCost.length == 0) {
       shipStr = 'N/A';
     } else {
-      if(jsonObj.shippingInfo[0].shippingServiceCost[0].__value__ > 0) {
+      if (jsonObj.shippingInfo[0].shippingServiceCost[0].__value__ > 0) {
         shipStr = '$';
         shipStr += jsonObj.shippingInfo[0].shippingServiceCost[0].__value__;
-      }else{
+      } else {
         shipStr = 'Free Shipping';
       }
     }
@@ -117,18 +120,18 @@ export class SearchListingComponent implements OnInit {
   }
 
   processZip(jsonObj) {
-    if(jsonObj.postalCode !=null && jsonObj.postalCode != "" && jsonObj.postalCode.length != 0){
+    if (jsonObj.postalCode != null && jsonObj.postalCode != '' && jsonObj.postalCode.length != 0) {
       return jsonObj.postalCode;
     } else {
-      return "N/A";
+      return 'N/A';
     }
   }
 
   processSeller(jsonObj) {
     let sellerStr = '';
-    if(jsonObj.sellerInfo == null || jsonObj.sellerInfo.length == 0) {
+    if (jsonObj.sellerInfo == null || jsonObj.sellerInfo.length == 0) {
       sellerStr = 'N/A';
-    } else if(jsonObj.sellerInfo[0].sellerUserName == null ||
+    } else if (jsonObj.sellerInfo[0].sellerUserName == null ||
       jsonObj.sellerInfo[0].sellerUserName.length == 0) {
       sellerStr = 'N/A';
     } else {
@@ -139,17 +142,35 @@ export class SearchListingComponent implements OnInit {
 
   processTooltip(jsonObj) {
     if (jsonObj.title == null || jsonObj.title.length == 0) {
-      return "N/A";
+      return 'N/A';
     } else {
-      return jsonObj["title"][0];
+      return jsonObj['title'][0];
     }
   }
 
-  toggleItemInWishList(jsonObj) {
-    this.slide.emit({ slide: "left", itemId: this.selectedItem });
+  toggleItemInWishList(index) {
+    let jsonObj = this.resultJson[index];
+    if (this.isAlreadyInWishList[index]) {
+      let wlObj = new WishListContent();
+      wlObj.ItemID = jsonObj.itemId[0];
+      this.wls.removeFromWishList(wlObj);
+      this.isAlreadyInWishList[index] = false;
+    } else {
+      let wlObj = new WishListContent();
+      wlObj.ItemID = jsonObj.itemId[0];
+      wlObj.Title = this.getValidTitle(jsonObj);
+      wlObj.Image_URL = this.getValidImageURL(jsonObj);
+      wlObj.Price = this.getValidPrice(jsonObj);
+      wlObj.Shipping_Option = this.getValidShippingOption(jsonObj);
+      wlObj.Seller_Name = this.getValidSellerName(jsonObj);
+      wlObj.Seller_Content_Obj = this.getValidSellerContent(jsonObj);
+      wlObj.Shipping_Content_Obj = this.getValidShippingContent(jsonObj);
+      this.wls.addToWishList(wlObj);
+      this.isAlreadyInWishList[index] = true;
+    }
   }
 
-  fetchItemDetails(jsonObj){
+  fetchItemDetails(jsonObj) {
     this.selectedItem = jsonObj.itemId[0];
     this.selectedItemJsonObj = jsonObj;
     this.ids.preFetchedItemDetailsData = jsonObj;
@@ -157,8 +178,50 @@ export class SearchListingComponent implements OnInit {
   }
 
   getItemDetails() {
-    console.log(this.selectedItemJsonObj);
     this.ids.getAllItemDetails();
-    this.slide.emit({ slide: "left", itemId: this.selectedItem });
+    this.slide.emit({slide: 'left', itemId: this.selectedItem, itemInfo: this.selectedItemJsonObj});
+  }
+
+  private checkAndUpdateWishList() {
+    if (this.resultJson) {
+      let itemIdArr = this.resultJson.map(data => data.itemId[0]);
+      this.isAlreadyInWishList = this.wls.isOnWishList(itemIdArr);
+    }
+  }
+
+  private getValidTitle(jsonObj: any) {
+    if (jsonObj.title == null || jsonObj.title.length == 0) {
+      return 'N/A';
+    } else {
+      return jsonObj['title'][0];
+    }
+  }
+
+  private getValidImageURL(jsonObj: any) {
+    if (jsonObj.galleryURL != null && jsonObj.galleryURL != '' && jsonObj.galleryURL.length != 0) {
+      return jsonObj.galleryURL[0];
+    } else {
+      return 'N/A';
+    }
+  }
+
+  private getValidPrice(jsonObj: any) {
+    return this.processPrice(jsonObj);
+  }
+
+  private getValidShippingOption(jsonObj: any) {
+    return this.processShipping(jsonObj);
+  }
+
+  private getValidSellerName(jsonObj: any) {
+    return this.processSeller(jsonObj);
+  }
+
+  private getValidSellerContent(jsonObj: any) {
+    return this.ids.generateSellerInformation(jsonObj);
+  }
+
+  private getValidShippingContent(jsonObj: any) {
+    return this.ids.generateShippingContent(jsonObj);
   }
 }
