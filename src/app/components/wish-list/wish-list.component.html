@@ -1,3 +1,46 @@
-<p>
-  wish-list works!
-</p>
+<div class="details-btn-div">
+  <button class="btn btn-outline-secondary details-btn" [disabled]="!selectedItemId" (click)="getItemDetails()" >Details
+    <i class="material-icons">chevron_right</i>
+  </button>
+</div>
+<div id="results-div" class="table-responsive">
+
+  <div class="alert alert-warning" role="alert" *ngIf="!isAnyWishListItem">
+    {{ error_msg }}
+  </div>
+
+  <table class="table table-dark table-striped table-hover searchListingTable" *ngIf="isAnyWishListItem">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Image</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Shipping</th>
+      <th scope="col">Seller</th>
+      <th scope="col">Wish List</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let rowdata of wishListArray; index as i"
+        [class.table-warning]="rowdata.ItemID == selectedItemId">
+      <td scope="row">{{i + 1}}</td>
+      <td [innerHTML]="processImage(rowdata.Image_URL)"></td>
+      <td>
+        <span placement="bottom" ngbTooltip="{{rowdata.Title}}">
+          <a (click)="fetchItemDetails(rowdata)" class="clickableTitle" style="color: #6495ed;">{{processTitle(rowdata.Title)}}</a>
+        </span>
+      </td>
+      <td>{{rowdata.Price}}</td>
+      <td>{{rowdata.Shipping_Option}}</td>
+      <td>{{rowdata.Seller_Name}}</td>
+      <td>
+        <button type="button" class="btn btn-outline" (click)="removeFromWishList(rowdata)">
+          <i class="material-icons">remove_shopping_cart</i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
