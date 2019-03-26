@@ -5,6 +5,7 @@ import {SellerContent} from '../components/item-details/seller-tab-details/Selle
 import {ProductContentService} from './product-content.service';
 import {SimilarItemContentService} from './similar-item-content.service';
 import {PhotosContentService} from './photos-content.service';
+import {WishListContent} from '../components/wish-list/WishListContent';
 
 @Injectable({
   providedIn: 'root'
@@ -162,4 +163,19 @@ export class ItemDetailsService {
     return jsonContent;
   }
 
+  getAllItemDetailsForWishList(wlObj: WishListContent) {
+    let allItemDetails = {
+      'misc_content': {
+        'title': wlObj.Title
+      },
+      'shippingTab_content': wlObj.Shipping_Content_Obj,
+      'sellerTab_content': wlObj.Seller_Content_Obj
+    };
+
+    this.itemDetailsDataSub.next(allItemDetails);
+
+    this.pcs.fetchProductDetails(wlObj.ItemID);
+    this.sics.fetchSimilarItems(wlObj.ItemID);
+    this.phcs.fetchPhotos(wlObj.Title);
+  }
 }
