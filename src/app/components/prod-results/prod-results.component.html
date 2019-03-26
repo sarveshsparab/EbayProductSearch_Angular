@@ -21,10 +21,10 @@
       <div class="slide-div" [class.hide]="active == 'left'">
         <div>
           <div [className]="listingTabContentClass" id="pills-results" role="tabpanel" aria-labelledby="pills-results-tab">
-            <app-search-listing (slide)="slideLeft($event)" [class.hide]="!isListingShown"></app-search-listing>
+            <app-search-listing (slide)="slideLeft($event)" [class.hide]="!isListingShown" [itemId]="itemId"></app-search-listing>
           </div>
           <div [className]="wishListTabContentClass" id="pills-wishlist" role="tabpanel" aria-labelledby="pills-wishlist-tab">
-            <app-wish-list (slide)="slideLeft($event)" [class.hide]="!isWishListShown"></app-wish-list>
+            <app-wish-list (slide)="slideLeft($event)" [class.hide]="!isWishListShown" [itemInfo]="itemInfo" [itemId]="itemId"></app-wish-list>
           </div>
         </div>
       </div>
