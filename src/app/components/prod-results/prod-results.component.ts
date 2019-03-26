@@ -34,10 +34,19 @@ export class ProdResultsComponent implements OnInit {
   active: any;
   clear = false;
 
-  constructor(private pss: ProdSearchService, private ids: ItemDetailsService) { }
+  constructor(private pss: ProdSearchService, private ids: ItemDetailsService) {
+    this.pss.isDataReceivedOb.subscribe(data=> {
+      this.showListings();
+      this.isListingShown = true;
+      this.clear = false;
+    });
+  }
 
   isListingShown = true;
   isWishListShown = false;
+
+  itemId = "";
+  itemInfo = "";
 
   slideRight(panel) {
     this.clear = false;
@@ -47,6 +56,8 @@ export class ProdResultsComponent implements OnInit {
   slideLeft(event) {
     this.clear = false;
     this.active = event.slide;
+    this.itemId = event.itemId;
+    this.itemInfo = event.itemInfo;
   }
 
   showListings() {
