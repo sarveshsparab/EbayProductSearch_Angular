@@ -85,6 +85,14 @@ export class ProdFormComponent implements OnInit {
   ngOnInit() {
     this.fetchCurrentZipCode();
     this.zacs.loadResponseFromGeoName();
+    this.zipAutoCompleteControl.disable();
   }
 
+  zipRadioToggle() {
+    if(this.pForm.zipCodeType=='cust'){
+      this.zipAutoCompleteControl.enable();
+    } else {
+      this.zipAutoCompleteControl.disable();
+    }
+  }
 }
