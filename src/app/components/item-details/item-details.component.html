@@ -1,4 +1,4 @@
-<div id="details" *ngIf="itemDetailsData">
+<div id="details" *ngIf="entireItemDetailsDataReceived">
   <div id="place-name">
     <h3>{{itemName}}</h3>
   </div>
@@ -15,8 +15,9 @@
           <img id="fb_btn" class="fb_btn" src="http://csci571.com/hw/hw8/Images/facebook.png" alt="fb_btn">
         </a>
       </button>
-      <button class="btn wishListBtn" (click)="toggleWishList()">
-        <i class="material-icons">add_shopping_cart</i>
+      <button class="btn wishListBtn" (click)="toggleItemInWishList()">
+        <i class="material-icons" *ngIf="!isAlreadyInWishList">add_shopping_cart</i>
+        <i class="material-icons" *ngIf="isAlreadyInWishList" style="color: red">remove_shopping_cart</i>
       </button>
     </div>
   </div>

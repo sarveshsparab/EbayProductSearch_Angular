@@ -3,6 +3,8 @@ import {ItemDetailsService} from '../../services/item-details.service';
 import {ProductContentService} from '../../services/product-content.service';
 import {SimilarItemContentService} from '../../services/similar-item-content.service';
 import {PhotosContentService} from '../../services/photos-content.service';
+import {WishListService} from '../../services/wish-list.service';
+import {WishListContent} from '../wish-list/WishListContent';
 
 
 @Component({
@@ -22,7 +24,9 @@ export class ItemDetailsComponent implements OnInit {
   @Output() slide = new EventEmitter<string>();
 
   private activeTab = "productTab_itemDetails";
-  itemDetailsData: any;
+  entireItemDetailsData = {};
+  entireItemDetailsDataReceived: boolean;
+
   itemName: any;
   fbShareLink: any;
 
@@ -37,20 +41,26 @@ export class ItemDetailsComponent implements OnInit {
   isSimilarContentFetched = false;
   isPhotoContentFetched = false;
 
+  isAlreadyInWishList: boolean;
+
   constructor(private ids: ItemDetailsService, private zone: NgZone, private pcs: ProductContentService,
-              private sics: SimilarItemContentService, private phcs: PhotosContentService) {
+              private sics: SimilarItemContentService, private phcs: PhotosContentService, private wls: WishListService) {
     this.ids.itemDetailsDataOb.subscribe(data=> {
       this.zone.run(() => {
-        this.itemDetailsData = data;
+        this.entireItemDetailsData['ids'] = data;
+        this.entireItemDetailsDataReceived = true;
         this.itemName = data['misc_content']['title'];
         this.setShippingContent(data['shippingTab_content']);
         this.setSellerContent(data['sellerTab_content']);
         this.isItemDetailsFetched = true;
+        this.isAlreadyInWishList = this.wls.isOnWishList([this.entireItemDetailsData['ids']['misc_content']['itemId']])[0];
       });
     });
 
     this.pcs.resultJsonOb.subscribe(data => {
       this.zone.run(()=>{
+        this.entireItemDetailsData['pcs'] = data;
+        this.entireItemDetailsDataReceived = true;
         this.setProductContent(data);
         this.setFBShareLink(data);
         this.isProductContentFetched = true;
@@ -59,6 +69,8 @@ export class ItemDetailsComponent implements OnInit {
 
     this.sics.resultJsonOb.subscribe(data => {
       this.zone.run(()=>{
+        this.entireItemDetailsData['sics'] = data;
+        this.entireItemDetailsDataReceived = true;
         this.setSimilarItemsContent(data);
         this.isSimilarContentFetched = true;
       });
@@ -66,6 +78,8 @@ export class ItemDetailsComponent implements OnInit {
 
     this.phcs.resultJsonOb.subscribe(data => {
       this.zone.run(()=>{
+        this.entireItemDetailsData['phcs'] = data;
+        this.entireItemDetailsDataReceived = true;
         this.setPhotosContent(data);
         this.isPhotoContentFetched = true;
       });
@@ -77,6 +91,7 @@ export class ItemDetailsComponent implements OnInit {
     this.isPhotoContentFetched = false;
     this.isProductContentFetched = false;
     this.isSimilarContentFetched = false;
+    this.entireItemDetailsDataReceived = false;
   }
 
   setActiveTab(id) {
@@ -87,8 +102,27 @@ export class ItemDetailsComponent implements OnInit {
     this.slide.emit("right");
   }
 
-  toggleWishList() {
-
+  toggleItemInWishList() {
+    this.zone.run(() => {
+      if (this.isAlreadyInWishList) {
+        let wlObj = new WishListContent();
+        wlObj.ItemID = this.entireItemDetailsData['ids'].misc_content.itemId;
+        this.wls.removeFromWishList(wlObj);
+        this.isAlreadyInWishList = false;
+      } else {
+        let wlObj = new WishListContent();
+        wlObj.ItemID = this.entireItemDetailsData['ids'].misc_content.itemId;
+        wlObj.Title = this.entireItemDetailsData['ids'].misc_content.title;
+        wlObj.Image_URL = this.entireItemDetailsData['ids'].misc_content.imageURL;
+        wlObj.Price = this.entireItemDetailsData['pcs'].Price;
+        wlObj.Seller_Name = this.entireItemDetailsData['ids'].sellerTab_content.Seller_User_Name;
+        wlObj.Shipping_Option = this.entireItemDetailsData['ids'].shippingTab_content.Shipping_Cost;
+        wlObj.Seller_Content_Obj = this.entireItemDetailsData['ids'].sellerTab_content;
+        wlObj.Shipping_Content_Obj = this.entireItemDetailsData['ids'].shippingTab_content;
+        this.wls.addToWishList(wlObj);
+        this.isAlreadyInWishList = true;
+      }
+    });
   }
 
   private setProductContent(jsonObj) {
