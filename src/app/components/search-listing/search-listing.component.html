@@ -1,4 +1,4 @@
-<div class="alert alert-danger" role="alert" *ngIf="errorState && displayListings"> {{ error_msg }} </div>
+<div class="alert alert-warning" style="text-align: left" role="alert" *ngIf="errorState && displayListings"> {{ error_msg }} </div>
 
 <div class="details-btn-div" *ngIf="displayListings && !errorState">
   <button class="btn btn-outline-secondary details-btn" [disabled]="!selectedItem" (click)="getItemDetails()" >Details
@@ -8,7 +8,7 @@
 
 <div id="results-div" *ngIf="displayListings && !errorState" class="table-responsive">
 
-  <div class="alert alert-warning" role="alert" *ngIf="!resultJson"> {{ error_msg }} </div>
+  <div class="alert alert-warning" style="text-align: left;" role="alert" *ngIf="!resultJson"> {{ error_msg }} </div>
 
   <table class="table table-dark table-striped table-hover searchListingTable" *ngIf="resultJson && resultJson != 'loading'">
     <thead>
