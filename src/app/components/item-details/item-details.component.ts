@@ -21,7 +21,7 @@ export class ItemDetailsComponent implements OnInit {
     { id: "similarTab_itemDetails", title: "Similar Products" }
   ];
 
-  @Output() slide = new EventEmitter<string>();
+  @Output() transmitEvent = new EventEmitter<string>();
 
   private activeTab = "productTab_itemDetails";
   entireItemDetailsData = {};
@@ -104,7 +104,7 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   backToListings() {
-    this.slide.emit("right");
+    this.transmitEvent.emit("listing");
   }
 
   toggleItemInWishList() {

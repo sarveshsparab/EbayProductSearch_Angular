@@ -11,7 +11,7 @@ import {SellerContent} from '../item-details/seller-tab-details/SellerContent';
   styleUrls: ['./search-listing.component.css']
 })
 export class SearchListingComponent implements OnInit {
-  @Output() slide = new EventEmitter<any>();
+  @Output() transmitEvent = new EventEmitter<any>();
   @Input('itemId') selectedItem: any;
 
   selectedItemJsonObj: any;
@@ -179,7 +179,7 @@ export class SearchListingComponent implements OnInit {
 
   getItemDetails() {
     this.ids.getAllItemDetails();
-    this.slide.emit({slide: 'left', itemId: this.selectedItem, itemInfo: this.selectedItemJsonObj});
+    this.transmitEvent.emit({activeSibling: 'details', itemId: this.selectedItem, itemInfo: this.selectedItemJsonObj});
   }
 
   private checkAndUpdateWishList() {

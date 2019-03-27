@@ -8,7 +8,7 @@ import {ItemDetailsService} from '../../services/item-details.service';
   styleUrls: ['./wish-list.component.css']
 })
 export class WishListComponent implements OnInit {
-  @Output() slide = new EventEmitter<any>();
+  @Output() transmitEvent = new EventEmitter<any>();
   @Input("itemInfo") selectedItemInfo: any;
   @Input("itemId") selectedItemId: any;
 
@@ -55,7 +55,7 @@ export class WishListComponent implements OnInit {
 
   getItemDetails() {
     this.ids.getAllItemDetailsForWishList(this.selectedItemInfo);
-    this.slide.emit({slide: 'left', itemId: this.selectedItemId, itemInfo: this.selectedItemInfo});
+    this.transmitEvent.emit({activeSibling: 'details', itemId: this.selectedItemId, itemInfo: this.selectedItemInfo});
   }
 
   fetchItemDetails(rowdata) {

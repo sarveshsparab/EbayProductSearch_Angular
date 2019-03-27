@@ -12,19 +12,19 @@
            aria-controls="pills-wishlist" [attr.aria-selected]="isWishListShown" (click)="showWishLists()">Wish List</a>
       </li>
     </ul>
-    <div id="pills-tabContent" [@slideAnimation]="active" class="tab-content" *ngIf="!clear">
-      <div class="slide-div" [class.hide]="active == 'right'">
+    <div id="pills-tabContent" [@slideAnimation]="activeSibling" class="tab-content" *ngIf="!clear">
+      <div class="slide-div" [class.hide]="activeSibling == 'listing'">
         <div>
-          <app-item-details (slide)="slideRight($event)"></app-item-details>
+          <app-item-details (transmitEvent)="hideDetailsAndShowListing($event)"></app-item-details>
         </div>
       </div>
-      <div class="slide-div" [class.hide]="active == 'left'">
+      <div class="slide-div" [class.hide]="activeSibling == 'details'">
         <div>
           <div [className]="listingTabContentClass" id="pills-results" role="tabpanel" aria-labelledby="pills-results-tab">
-            <app-search-listing (slide)="slideLeft($event)" [class.hide]="!isListingShown" [itemId]="itemId"></app-search-listing>
+            <app-search-listing (transmitEvent)="hideListingAndShowDetails($event)" [class.hide]="!isListingShown" [itemId]="itemId"></app-search-listing>
           </div>
           <div [className]="wishListTabContentClass" id="pills-wishlist" role="tabpanel" aria-labelledby="pills-wishlist-tab">
-            <app-wish-list (slide)="slideLeft($event)" [class.hide]="!isWishListShown" [itemInfo]="itemInfo" [itemId]="itemId"></app-wish-list>
+            <app-wish-list (transmitEvent)="hideListingAndShowDetails($event)" [class.hide]="!isWishListShown" [itemInfo]="itemInfo" [itemId]="itemId"></app-wish-list>
           </div>
         </div>
       </div>

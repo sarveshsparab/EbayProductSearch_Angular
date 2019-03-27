@@ -28,7 +28,7 @@ export class ProdResultsComponent implements OnInit {
   listingTabContentClass = "tab-pane fade active show";
   wishListTabContentClass = "tab-pane fade";
 
-  active: any;
+  activeSibling: any;
   clear = false;
 
   constructor(private pss: ProdSearchService, private ids: ItemDetailsService) {
@@ -45,14 +45,14 @@ export class ProdResultsComponent implements OnInit {
   itemId = "";
   itemInfo = "";
 
-  slideRight(panel) {
+  hideDetailsAndShowListing(panel) {
     this.clear = false;
-    this.active = panel;
+    this.activeSibling = panel;
   }
 
-  slideLeft(event) {
+  hideListingAndShowDetails(event) {
     this.clear = false;
-    this.active = event.slide;
+    this.activeSibling = event.activeSibling;
     this.itemId = event.itemId;
     this.itemInfo = event.itemInfo;
   }
@@ -61,7 +61,7 @@ export class ProdResultsComponent implements OnInit {
     this.clear = false;
     this.isWishListShown = false;
     this.isListingShown = true;
-    this.active = 'right';
+    this.activeSibling = 'listing';
     this.listingShowTabClass = "nav-link active show";
     this.wishListShowTabClass = "nav-link";
     this.listingTabContentClass = "tab-pane fade active show";
@@ -72,7 +72,7 @@ export class ProdResultsComponent implements OnInit {
     this.clear = false;
     this.isListingShown = false;
     this.isWishListShown = true;
-    this.active = 'right';
+    this.activeSibling = 'listing';
     this.listingShowTabClass = "nav-link";
     this.wishListShowTabClass = "nav-link active show";
     this.listingTabContentClass = "tab-pane fade";
