@@ -24,7 +24,9 @@ export class ItemDetailsService {
 
     let allItemDetails = {
       'misc_content': {
-        'title': this.preFetchedItemDetailsData.title
+        'title': this.preFetchedItemDetailsData.title,
+        'itemId': this.preFetchedItemDetailsData.itemId[0],
+        'imageURL': this.preFetchedItemDetailsData.galleryURL[0]
       },
       'shippingTab_content': this.generateShippingContent(this.preFetchedItemDetailsData),
       'sellerTab_content': this.generateSellerInformation(this.preFetchedItemDetailsData)
@@ -166,7 +168,9 @@ export class ItemDetailsService {
   getAllItemDetailsForWishList(wlObj: WishListContent) {
     let allItemDetails = {
       'misc_content': {
-        'title': wlObj.Title
+        'title': wlObj.Title,
+        'itemId': wlObj.ItemID,
+        'imageURL': wlObj.Image_URL
       },
       'shippingTab_content': wlObj.Shipping_Content_Obj,
       'sellerTab_content': wlObj.Seller_Content_Obj
