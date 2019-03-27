@@ -54,6 +54,7 @@ export class ItemDetailsComponent implements OnInit {
         this.setSellerContent(data['sellerTab_content']);
         this.isItemDetailsFetched = true;
         this.isAlreadyInWishList = this.wls.isOnWishList([this.entireItemDetailsData['ids']['misc_content']['itemId']])[0];
+        this.activeTab = "productTab_itemDetails";
       });
     });
 
@@ -64,6 +65,7 @@ export class ItemDetailsComponent implements OnInit {
         this.setProductContent(data);
         this.setFBShareLink(data);
         this.isProductContentFetched = true;
+        this.activeTab = "productTab_itemDetails";
       });
     });
 
@@ -73,6 +75,7 @@ export class ItemDetailsComponent implements OnInit {
         this.entireItemDetailsDataReceived = true;
         this.setSimilarItemsContent(data);
         this.isSimilarContentFetched = true;
+        this.activeTab = "productTab_itemDetails";
       });
     });
 
@@ -82,6 +85,7 @@ export class ItemDetailsComponent implements OnInit {
         this.entireItemDetailsDataReceived = true;
         this.setPhotosContent(data);
         this.isPhotoContentFetched = true;
+        this.activeTab = "productTab_itemDetails";
       });
     });
   }
@@ -92,6 +96,7 @@ export class ItemDetailsComponent implements OnInit {
     this.isProductContentFetched = false;
     this.isSimilarContentFetched = false;
     this.entireItemDetailsDataReceived = false;
+    this.activeTab = "productTab_itemDetails";
   }
 
   setActiveTab(id) {
