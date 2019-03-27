@@ -1,7 +1,11 @@
-.redCross{
+.redCross {
   color: red;
 }
 
-.greenTick{
+.greenTick {
   color: green;
+}
+
+.contentTable {
+  text-align: left;
 }

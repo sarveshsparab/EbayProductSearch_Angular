@@ -1,20 +1,20 @@
-.redCross{
+.redCross {
   color: red;
 }
 
-.greenTick{
+.greenTick {
   color: green;
 }
 
-.star-icon{
+.star-icon {
   font-size: 30px;
 }
 
-.popularity-outer-div{
+.popularity-outer-div {
   position: relative;
 }
 
-.popularity-label-div{
+.popularity-label-div {
   position: absolute;
   color: #bbb;
   font-weight: 100;
@@ -23,5 +23,17 @@
   bottom: auto;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
-  font-size: 17.1429px;
+  font-size: 13.143px;
+}
+
+.round-progress-pos {
+  padding-bottom: 0;
+  padding-top: 0;
+  vertical-align: middle;
+}
+
+
+.contentTable {
+  text-align: left;
+  width: 25%;
 }

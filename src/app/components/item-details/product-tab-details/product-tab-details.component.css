@@ -1,5 +1,8 @@
-.prodImageModalLink{
+.prodImageModalLink {
   cursor: pointer;
   text-decoration: none;
-  color: chartreuse;
+}
+
+.contentTable {
+  text-align: left;
 }

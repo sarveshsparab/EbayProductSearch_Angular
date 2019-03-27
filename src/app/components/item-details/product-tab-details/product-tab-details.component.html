@@ -1,32 +1,34 @@
-<table class="table table-dark">
-  <tbody>
-  <tr *ngIf="content.Product_Images.length > 0">
-    <td>Product Images</td>
-    <td><a class="prodImageModalLink" data-toggle="modal" data-target="#prodImagesModal">View Product Images Here</a>
-    </td>
-  </tr>
-  <tr *ngIf="content.Subtitle!=''">
-    <td>Subtitle</td>
-    <td>{{content.Subtitle}}</td>
-  </tr>
-  <tr *ngIf="content.Price!=''">
-    <td>Price</td>
-    <td>{{content.Price}}</td>
-  </tr>
-  <tr *ngIf="content.Location!=''">
-    <td>Location</td>
-    <td>{{content.Location}}</td>
-  </tr>
-  <tr *ngIf="content.Return_Policy!=''">
-    <td>Return Policy</td>
-    <td>{{content.Return_Policy}}</td>
-  </tr>
-  <tr *ngFor="let spec of content.Item_Specifics">
-    <td>{{spec[0]}}</td>
-    <td>{{spec[1]}}</td>
-  </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-dark table-striped table-hover contentTable">
+    <tbody>
+    <tr *ngIf="content.Product_Images.length > 0">
+      <td>Product Images</td>
+      <td><a class="prodImageModalLink" data-toggle="modal" data-target="#prodImagesModal" style="color: #78cfd2">View Product Images Here</a>
+      </td>
+    </tr>
+    <tr *ngIf="content.Subtitle!=''">
+      <td>Subtitle</td>
+      <td>{{content.Subtitle}}</td>
+    </tr>
+    <tr *ngIf="content.Price!=''">
+      <td>Price</td>
+      <td>{{content.Price}}</td>
+    </tr>
+    <tr *ngIf="content.Location!=''">
+      <td>Location</td>
+      <td>{{content.Location}}</td>
+    </tr>
+    <tr *ngIf="content.Return_Policy!=''">
+      <td>Return Policy</td>
+      <td>{{content.Return_Policy}}</td>
+    </tr>
+    <tr *ngFor="let spec of content.Item_Specifics">
+      <td>{{spec[0]}}</td>
+      <td>{{spec[1]}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 
 <div class="modal fade" id="prodImagesModal" tabindex="-1" role="dialog" aria-labelledby="prodImagesModalTitle"
      aria-hidden="true">
@@ -41,7 +43,8 @@
       <div class="modal-body">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item" [class.active]="isFirst" *ngFor="let prodImg of content.Product_Images; first as isFirst">
+            <div class="carousel-item" [class.active]="isFirst"
+                 *ngFor="let prodImg of content.Product_Images; first as isFirst">
               <a target="_blank" [href]="prodImg">
                 <img class="d-block w-100" style="border: 7px solid black" [src]="prodImg" alt="First slide">
               </a>

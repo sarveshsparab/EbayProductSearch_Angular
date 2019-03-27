@@ -1,51 +1,54 @@
-<table class="table table-dark">
-  <tbody>
-  <tr *ngIf="content.Seller_User_Name">
-    <td colspan="2">{{content.Seller_User_Name}}</td>
-  </tr>
-  <tr *ngIf="content.Feedback_Score">
-    <td>Feedback Score</td>
-    <td>{{content.Feedback_Score}}</td>
-  </tr>
-  <tr *ngIf="content.Popularity">
-    <td>Popularity</td>
-    <td>
-      <div class="popularity-outer-div">
-        <div class="popularity-label-div">
-          {{content.Popularity}}
+<div class="table-responsive">
+  <table class="table table-dark table-striped table-hover">
+    <tbody>
+    <tr *ngIf="content.Seller_User_Name">
+      <td colspan="2">{{content.Seller_User_Name}}</td>
+    </tr>
+    <tr *ngIf="content.Feedback_Score">
+      <td class="contentTable">Feedback Score</td>
+      <td>{{content.Feedback_Score}}</td>
+    </tr>
+    <tr *ngIf="content.Popularity">
+      <td class="contentTable">Popularity</td>
+      <td class="round-progress-pos">
+        <div class="popularity-outer-div">
+          <div class="popularity-label-div">
+            {{content.Popularity}}
+          </div>
+          <round-progress style="margin: auto"
+                          [current]="content.Popularity"
+                          [max]="100"
+                          [color]="'#2e972d'"
+                          [background]="'#eaeaea'"
+                          [radius]="20"
+                          [stroke]="2">
+            {{content.Popularity}}
+          </round-progress>
         </div>
-        <round-progress style="margin: auto"
-          [current]="content.Popularity"
-          [max]="100"
-          [color]="'#45ccce'"
-          [background]="'#eaeaea'"
-          [radius]="22"
-          [stroke]="2">
-          {{content.Popularity}}
-        </round-progress>
-      </div>
-    </td>
-  </tr>
-  <tr *ngIf="content.Feedback_Rating_Star">
-    <td>Feedback Rating Star</td>
-    <td *ngIf="content.Feedback_Score > 10000"><i class="material-icons star-icon"
-                                                  [ngStyle]="{'color': content.Feedback_Rating_Star}">stars</i></td>
-    <td *ngIf="content.Feedback_Score <= 10000"><i class="material-icons star-icon"
-                                                   [ngStyle]="{'color': content.Feedback_Rating_Star}">star_border</i>
-    </td>
-  </tr>
-  <tr *ngIf="content.Top_Rated">
-    <td>Top Rated</td>
-    <td *ngIf="'true'==content.Top_Rated"><i class="material-icons greenTick">check</i></td>
-    <td *ngIf="'false'==content.Top_Rated"><i class="material-icons redCross">close</i></td>
-  </tr>
-  <tr *ngIf="content.Store_Name">
-    <td>Store Name</td>
-    <td>{{content.Store_Name}}</td>
-  </tr>
-  <tr *ngIf="content.Buy_Product_At">
-    <td>Buy Product At</td>
-    <td><a href="{{content.Buy_Product_At}}" target="_blank">Store</a></td>
-  </tr>
-  </tbody>
-</table>
+      </td>
+    </tr>
+    <tr *ngIf="content.Feedback_Rating_Star">
+      <td class="contentTable">Feedback Rating Star</td>
+      <td *ngIf="content.Feedback_Score > 10000"><i class="material-icons star-icon"
+                                                    [ngStyle]="{'color': content.Feedback_Rating_Star.substr(0, content.Feedback_Rating_Star.length-'Shooting'.length)}">stars</i>
+      </td>
+      <td *ngIf="content.Feedback_Score <= 10000"><i class="material-icons star-icon"
+                                                     [ngStyle]="{'color': content.Feedback_Rating_Star}">star_border</i>
+      </td>
+    </tr>
+    <tr *ngIf="content.Top_Rated">
+      <td class="contentTable">Top Rated</td>
+      <td *ngIf="'true'==content.Top_Rated"><i class="material-icons greenTick">check</i></td>
+      <td *ngIf="'false'==content.Top_Rated"><i class="material-icons redCross">close</i></td>
+    </tr>
+    <tr *ngIf="content.Store_Name">
+      <td class="contentTable">Store Name</td>
+      <td>{{content.Store_Name}}</td>
+    </tr>
+    <tr *ngIf="content.Buy_Product_At">
+      <td class="contentTable">Buy Product At</td>
+      <td><a href="{{content.Buy_Product_At}}" target="_blank" style="color: #78cfd2">Store</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

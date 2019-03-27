@@ -3,13 +3,13 @@
 }
 
 .card-row{
-  background-color: #1d1d1d;
+  background-color: #454d55;
   text-align: unset;
 }
 
 .card-contents{
   text-align: unset;
-  margin: 15px;
+  margin: 12px;
 }
 
 .card-content-items p{
@@ -28,16 +28,16 @@
 }
 
 .card-product-name{
-  color: blue;
+  color: #78cfd2;
 }
 .card-price{
-  color: green;
+  color: #50c854;
 }
 .card-shipping-cost{
-  color: yellow;
+  color: #ffc523;
 }
 .card-days-left{
-  color: white;
+  color: #ffffff;
 }
 
 .showMoreLessBtn{

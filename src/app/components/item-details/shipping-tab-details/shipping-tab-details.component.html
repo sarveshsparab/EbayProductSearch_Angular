@@ -1,5 +1,6 @@
-<table class="table table-dark">
-  <tbody>
+<div class="table-responsive">
+  <table class="table table-dark table-hover table-striped contentTable">
+    <tbody>
     <tr>
       <td>Shipping Cost</td>
       <td>{{content.Shipping_Cost}}</td>
@@ -27,5 +28,6 @@
       <td *ngIf="'true'==content.Return_Accepted"><i class="material-icons greenTick">check</i></td>
       <td *ngIf="'false'==content.Return_Accepted"><i class="material-icons redCross">close</i></td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
