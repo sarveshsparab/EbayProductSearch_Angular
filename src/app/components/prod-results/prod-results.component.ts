@@ -22,9 +22,6 @@ import { trigger, state, style, transition, animate } from "@angular/animations"
 })
 export class ProdResultsComponent implements OnInit {
 
-  canShowResultTable = true;
-  canShowWishList = false;
-
   listingShowTabClass = "nav-link active show";
   wishListShowTabClass = "nav-link";
 
