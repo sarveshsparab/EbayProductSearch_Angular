@@ -24,7 +24,13 @@
   display: flex;
 }
 
+.itemTitle {
+  font-size: 25px;
+}
 
+.selectedWishList{
+  color: #ffc523;
+}
 
 /* Overriding Imported Style Sheets */
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {

@@ -42,6 +42,9 @@
   cursor: pointer;
 }
 
+.selectedWishList{
+  color: #ffc523;
+}
 
 /* Overriding Imported Style Sheets */
 .table-warning, .table-warning > th, .table-warning > td {

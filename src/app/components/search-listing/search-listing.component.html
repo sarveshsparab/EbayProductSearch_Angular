@@ -41,7 +41,7 @@
       <td>
         <button type="button" class="btn btn-outline" (click)="toggleItemInWishList(i)">
           <i class="material-icons" *ngIf="!isAlreadyInWishList[i]">add_shopping_cart</i>
-          <i class="material-icons" *ngIf="isAlreadyInWishList[i]" style="color: red">remove_shopping_cart</i>
+          <i class="material-icons selectedWishList" *ngIf="isAlreadyInWishList[i]">remove_shopping_cart</i>
         </button>
       </td>
     </tr>

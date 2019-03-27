@@ -1,6 +1,6 @@
 <div id="details" *ngIf="entireItemDetailsDataReceived">
   <div id="place-name">
-    <h3>{{itemName}}</h3>
+    <h3 class="itemTitle">{{itemName}}</h3>
   </div>
   <div id="navAndInfoButtons" class="navAndInfoButtons">
     <div class="leftButtons">
@@ -17,7 +17,7 @@
       </button>
       <button class="btn wishListBtn" (click)="toggleItemInWishList()">
         <i class="material-icons" *ngIf="!isAlreadyInWishList">add_shopping_cart</i>
-        <i class="material-icons" *ngIf="isAlreadyInWishList" style="color: red">remove_shopping_cart</i>
+        <i class="material-icons selectedWishList" *ngIf="isAlreadyInWishList">remove_shopping_cart</i>
       </button>
     </div>
   </div>
