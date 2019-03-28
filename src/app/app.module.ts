@@ -25,6 +25,7 @@ import { ShippingTabDetailsComponent } from './components/item-details/shipping-
 import { SellerTabDetailsComponent } from './components/item-details/seller-tab-details/seller-tab-details.component';
 import { SimilarItemsTabDetailsComponent } from './components/item-details/similar-items-tab-details/similar-items-tab-details.component';
 import { ProductTabDetailsComponent } from './components/item-details/product-tab-details/product-tab-details.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ProductTabDetailsComponent } from './components/item-details/product-ta
     ShippingTabDetailsComponent,
     SellerTabDetailsComponent,
     SimilarItemsTabDetailsComponent,
-    ProductTabDetailsComponent
+    ProductTabDetailsComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
