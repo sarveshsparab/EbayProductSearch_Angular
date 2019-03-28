@@ -48,6 +48,7 @@
     </tbody>
   </table>
 
+  <div *ngIf="!clearTriggered">
   <ngb-pagination [collectionSize]="resultJson.length" [(page)]="currPage" [pageSize]="pageSize"
                   class="d-flex justify-content-center"
                   aria-label="Dynamic Pagination">
@@ -55,5 +56,5 @@
     <ng-template ngbPaginationNext>Next&#160;&#160;&#8250;&#8250;</ng-template>
     <ng-template ngbPaginationNumber let-p>{{p}}</ng-template>
   </ngb-pagination>
-
+  </div>
 </div>

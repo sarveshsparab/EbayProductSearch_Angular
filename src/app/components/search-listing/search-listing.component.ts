@@ -3,7 +3,6 @@ import {ItemDetailsService} from '../../services/item-details.service';
 import {WishListService} from '../../services/wish-list.service';
 import {ProdSearchService} from '../../services/prod-search.service';
 import {WishListContent} from '../wish-list/WishListContent';
-import {SellerContent} from '../item-details/seller-tab-details/SellerContent';
 
 @Component({
   selector: 'app-search-listing',
@@ -23,6 +22,7 @@ export class SearchListingComponent implements OnInit {
   currPage = 1;
   pageSize = 10;
   isAlreadyInWishList: any;
+  clearTriggered: boolean;
 
   constructor(private pss: ProdSearchService, private ids: ItemDetailsService, private wls: WishListService) {
     this.pss.resultJsonOb.subscribe(data => {
@@ -31,22 +31,26 @@ export class SearchListingComponent implements OnInit {
       if (data === null) {
         this.errorState = true;
         this.displayListings = true;
-      } else if (data === undefined) {
+        this.clearTriggered = false;
+      } else if (data == undefined) {
 
-      } else if (data['responseStatus'] == 'Error') {
+      }else if (data['responseStatus'] == 'Error') {
         this.errorState = true;
         this.error_msg = data['responseContent'];
         this.resultJson = null;
         this.displayListings = true;
-      } else if (data == 'clear') {
+        this.clearTriggered = false;
+      } else if (data['responseStatus'] == 'Clear') {
         this.resultJson = null;
         this.displayListings = true;
         this.selectedItem = null;
+        this.clearTriggered = true;
       } else {
         this.resultJson = data['responseContent'];
         this.checkAndUpdateWishList();
         this.errorState = false;
         this.displayListings = true;
+        this.clearTriggered = false;
       }
     });
     this.wls.wishListModifiedOb.subscribe(data => {
