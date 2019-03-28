@@ -1,31 +1,58 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { ProdSearchService } from '../../services/prod-search.service';
-import { trigger, state, style, transition, animate } from "@angular/animations";
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {ProdSearchService} from '../../services/prod-search.service';
+import {trigger, state, style, transition, animate} from '@angular/animations';
 
 @Component({
   selector: 'app-prod-results',
   templateUrl: './prod-results.component.html',
   styleUrls: ['./prod-results.component.css'],
   animations: [
-    trigger("slideAnimation", [
-      transition("* => right", [
-        style({right: '-100%'}),
-        animate('.5s ease-in', style({right:0}))
+    trigger('slideAnimation', [
+
+      // state('listing', style({ transform: 'translateX(0)' })),
+      // state('details', style({ transform: 'translateX(-10%)' })),
+      // transition('* => *', animate('.5s ease-in'))
+
+
+      // state('listing', style({
+      //   right: '-100%'
+      // })),
+      // state('details', style({
+      //   left: '-100%'
+      // })),
+      // transition('*=>state1', animate('.5s ease-in', style({right:0}))),
+      // transition('*=>state2', animate('1s ease-in', style({left:0})))
+
+      transition("* => listing", [
+        style({transform: 'translateX(-100%)'}),
+        animate('500ms ease-in', style({transform: 'translateX(0%)'}))
       ]),
-      transition("* => left", [
-        style({left: '-100%'}),
-        animate('1s ease-in', style({left:0}))
-      ]),
+      transition("* => details", [
+        style({transform: 'translateX(100%)'}),
+        animate('500ms ease-in', style({transform: 'translateX(0%)'}))
+      ])
+
+
     ])
+    // trigger("slideAnimation", [
+    //   transition("* => listing", [
+    //     style({right: '-100%'}),
+    //     animate('.5s ease-in', style({right:0}))
+    //   ]),
+    //   transition("* => details", [
+    //     style({left: '-100%'}),
+    //     animate('1s ease-in', style({left:0}))
+    //   ]),
+    // ])
   ]
 })
 export class ProdResultsComponent implements OnInit {
 
-  listingShowTabClass = "nav-link active show";
-  wishListShowTabClass = "nav-link";
+  listingShowTabClass = 'nav-link active show';
+  wishListShowTabClass = 'nav-link';
 
-  listingTabContentClass = "tab-pane fade active show";
-  wishListTabContentClass = "tab-pane fade";
+  listingTabContentClass = 'tab-pane fade active show';
+  wishListTabContentClass = 'tab-pane fade';
 
   activeSibling: any;
   clearTriggered = false;
@@ -40,7 +67,7 @@ export class ProdResultsComponent implements OnInit {
       this.showListings();
       this.isListingShown = false;
     });
-    this.pss.isDataReceivedOb.subscribe(data=> {
+    this.pss.isDataReceivedOb.subscribe(data => {
       this.showListings();
       this.isListingShown = true;
       this.clearTriggered = false;
@@ -51,8 +78,8 @@ export class ProdResultsComponent implements OnInit {
   isListingShown = true;
   isWishListShown = false;
 
-  itemId = "";
-  itemInfo = "";
+  itemId = '';
+  itemInfo = '';
 
   hideDetailsAndShowListing(panel) {
     this.clearTriggered = false;
@@ -71,10 +98,10 @@ export class ProdResultsComponent implements OnInit {
     this.isWishListShown = false;
     this.isListingShown = true;
     this.activeSibling = 'listing';
-    this.listingShowTabClass = "nav-link active show";
-    this.wishListShowTabClass = "nav-link";
-    this.listingTabContentClass = "tab-pane fade active show";
-    this.wishListTabContentClass = "tab-pane fade";
+    this.listingShowTabClass = 'nav-link active show';
+    this.wishListShowTabClass = 'nav-link';
+    this.listingTabContentClass = 'tab-pane fade active show';
+    this.wishListTabContentClass = 'tab-pane fade';
   }
 
   showWishLists() {
@@ -82,11 +109,12 @@ export class ProdResultsComponent implements OnInit {
     this.isListingShown = false;
     this.isWishListShown = true;
     this.activeSibling = 'listing';
-    this.listingShowTabClass = "nav-link";
-    this.wishListShowTabClass = "nav-link active show";
-    this.listingTabContentClass = "tab-pane fade";
-    this.wishListTabContentClass = "tab-pane fade active show";
+    this.listingShowTabClass = 'nav-link';
+    this.wishListShowTabClass = 'nav-link active show';
+    this.listingTabContentClass = 'tab-pane fade';
+    this.wishListTabContentClass = 'tab-pane fade active show';
   }
+
   ngOnInit() {
   }
 
