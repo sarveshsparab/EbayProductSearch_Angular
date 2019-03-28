@@ -30,7 +30,7 @@
     </div>
   </nav>
   <div *ngIf="!(isProductContentFetched && isItemDetailsFetched && isSimilarContentFetched && isPhotoContentFetched)">
-    Showing loader!!!!!
+    <app-progress-bar></app-progress-bar>
   </div>
   <div *ngIf="(isProductContentFetched && isItemDetailsFetched && isSimilarContentFetched && isPhotoContentFetched)">
     <div class="tab-content" id="nav-tab-content">
