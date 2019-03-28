@@ -94,7 +94,7 @@
                  [disabled]="pForm.zipCodeType=='curr'"
                  [matAutocomplete]="zipAuto"
                  [matAutocompleteDisabled]="isZipAutoCompleteDisabled"
-                 (keydown)="fetchNewZips(zipAutoCompleteControl.value)"
+                 (keyup)="fetchNewZips(zipAutoCompleteControl.value)"
                  [ngClass]="{'form-control': true, 'is-invalid': zipAutoCompleteControl.invalid
                  && (zipAutoCompleteControl.dirty || zipAutoCompleteControl.touched)}" >
 
