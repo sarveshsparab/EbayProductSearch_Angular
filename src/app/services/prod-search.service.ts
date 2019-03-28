@@ -18,11 +18,8 @@ export class ProdSearchService {
   service: any;
   private jsonDataFetched: any;
 
-  private detailsJsonSub = new Subject();
-  detailsJsonOb = this.detailsJsonSub.asObservable();
-
-  private isClearSub = new Subject();
-  isClearOb = this.isClearSub.asObservable();
+  private clearTriggerSub = new Subject();
+  clearTriggerOb = this.clearTriggerSub.asObservable();
 
   private isDataReceivedSub = new Subject();
   isDataReceivedOb = this.isDataReceivedSub.asObservable();
@@ -36,10 +33,10 @@ export class ProdSearchService {
     this.showListings = true;
 
     let zipCode = '';
-    if (psForm.zipCodeType === 'curr')
-      zipCode = psForm.currZipCode;
-    else
+    if (psForm.zipCodeType === 'cust')
       zipCode = psForm.custZipCode;
+    else
+      zipCode = psForm.currZipCode;
 
     let params = new HttpParams()
       .set('keyword', encodeURI(psForm.keyword))
@@ -197,6 +194,8 @@ export class ProdSearchService {
   }
 
   pssClear() {
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+    this.resultJsonSub.next({"responseStatus": "Clear", "responseContent": "clearTriggered" });
+    this.jsonDataFetched = undefined;
+    this.clearTriggerSub.next(true);
   }
 }
