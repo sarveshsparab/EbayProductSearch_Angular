@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { ProdSearchService } from '../../services/prod-search.service';
-import { ItemDetailsService } from '../../services/item-details.service';
 import { trigger, state, style, transition, animate } from "@angular/animations";
 
 @Component({
@@ -29,15 +28,22 @@ export class ProdResultsComponent implements OnInit {
   wishListTabContentClass = "tab-pane fade";
 
   activeSibling: any;
-  clear = false;
+  clearTriggered = false;
 
   @Input() submitEvent: boolean;
 
-  constructor(private pss: ProdSearchService, private ids: ItemDetailsService) {
+  constructor(private pss: ProdSearchService) {
+    this.pss.clearTriggerOb.subscribe(data => {
+      this.clearTriggered = true;
+      this.itemId = null;
+      this.itemInfo = null;
+      this.showListings();
+      this.isListingShown = false;
+    });
     this.pss.isDataReceivedOb.subscribe(data=> {
       this.showListings();
       this.isListingShown = true;
-      this.clear = false;
+      this.clearTriggered = false;
       this.submitEvent = false;
     });
   }
@@ -49,19 +55,19 @@ export class ProdResultsComponent implements OnInit {
   itemInfo = "";
 
   hideDetailsAndShowListing(panel) {
-    this.clear = false;
+    this.clearTriggered = false;
     this.activeSibling = panel;
   }
 
   hideListingAndShowDetails(event) {
-    this.clear = false;
+    this.clearTriggered = false;
     this.activeSibling = event.activeSibling;
     this.itemId = event.itemId;
     this.itemInfo = event.itemInfo;
   }
 
   showListings() {
-    this.clear = false;
+    this.clearTriggered = false;
     this.isWishListShown = false;
     this.isListingShown = true;
     this.activeSibling = 'listing';
@@ -72,7 +78,7 @@ export class ProdResultsComponent implements OnInit {
   }
 
   showWishLists() {
-    this.clear = false;
+    this.clearTriggered = false;
     this.isListingShown = false;
     this.isWishListShown = true;
     this.activeSibling = 'listing';

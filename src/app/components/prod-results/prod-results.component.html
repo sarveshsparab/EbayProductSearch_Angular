@@ -15,7 +15,7 @@
 
     <app-progress-bar *ngIf="submitEvent"></app-progress-bar>
 
-    <div id="pills-tabContent" [@slideAnimation]="activeSibling" class="tab-content" *ngIf="!clear">
+    <div id="pills-tabContent" [@slideAnimation]="activeSibling" class="tab-content" *ngIf="!clearTriggered">
       <div class="slide-div" [class.hide]="activeSibling == 'listing'">
         <div>
           <app-item-details (transmitEvent)="hideDetailsAndShowListing($event)"></app-item-details>
