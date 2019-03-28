@@ -8,21 +8,6 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
   styleUrls: ['./prod-results.component.css'],
   animations: [
     trigger('slideAnimation', [
-
-      // state('listing', style({ transform: 'translateX(0)' })),
-      // state('details', style({ transform: 'translateX(-10%)' })),
-      // transition('* => *', animate('.5s ease-in'))
-
-
-      // state('listing', style({
-      //   right: '-100%'
-      // })),
-      // state('details', style({
-      //   left: '-100%'
-      // })),
-      // transition('*=>state1', animate('.5s ease-in', style({right:0}))),
-      // transition('*=>state2', animate('1s ease-in', style({left:0})))
-
       transition("* => listing", [
         style({transform: 'translateX(-100%)'}),
         animate('500ms ease-in', style({transform: 'translateX(0%)'}))
@@ -31,19 +16,7 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
         style({transform: 'translateX(100%)'}),
         animate('500ms ease-in', style({transform: 'translateX(0%)'}))
       ])
-
-
     ])
-    // trigger("slideAnimation", [
-    //   transition("* => listing", [
-    //     style({right: '-100%'}),
-    //     animate('.5s ease-in', style({right:0}))
-    //   ]),
-    //   transition("* => details", [
-    //     style({left: '-100%'}),
-    //     animate('1s ease-in', style({left:0}))
-    //   ]),
-    // ])
   ]
 })
 export class ProdResultsComponent implements OnInit {
