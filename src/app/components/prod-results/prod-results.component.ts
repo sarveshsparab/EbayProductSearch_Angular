@@ -7,7 +7,7 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
   templateUrl: './prod-results.component.html',
   styleUrls: ['./prod-results.component.css'],
   animations: [
-    trigger('slideAnimation', [
+    trigger('linearSiblingAnimation', [
       transition("* => listing", [
         style({transform: 'translateX(-100%)'}),
         animate('500ms ease-in', style({transform: 'translateX(0%)'}))
