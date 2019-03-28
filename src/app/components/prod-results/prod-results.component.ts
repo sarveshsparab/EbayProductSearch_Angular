@@ -31,11 +31,14 @@ export class ProdResultsComponent implements OnInit {
   activeSibling: any;
   clear = false;
 
+  @Input() submitEvent: boolean;
+
   constructor(private pss: ProdSearchService, private ids: ItemDetailsService) {
     this.pss.isDataReceivedOb.subscribe(data=> {
       this.showListings();
       this.isListingShown = true;
       this.clear = false;
+      this.submitEvent = false;
     });
   }
 

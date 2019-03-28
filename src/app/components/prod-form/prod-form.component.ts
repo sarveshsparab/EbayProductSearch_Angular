@@ -25,6 +25,8 @@ export class ProdFormComponent implements OnInit {
   zipAutoCompleteControl = new FormControl('', Validators.required);
   fetchedZips: string[];
 
+  @Output() submitEvent = new EventEmitter<boolean>();
+
   constructor(private pss: ProdSearchService, private cdRef: ChangeDetectorRef, private zacs: ZipAutoCompleteService,
               private ipapis: IPAPIService) {
     this.zacs.resultJsonOb.pipe(
@@ -64,6 +66,7 @@ export class ProdFormComponent implements OnInit {
 
   psSubmit() {
     this.pss.fetchFromEbay(this.pForm);
+    this.submitEvent.emit(true);
   }
   fetchNewZips(enteredValue) {
     this.zacs.fetchResponseFromGeoName(enteredValue);

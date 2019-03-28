@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'csci571-hw8';
+
+  formSubmitted: boolean;
+
+  submitTriggered(event) {
+    this.formSubmitted = true;
+  }
 }

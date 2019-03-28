@@ -12,6 +12,9 @@
            aria-controls="pills-wishlist" [attr.aria-selected]="isWishListShown" (click)="showWishLists()">Wish List</a>
       </li>
     </ul>
+
+    <app-progress-bar *ngIf="submitEvent"></app-progress-bar>
+
     <div id="pills-tabContent" [@slideAnimation]="activeSibling" class="tab-content" *ngIf="!clear">
       <div class="slide-div" [class.hide]="activeSibling == 'listing'">
         <div>

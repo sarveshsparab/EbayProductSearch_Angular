@@ -1,2 +1,2 @@
-<app-prod-form></app-prod-form>
-<app-prod-results></app-prod-results>
+<app-prod-form (submitEvent)="submitTriggered($event)"></app-prod-form>
+<app-prod-results [submitEvent]="formSubmitted"></app-prod-results>
