@@ -1,12 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { ProductForm } from './prod-form';
-import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { Validators } from '@angular/forms';
 import { ProdSearchService } from '../../services/prod-search.service';
 import { ZipAutoCompleteService } from '../../services/zip-auto-complete.service';
 import { IPAPIService } from '../../services/ipapi.service';
 import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map, startWith} from 'rxjs/operators';
 
 @Component({
@@ -80,7 +78,6 @@ export class ProdFormComponent implements OnInit {
   }
   clearPSForm() {
     this.pss.pssClear();
-    this.zipCode = '';
     this.zipCodeType = 'curr';
     this.category = -1;
     this.isZipAutoCompleteDisabled = true;
