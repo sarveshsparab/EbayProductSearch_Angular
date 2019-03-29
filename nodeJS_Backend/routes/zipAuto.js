@@ -32,8 +32,6 @@ router.get('/:queryParams', function (req, res, next) {
         data = request("GET", url);
 
         response = JSON.parse(data.getBody().toString('utf8'));
-        console.log('Response: ');
-        console.log(response);
         res.send(response);
     } catch (e) {
         console.log(e);
