@@ -21,7 +21,7 @@ function buildGeoNamesURL(zipStart) {
 router.get('/:queryParams', function (req, res, next) {
     try {
 
-        console.log('#### ENDPOINT HIT [/zipAuto] #### with params : ' + JSON.stringify(req.params.queryParams));
+        console.log('#### ENDPOINT HIT [/zipAuto] ####');
 
         var queryParams = querystring.parse(req.params.queryParams);
         console.log(queryParams);

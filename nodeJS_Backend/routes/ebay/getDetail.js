@@ -25,7 +25,7 @@ function buildEbayUrl(itemId) {
 router.get('/:queryParams', function (req, res, next) {
     try {
 
-        console.log('#### ENDPOINT HIT [/ebay/detail] #### with params : ' + req.params.query);
+        console.log('#### ENDPOINT HIT [/ebay/detail] ####');
 
         var queryParams = querystring.parse(req.params.queryParams);
         console.log(queryParams);
@@ -36,8 +36,6 @@ router.get('/:queryParams', function (req, res, next) {
         data = request("GET", url);
 
         response = JSON.parse(data.getBody().toString('utf8'));
-        console.log('Response: ');
-        console.log(response);
         res.send(response);
     } catch (e) {
         console.log(e);
