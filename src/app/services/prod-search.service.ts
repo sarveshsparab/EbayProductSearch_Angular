@@ -47,11 +47,17 @@ export class ProdSearchService {
       .set('condUnspecified', psForm.condUnspecified || 'false')
       .set('freeShipping', psForm.freeShipping || 'false')
       .set('localPickup', psForm.localPickup || 'false')
+      .set('zipCodeType', psForm.zipCodeType)
+      .set('currZipCode', psForm.currZipCode || '')
+      .set('custZipCode', psForm.custZipCode || '')
       .set('zipcode', zipCode);
 
 
-    let tempEbayUrl = this.buildEbayUrl(psForm, zipCode);
+    let tempEbayUrl = 'http://csci-571-webtech-8.appspot.com/ebay/find/' + params;
+    // let tempEbayUrl = 'http://localhost:3000/ebay/find/' + params;
+    //let tempEbayUrl = this.buildEbayUrl(psForm, zipCode);
     console.log(tempEbayUrl);
+    console.log(params);
 
     let response = this.http.get(tempEbayUrl);
 
@@ -76,7 +82,8 @@ export class ProdSearchService {
 
       },
       err => {
-        this.resultJsonSub.next(null);
+        this.isDataReceivedSub.next(true);
+        this.resultJsonSub.next({"responseStatus": "Error", "responseContent": "Network Connectivity Issues" });
       }
     );
   }

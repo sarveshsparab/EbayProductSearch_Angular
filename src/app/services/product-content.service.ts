@@ -24,7 +24,11 @@ export class ProductContentService {
     let params = new HttpParams()
       .set('itemid', itemId);
 
-    let response = this.http.get(this.buildEbayUrl(itemId));
+    let url = 'http://csci-571-webtech-8.appspot.com/ebay/detail/' + params;
+    // let url = 'http://localhost:3000/ebay/detail/' + params;
+    // let url = this.buildEbayUrl(itemId);
+
+    let response = this.http.get(url);
 
     response.subscribe(
       data => {
@@ -85,8 +89,9 @@ export class ProductContentService {
 
           this.resultJsonSub.next(prodCont);
         }
-      }, err => {
-        this.resultJsonSub.next("EMPTY_RESPONSE");
+      },
+      err => {
+        this.resultJsonSub.next({"responseStatus": "Error", "responseContent": "Network Connectivity Issues" });
       });
   }
 

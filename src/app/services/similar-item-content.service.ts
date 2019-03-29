@@ -24,7 +24,11 @@ export class SimilarItemContentService {
     let params = new HttpParams()
       .set('itemid', itemId);
 
-    let response = this.http.get(this.buildEbayUrl(itemId));
+    let url = 'http://csci-571-webtech-8.appspot.com/ebay/similar/' + params;
+    // let url = 'http://localhost:3000/ebay/similar/' + params;
+    // let url = this.buildEbayUrl(itemId);
+
+    let response = this.http.get(url);
 
     response.subscribe(
       data => {
@@ -90,6 +94,9 @@ export class SimilarItemContentService {
           this.resultJsonSub.next(simItemObjsArray);
 
         }
+      },
+      err => {
+        this.resultJsonSub.next({"responseStatus": "Error", "responseContent": "Network Connectivity Issues" });
       });
   }
 

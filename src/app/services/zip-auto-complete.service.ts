@@ -19,7 +19,14 @@ export class ZipAutoCompleteService {
   constructor(private http: HttpClient) { }
 
   fetchResponseFromGeoName(start) {
-    const url = 'http://api.geonames.org/postalCodeSearchJSON?postalcode_startsWith=' + start + '&username=sparab&country=US&maxRows=5';
+
+    let params = new HttpParams()
+      .set('startZip', start);
+
+    //const url = 'http://api.geonames.org/postalCodeSearchJSON?postalcode_startsWith=' + start + '&username=sparab&country=US&maxRows=5';
+    // const url = 'http://localhost:3000/zipAuto/' + params;
+    const url = 'http://csci-571-webtech-8.appspot.com/zipAuto/' + params;
+
     const response =  this.http.get(url);
     response.subscribe(
       data => {
