@@ -29,6 +29,8 @@ export class SimilarItemContentService {
     // let url = 'http://localhost:3000/ebay/similar/' + params;
     // let url = Util.buildEbaySimilarItemsUrl(itemId);
 
+    console.log("URL Hit for ebay similar-items call : " + url);
+
     let response = this.http.get(url);
 
     response.subscribe(
@@ -97,7 +99,17 @@ export class SimilarItemContentService {
         }
       },
       err => {
-        this.resultJsonSub.next({"responseStatus": "Error", "responseContent": "Network Connectivity Issues" });
+        let simCont = new SimilarItemContent();
+        let simItemObjsArray = new Array();
+
+        simCont.Response_Status = 'Error';
+        simCont.Response_Message = "Network Connectivity Issues";
+
+        simItemObjsArray.push(simCont);
+
+        console.log(simItemObjsArray);
+
+        this.resultJsonSub.next(simItemObjsArray);
       });
   }
 
