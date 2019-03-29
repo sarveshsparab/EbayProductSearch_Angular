@@ -27,7 +27,7 @@
             <app-search-listing (transmitEvent)="hideListingAndShowDetails($event)" [class.hide]="!isListingShown" [itemId]="itemId"></app-search-listing>
           </div>
           <div [className]="wishListTabContentClass" id="pills-wishlist" role="tabpanel" aria-labelledby="pills-wishlist-tab">
-            <app-wish-list (transmitEvent)="hideListingAndShowDetails($event)" [class.hide]="!isWishListShown" [itemInfo]="itemInfo" [itemId]="itemId"></app-wish-list>
+            <app-wish-list (transmitEvent)="hideListingAndShowDetails($event)" [class.hide]="!isWishListShown" [itemInfo]="itemInfo" [itemId]="wishItemId"></app-wish-list>
           </div>
         </div>
       </div>

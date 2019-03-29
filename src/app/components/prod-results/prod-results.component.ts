@@ -36,6 +36,7 @@ export class ProdResultsComponent implements OnInit {
     this.pss.clearTriggerOb.subscribe(data => {
       this.clearTriggered = true;
       this.itemId = null;
+      this.wishItemId = null;
       this.itemInfo = null;
       this.showListings();
       this.isListingShown = false;
@@ -51,6 +52,7 @@ export class ProdResultsComponent implements OnInit {
   isListingShown = true;
   isWishListShown = false;
 
+  wishItemId = '';
   itemId = '';
   itemInfo = '';
 
@@ -62,8 +64,13 @@ export class ProdResultsComponent implements OnInit {
   hideListingAndShowDetails(event) {
     this.clearTriggered = false;
     this.activeSibling = event.activeSibling;
-    this.itemId = event.itemId;
     this.itemInfo = event.itemInfo;
+    if(event.itemId!=null && event.itemId != '' && event.itemId.length!=0){
+      this.itemId = event.itemId;
+    }
+    if(event.wishItemId!=null && event.wishItemId != '' && event.wishItemId.length!=0){
+      this.wishItemId = event.wishItemId;
+    }
   }
 
   showListings() {
