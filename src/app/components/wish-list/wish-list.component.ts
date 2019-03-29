@@ -55,7 +55,7 @@ export class WishListComponent implements OnInit {
 
   getItemDetails() {
     this.ids.getAllItemDetailsForWishList(this.selectedItemInfo);
-    this.transmitEvent.emit({activeSibling: 'details', itemId: this.selectedItemId, itemInfo: this.selectedItemInfo});
+    this.transmitEvent.emit({activeSibling: 'details', wishItemId: this.selectedItemId, itemInfo: this.selectedItemInfo});
   }
 
   fetchItemDetails(rowdata) {
