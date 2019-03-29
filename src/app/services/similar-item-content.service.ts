@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Subject, Observable} from 'rxjs';
 import {ProductContent} from '../components/item-details/product-tab-details/ProductContent';
 import {SimilarItemContent} from '../components/item-details/similar-items-tab-details/SimilarItemContent';
+import {Util} from '../utility/Util';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -24,9 +25,9 @@ export class SimilarItemContentService {
     let params = new HttpParams()
       .set('itemid', itemId);
 
-    let url = 'http://csci-571-webtech-8.appspot.com/ebay/similar/' + params;
+    let url = 'http://node-dot-csci-571-webtech-8.appspot.com/ebay/similar/' + params;
     // let url = 'http://localhost:3000/ebay/similar/' + params;
-    // let url = this.buildEbayUrl(itemId);
+    // let url = Util.buildEbaySimilarItemsUrl(itemId);
 
     let response = this.http.get(url);
 
@@ -98,23 +99,6 @@ export class SimilarItemContentService {
       err => {
         this.resultJsonSub.next({"responseStatus": "Error", "responseContent": "Network Connectivity Issues" });
       });
-  }
-
-  buildEbayUrl(itemId) {
-
-    let tempEbayUrl = 'http://svcs.ebay.com/MerchandisingService?';
-    tempEbayUrl += 'OPERATION-NAME=getSimilarItems';
-    tempEbayUrl += '&SERVICE-NAME=MerchandisingService';
-    tempEbayUrl += '&SERVICE-VERSION=1.1.0';
-    tempEbayUrl += '&CONSUMER-ID=' + 'SarveshP-sarveshp-PRD-4a6d4ee64-9b547e7c';
-    tempEbayUrl += '&RESPONSE-DATA-FORMAT=JSON';
-    tempEbayUrl += '&REST-PAYLOAD';
-    tempEbayUrl += '&itemId=' + itemId;
-    tempEbayUrl += '&maxResults=20';
-
-    console.log(tempEbayUrl);
-
-    return tempEbayUrl;
   }
 
   private isFetchedResponseValid(jsonObj) {

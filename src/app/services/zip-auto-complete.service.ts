@@ -25,7 +25,7 @@ export class ZipAutoCompleteService {
 
     //const url = 'http://api.geonames.org/postalCodeSearchJSON?postalcode_startsWith=' + start + '&username=sparab&country=US&maxRows=5';
     // const url = 'http://localhost:3000/zipAuto/' + params;
-    const url = 'http://csci-571-webtech-8.appspot.com/zipAuto/' + params;
+    const url = 'http://node-dot-csci-571-webtech-8.appspot.com/zipAuto/' + params;
 
     const response =  this.http.get(url);
     response.subscribe(

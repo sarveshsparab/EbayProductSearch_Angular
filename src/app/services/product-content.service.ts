@@ -2,6 +2,7 @@ import {Injectable, EventEmitter, Output} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Subject, Observable} from 'rxjs';
 import {ProductContent} from '../components/item-details/product-tab-details/ProductContent';
+import {Util} from '../utility/Util';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -24,9 +25,9 @@ export class ProductContentService {
     let params = new HttpParams()
       .set('itemid', itemId);
 
-    let url = 'http://csci-571-webtech-8.appspot.com/ebay/detail/' + params;
+    let url = 'http://node-dot-csci-571-webtech-8.appspot.com/ebay/detail/' + params;
     // let url = 'http://localhost:3000/ebay/detail/' + params;
-    // let url = this.buildEbayUrl(itemId);
+    // let url = Util.buildEbayItemDetailsUrl(itemId);
 
     let response = this.http.get(url);
 
@@ -93,22 +94,6 @@ export class ProductContentService {
       err => {
         this.resultJsonSub.next({"responseStatus": "Error", "responseContent": "Network Connectivity Issues" });
       });
-  }
-
-  buildEbayUrl(itemId) {
-
-    let tempEbayUrl = 'http://open.api.ebay.com/shopping?';
-    tempEbayUrl += 'callname=GetSingleItem';
-    tempEbayUrl += '&responseencoding=JSON';
-    tempEbayUrl += '&appid=' + 'SarveshP-sarveshp-PRD-4a6d4ee64-9b547e7c';
-    tempEbayUrl += '&siteid=0';
-    tempEbayUrl += '&version=967';
-    tempEbayUrl += '&ItemID=' + itemId;
-    tempEbayUrl += '&IncludeSelector=Description,Details,ItemSpecifics';
-
-    console.log(tempEbayUrl);
-
-    return tempEbayUrl;
   }
 
   private isFetchedResponseValid(jsonObj) {

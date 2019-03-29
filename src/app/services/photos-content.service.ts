@@ -2,6 +2,7 @@ import {Injectable, EventEmitter, Output} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Subject, Observable} from 'rxjs';
 import {PhotoContent} from '../components/item-details/photos-tab-details/PhotoContent';
+import {Util} from '../utility/Util';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -23,15 +24,18 @@ export class PhotosContentService {
     let params = new HttpParams()
       .set('queryString', encodeURI(queryString));
 
-    let url = 'http://csci-571-webtech-8.appspot.com/photos/' + params;
+    let url = 'http://node-dot-csci-571-webtech-8.appspot.com/photos/' + params;
     // let url = 'http://localhost:3000/photos/' + params;
-    // let url = this.buildImageSearchUrl(queryString);
+    // let url = Util.buildGoogleCustomSearchAPIUrl(queryString);
 
     let response = this.http.get(url);
 
     response.subscribe(
       data => {
         this.jsonDataFetched = data;
+
+        console.log(this.jsonDataFetched);
+
         let responseValidityCheck = this.isFetchedResponseValid(this.jsonDataFetched);
         if (!responseValidityCheck[0]) {
           let photosArray = new Array();
@@ -77,22 +81,6 @@ export class PhotosContentService {
       err => {
         this.resultJsonSub.next({"responseStatus": "Error", "responseContent": "Network Connectivity Issues" });
       });
-  }
-
-  buildImageSearchUrl(queryString) {
-
-    let tempUrl = 'https://www.googleapis.com/customsearch/v1?';
-    tempUrl += 'q=' + encodeURI(queryString);
-    tempUrl += '&cx=016865113679854894358:-ggfxfoc38i';
-    tempUrl += '&imgSize=huge';
-    tempUrl += '&imgType=news';
-    tempUrl += '&num=8';
-    tempUrl += '&searchType=image';
-    tempUrl += '&key=AIzaSyBZtSgUprgt5sQE9Mb3j7nnIOv-lpK43SM';
-
-    console.log(tempUrl);
-
-    return tempUrl;
   }
 
   private isFetchedResponseValid(jsonObj) {
