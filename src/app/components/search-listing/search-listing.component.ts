@@ -30,6 +30,7 @@ export class SearchListingComponent implements OnInit {
       console.log(data);
       if (data === null) {
         this.errorState = true;
+        this.error_msg = data['responseContent'];
         this.displayListings = true;
         this.clearTriggered = false;
       } else if (data == undefined) {
