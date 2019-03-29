@@ -9,11 +9,11 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
   animations: [
     trigger('linearSiblingAnimation', [
       transition("* => listing", [
-        style({transform: 'translateX(-100%)'}),
+        style({transform: 'translateX(100%)'}),
         animate('500ms ease-in', style({transform: 'translateX(0%)'}))
       ]),
       transition("* => details", [
-        style({transform: 'translateX(100%)'}),
+        style({transform: 'translateX(-100%)'}),
         animate('500ms ease-in', style({transform: 'translateX(0%)'}))
       ])
     ])
