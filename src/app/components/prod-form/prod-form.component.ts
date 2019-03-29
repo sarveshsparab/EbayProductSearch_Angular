@@ -63,6 +63,7 @@ export class ProdFormComponent implements OnInit {
   ];
 
   psSubmit() {
+    this.pForm.custZipCode = this.zipAutoCompleteControl.value;
     this.pss.fetchFromEbay(this.pForm);
     this.submitEvent.emit(true);
   }
