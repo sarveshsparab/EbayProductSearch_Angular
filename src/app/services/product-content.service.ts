@@ -29,6 +29,8 @@ export class ProductContentService {
     // let url = 'http://localhost:3000/ebay/detail/' + params;
     // let url = Util.buildEbayItemDetailsUrl(itemId);
 
+    console.log("URL Hit for ebay item-details call : " + url);
+
     let response = this.http.get(url);
 
     response.subscribe(
@@ -92,7 +94,10 @@ export class ProductContentService {
         }
       },
       err => {
-        this.resultJsonSub.next({"responseStatus": "Error", "responseContent": "Network Connectivity Issues" });
+        let prodCont = new ProductContent();
+        prodCont.Response_Status = "Error";
+        prodCont.Response_Message = "Network Connectivity Issues";
+        this.resultJsonSub.next(prodCont);
       });
   }
 
