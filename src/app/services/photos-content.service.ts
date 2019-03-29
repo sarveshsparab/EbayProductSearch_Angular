@@ -24,14 +24,17 @@ export class PhotosContentService {
     let params = new HttpParams()
       .set('queryString', encodeURI(queryString));
 
-    let url = 'http://node-dot-csci-571-webtech-8.appspot.com/photos/' + params;
-    // let url = 'http://localhost:3000/photos/' + params;
+    // let url = 'http://node-dot-csci-571-webtech-8.appspot.com/photos/' + params;
+    let url = 'http://localhost:3000/photos/' + params;
     // let url = Util.buildGoogleCustomSearchAPIUrl(queryString);
+
+    console.log("URL Hit to fetch photos : " + url);
 
     let response = this.http.get(url);
 
     response.subscribe(
       data => {
+        // alert(JSON.stringify(data));
         this.jsonDataFetched = data;
 
         console.log(this.jsonDataFetched);
@@ -79,7 +82,17 @@ export class PhotosContentService {
         }
       },
       err => {
-        this.resultJsonSub.next({"responseStatus": "Error", "responseContent": "Network Connectivity Issues" });
+        let photosArray = new Array();
+        let photoCont = new PhotoContent();
+
+        photoCont.Response_Status = "Error";
+        photoCont.Response_Message = "Network Connectivity Issues";
+
+        photosArray.push(photoCont);
+
+        console.log(photosArray);
+
+        this.resultJsonSub.next(photosArray);
       });
   }
 
