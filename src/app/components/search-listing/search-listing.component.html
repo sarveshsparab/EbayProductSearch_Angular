@@ -1,60 +1,68 @@
-<div class="alert alert-warning" style="text-align: left" role="alert" *ngIf="errorState && displayListings"> {{ error_msg }} </div>
+<div class="alert alert-warning" style="text-align: left" role="alert"
+     *ngIf="errorState && displayListings"> {{ error_msg }} </div>
 
 <div class="details-btn-div" *ngIf="displayListings && !errorState">
-  <button class="btn btn-outline-secondary details-btn" [disabled]="!selectedItem" (click)="getItemDetails()" >Details
+  <button class="btn btn-outline-secondary details-btn" [disabled]="!selectedItem" (click)="getItemDetails()">Details
     <i class="material-icons">chevron_right</i>
   </button>
 </div>
 
-<div id="results-div" *ngIf="displayListings && !errorState" class="table-responsive">
+<div id="results-div" *ngIf="displayListings && !errorState">
 
   <div class="alert alert-warning" style="text-align: left;" role="alert" *ngIf="!resultJson"> {{ error_msg }} </div>
 
-  <table class="table table-dark table-striped table-hover searchListingTable" *ngIf="resultJson && resultJson != 'loading'">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Image</th>
-      <th scope="col">Title</th>
-      <th scope="col">Price</th>
-      <th scope="col">Shipping</th>
-      <th scope="col">Zip</th>
-      <th scope="col">Seller</th>
-      <th scope="col">Wish List</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let rowdata of resultJson |
+  <div class="table-responsive">
+    <table class="table table-dark table-striped table-hover searchListingTable"
+           *ngIf="resultJson && resultJson != 'loading'">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col">Shipping</th>
+        <th scope="col">Zip</th>
+        <th scope="col">Seller</th>
+        <th scope="col">Wish List</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let rowdata of resultJson |
                    slice: (currPage-1) * pageSize : (currPage-1) * pageSize + pageSize; index as i"
-        [class.table-warning]="rowdata.itemId[0] == selectedItem">
-      <td scope="row">{{(currPage-1)*10 + i + 1}}</td>
-      <td [innerHTML]="processImage(rowdata)"></td>
-      <td>
+          [class.table-warning]="rowdata.itemId[0] == selectedItem">
+        <td scope="row">{{(currPage - 1) * 10 + i + 1}}</td>
+        <td class="image-cell">
+          <img *ngIf="processImage(rowdata)!=''" [src]="processImage(rowdata)" alt="">
+          <span *ngIf="processImage(rowdata)==''">N/A</span>
+        </td>
+        <td>
         <span placement="bottom" ngbTooltip="{{processTooltip(rowdata)}}">
-          <a (click)="fetchItemDetails(rowdata)" class="clickableTitle" style="color: #6495ed;">{{processTitle(rowdata)}}</a>
+          <a (click)="fetchItemDetails(rowdata)" class="clickableTitle"
+             style="color: #6495ed;">{{processTitle(rowdata)}}</a>
         </span>
-      </td>
-      <td>{{processPrice(rowdata)}}</td>
-      <td>{{processShipping(rowdata)}}</td>
-      <td>{{processZip(rowdata)}}</td>
-      <td>{{processSeller(rowdata)}}</td>
-      <td>
-        <button type="button" class="btn btn-outline" (click)="toggleItemInWishList(i)">
-          <i class="material-icons" *ngIf="!isAlreadyInWishList[i]">add_shopping_cart</i>
-          <i class="material-icons selectedWishList" *ngIf="isAlreadyInWishList[i]">remove_shopping_cart</i>
-        </button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+        </td>
+        <td>{{processPrice(rowdata)}}</td>
+        <td>{{processShipping(rowdata)}}</td>
+        <td>{{processZip(rowdata)}}</td>
+        <td>{{processSeller(rowdata)}}</td>
+        <td>
+          <button type="button" class="btn btn-outline" (click)="toggleItemInWishList(i)">
+            <i class="material-icons" *ngIf="!isAlreadyInWishList[i]">add_shopping_cart</i>
+            <i class="material-icons selectedWishList" *ngIf="isAlreadyInWishList[i]">remove_shopping_cart</i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
 
+  </div>
   <div *ngIf="!clearTriggered">
-  <ngb-pagination [collectionSize]="resultJson.length" [(page)]="currPage" [pageSize]="pageSize"
-                  class="d-flex justify-content-center"
-                  aria-label="Dynamic Pagination">
-    <ng-template ngbPaginationPrevious>&#8249;&#8249;&#160;&#160;Previous</ng-template>
-    <ng-template ngbPaginationNext>Next&#160;&#160;&#8250;&#8250;</ng-template>
-    <ng-template ngbPaginationNumber let-p>{{p}}</ng-template>
-  </ngb-pagination>
+    <ngb-pagination [collectionSize]="resultJson.length" [(page)]="currPage" [pageSize]="pageSize"
+                    class="d-flex justify-content-center"
+                    aria-label="Dynamic Pagination">
+      <ng-template ngbPaginationPrevious>&#8249;&#8249;&#160;&#160;Previous</ng-template>
+      <ng-template ngbPaginationNext>Next&#160;&#160;&#8250;&#8250;</ng-template>
+      <ng-template ngbPaginationNumber let-p>{{p}}</ng-template>
+    </ngb-pagination>
   </div>
 </div>

@@ -66,12 +66,9 @@ export class SearchListingComponent implements OnInit {
 
   processImage(jsonObj) {
     if (jsonObj.galleryURL != null && jsonObj.galleryURL != '' && jsonObj.galleryURL.length != 0) {
-      let imageElem = document.createElement('img');
-      imageElem.setAttribute('src', jsonObj.galleryURL[0]);
-      imageElem.setAttribute('style', 'height: 135px; width: 135px;');
-      return imageElem.outerHTML;
+      return jsonObj.galleryURL[0];
     } else {
-      return 'N/A';
+      return '';
     }
   }
 

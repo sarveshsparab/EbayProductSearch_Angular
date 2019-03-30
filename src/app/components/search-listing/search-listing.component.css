@@ -11,6 +11,7 @@
 
 .details-btn {
   display: flex;
+  border: none;
 }
 
 .category-icon {
@@ -22,6 +23,10 @@
   border: 1px solid darkgray;
   background-color: whitesmoke;
   padding: 5px 10px 0px;
+}
+.btn:focus, .btn.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(28, 30, 32, 0.28);
 }
 
 .searchListingThumbnail {
@@ -45,7 +50,14 @@
 .selectedWishList{
   color: #ffc523;
 }
-
+.image-cell{
+  height: 120px;
+  width: 120px;
+}
+.image-cell img{
+  height: 120px;
+  width: 120px;
+}
 
 /* Overriding Imported Style Sheets */
 .table-warning, .table-warning > th, .table-warning > td {

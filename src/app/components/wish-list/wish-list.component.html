@@ -25,7 +25,10 @@
     <tr *ngFor="let rowdata of wishListArray; index as i"
         [class.table-warning]="rowdata.ItemID == selectedItemId">
       <td scope="row">{{i + 1}}</td>
-      <td [innerHTML]="processImage(rowdata.Image_URL)"></td>
+      <td class="image-cell">
+        <img *ngIf="rowdata.Image_URL!='N/A'" [src]="rowdata.Image_URL" alt="">
+        <span *ngIf="rowdata.Image_URL=='N/A'">N/A</span>
+      </td>
       <td>
         <span placement="bottom" ngbTooltip="{{rowdata.Title}}">
           <a (click)="fetchItemDetails(rowdata)" class="clickableTitle" style="color: #6495ed;">{{processTitle(rowdata.Title)}}</a>

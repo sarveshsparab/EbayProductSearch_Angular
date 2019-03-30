@@ -80,15 +80,4 @@ export class WishListComponent implements OnInit {
       }
     }
   }
-
-  processImage(Image_URL) {
-    if (Image_URL != "N/A") {
-      let imageElem = document.createElement('img');
-      imageElem.setAttribute('src', Image_URL);
-      imageElem.setAttribute('style', 'height: 135px; width: 135px;');
-      return imageElem.outerHTML;
-    } else {
-      return 'N/A';
-    }
-  }
 }
