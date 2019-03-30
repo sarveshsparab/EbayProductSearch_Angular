@@ -10,7 +10,7 @@ const apiKey = process.env.GOOGLE_IMAGE_SEARCH_API_KEY;
 
 function googlePhotosUrl(str) {
   let url = 'https://www.googleapis.com/customsearch/v1?';
-  url += 'q=' + encodeURI(str);
+  url += 'q=' + encodeURIComponent(str);
   url += '&cx=' + cx;
   url += '&imgSize=huge';
   url += '&imgType=news';
@@ -34,6 +34,8 @@ router.get('/:queryParams', function (req, res, next) {
 
     console.log('URL formed: ' + url);
     data = request("GET", url);
+
+    console.log(data);
 
     response = JSON.parse(data.getBody().toString('utf8'));
     res.send(response);
