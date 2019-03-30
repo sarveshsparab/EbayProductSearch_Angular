@@ -22,10 +22,10 @@ export class PhotosContentService {
 
   fetchPhotos(queryString) {
     let params = new HttpParams()
-      .set('queryString', encodeURI(queryString));
+      .set('queryString', encodeURIComponent(queryString));
 
-    // let url = 'http://node-dot-csci-571-webtech-8.appspot.com/photos/' + params;
-    let url = 'http://localhost:3000/photos/' + params;
+    let url = 'http://node-dot-csci-571-webtech-8.appspot.com/photos/' + params;
+    // let url = 'http://localhost:3000/photos/' + params;
     // let url = Util.buildGoogleCustomSearchAPIUrl(queryString);
 
     console.log("URL Hit to fetch photos : " + url);
