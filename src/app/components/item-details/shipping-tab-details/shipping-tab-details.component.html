@@ -1,15 +1,15 @@
 <div class="table-responsive">
   <table class="table table-dark table-hover table-striped contentTable">
     <tbody>
-    <tr>
+    <tr *ngIf="content.Shipping_Cost">
       <td>Shipping Cost</td>
       <td>{{content.Shipping_Cost}}</td>
     </tr>
-    <tr>
+    <tr *ngIf="content.Shipping_Locations">
       <td>Shipping Locations</td>
       <td>{{content.Shipping_Locations}}</td>
     </tr>
-    <tr>
+    <tr *ngIf="content.Handling_Time">
       <td>Handling Time</td>
       <td>{{content.Handling_Time}}</td>
     </tr>
