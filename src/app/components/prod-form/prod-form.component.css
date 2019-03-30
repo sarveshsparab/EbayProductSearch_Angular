@@ -43,8 +43,8 @@
 }
 .ps-search-btn.disabled, .ps-search-btn:disabled, .ps-clear-btn.disabled, .ps-clear-btn:disabled {
   color: #000;
-  background-color: #343434;
-  border-color: #343434;
+  background-color: #b9b9b9;
+  border-color: #b9b9b9;
 }
 .ps-search-btn:not(:disabled):not(.disabled):active, .ps-search-btn:not(:disabled):not(.disabled).active,
 .show > .ps-search-btn.dropdown-toggle {
@@ -82,4 +82,35 @@
 /* To remove the red cross on right end of text field */
 .was-validated .form-control:invalid, .form-control.is-invalid {
   background-image: none;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+  .ps-form-container{
+    width: unset;
+  }
+  .ps-form{
+    padding-left: unset;
+  }
+  .form-group {
+    margin-bottom: 5px;
+  }
+  .row {
+    display: unset;
+    flex-wrap: unset;
+    margin-right: unset;
+    margin-left: unset;
+  }
+  #psCustZip {
+    margin-top: 5px;
+    margin-bottom: 7px;
+  }
+  #psFormButtons {
+    display: inline-flex;
+  }
+  .ps-form-header {
+    text-align: unset;
+  }
 }

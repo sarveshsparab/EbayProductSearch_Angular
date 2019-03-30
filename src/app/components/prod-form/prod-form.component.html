@@ -1,5 +1,5 @@
 <div class="container ps-form-container">
-  <p class="ps-form-header">Product Search {{ psForm.status }}</p>
+  <p class="ps-form-header">Product Search</p>
   <form class="ps-form" (ngSubmit)="psSubmit()" #psForm=ngForm>
     <!-- Keyword row -->
     <div class="form-group row">
@@ -109,7 +109,7 @@
     </div>
 
     <!-- Buttons row -->
-    <div class="form-group row">
+    <div class="form-group row" id="psFormButtons">
       <button class="btn btn-primary ps-search-btn" type="submit" [disabled]="!isZipCodeFetched || psForm.invalid || (zipAutoCompleteControl.invalid)">
         <i class="material-icons">search</i><span>Search</span>
       </button>

@@ -6,3 +6,10 @@
 .contentTable {
   text-align: left;
 }
+
+
+@media screen and (max-width: 768px) {
+  .contentTable {
+    font-size: 14px;
+  }
+}

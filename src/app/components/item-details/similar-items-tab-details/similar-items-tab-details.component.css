@@ -3,7 +3,7 @@
 }
 
 .card-row{
-  background-color: #454d55;
+  background-color: #2c2c2c;
   text-align: unset;
 }
 
@@ -42,4 +42,12 @@
 
 .showMoreLessBtn{
   text-align: center;
+}
+
+
+@media screen and (max-width: 768px) {
+  .row {
+    display: unset;
+    flex-wrap: unset;
+  }
 }

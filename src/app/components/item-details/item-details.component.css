@@ -22,6 +22,7 @@
 
 .backBtn {
   display: flex;
+  border: none;
 }
 
 .itemTitle {
@@ -41,4 +42,18 @@ a {
 }
 a:hover {
   color: #2c2c2c;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+  .nav-link {
+    display: block;
+    padding: 0.4rem 0.5rem;
+    font-size: 14px;
+  }
+  #similarTab_itemDetails{
+    content: "Related";
+  }
 }
