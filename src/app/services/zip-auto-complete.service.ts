@@ -27,6 +27,8 @@ export class ZipAutoCompleteService {
     // const url = 'http://localhost:3000/zipAuto/' + params;
     const url = 'http://node-dot-csci-571-webtech-8.appspot.com/zipAuto/' + params;
 
+    console.log("URL Hit for zip autocomplete : " + url);
+
     const response =  this.http.get(url);
     response.subscribe(
       data => {
