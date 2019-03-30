@@ -40,6 +40,7 @@ export class ItemDetailsService {
   }
 
   generateShippingContent(jsonObj) {
+    let fieldsFetched = 0;
     let jsonContent = new ShippingContent();
       if (jsonObj.shippingInfo != null) {
         if (jsonObj.shippingInfo[0] != null) {
@@ -51,13 +52,14 @@ export class ItemDetailsService {
             }else{
               jsonContent.Shipping_Cost = "Free Shipping";
             }
-
+            fieldsFetched++;
           }
 
           // Checking Shipping Locations
           if(jsonObj.shippingInfo[0].shipToLocations != null){
             if(jsonObj.shippingInfo[0].shipToLocations[0] != null){
               jsonContent.Shipping_Locations = jsonObj.shippingInfo[0].shipToLocations[0];
+              fieldsFetched++;
             }
           }
 
@@ -69,6 +71,7 @@ export class ItemDetailsService {
               } else {
                 jsonContent.Handling_Time = jsonObj.shippingInfo[0].handlingTime[0] + ' Days';
               }
+              fieldsFetched++;
             }
           }
 
@@ -76,6 +79,7 @@ export class ItemDetailsService {
           if(jsonObj.shippingInfo[0].expeditedShipping != null){
             if(jsonObj.shippingInfo[0].expeditedShipping[0] != null){
               jsonContent.Expedited_Shipping = jsonObj.shippingInfo[0].expeditedShipping[0];
+              fieldsFetched++;
             }
           }
 
@@ -83,6 +87,7 @@ export class ItemDetailsService {
           if(jsonObj.shippingInfo[0].oneDayShippingAvailable != null){
             if(jsonObj.shippingInfo[0].oneDayShippingAvailable[0] != null){
               jsonContent.One_Day_Shipping = jsonObj.shippingInfo[0].oneDayShippingAvailable[0];
+              fieldsFetched++;
             }
           }
 
@@ -93,13 +98,23 @@ export class ItemDetailsService {
       if(jsonObj.returnsAccepted != null){
         if(jsonObj.returnsAccepted[0] != null){
           jsonContent.Return_Accepted = jsonObj.returnsAccepted[0];
+          fieldsFetched++;
         }
       }
+
+    if (fieldsFetched == 0) {
+      jsonContent.Response_Status = 'Error';
+      jsonContent.Response_Message = 'No Records';
+    } else {
+      jsonContent.Response_Status = 'Success';
+      jsonContent.Response_Message = 'No Error';
+    }
 
     return jsonContent;
   }
 
   generateSellerInformation(jsonObj) {
+    let fieldsFetched = 0;
     let jsonContent = new SellerContent();
     if (jsonObj.sellerInfo != null) {
       if (jsonObj.sellerInfo[0] != null){
@@ -108,6 +123,7 @@ export class ItemDetailsService {
         if (jsonObj.sellerInfo[0].feedbackScore != null ){
           if (jsonObj.sellerInfo[0].feedbackScore[0] != null){
             jsonContent.Feedback_Score = jsonObj.sellerInfo[0].feedbackScore[0];
+            fieldsFetched++;
           }
         }
 
@@ -115,6 +131,7 @@ export class ItemDetailsService {
         if (jsonObj.sellerInfo[0].positiveFeedbackPercent != null ){
           if (jsonObj.sellerInfo[0].positiveFeedbackPercent[0] != null){
             jsonContent.Popularity = jsonObj.sellerInfo[0].positiveFeedbackPercent[0];
+            fieldsFetched++;
           }
         }
 
@@ -122,6 +139,7 @@ export class ItemDetailsService {
         if (jsonObj.sellerInfo[0].feedbackRatingStar != null ){
           if (jsonObj.sellerInfo[0].feedbackRatingStar[0] != null){
             jsonContent.Feedback_Rating_Star = jsonObj.sellerInfo[0].feedbackRatingStar[0];
+            fieldsFetched++;
           }
         }
 
@@ -129,6 +147,7 @@ export class ItemDetailsService {
         if (jsonObj.sellerInfo[0].topRatedSeller != null ){
           if (jsonObj.sellerInfo[0].topRatedSeller[0] != null){
             jsonContent.Top_Rated = jsonObj.sellerInfo[0].topRatedSeller[0];
+            fieldsFetched++;
           }
         }
 
@@ -136,6 +155,7 @@ export class ItemDetailsService {
         if (jsonObj.sellerInfo[0].sellerUserName != null ){
           if (jsonObj.sellerInfo[0].sellerUserName[0] != null){
             jsonContent.Seller_User_Name = jsonObj.sellerInfo[0].sellerUserName[0];
+            fieldsFetched++;
           }
         }
 
@@ -149,6 +169,7 @@ export class ItemDetailsService {
         if (jsonObj.storeInfo[0].storeName != null) {
           if (jsonObj.storeInfo[0].storeName[0] != null) {
             jsonContent.Store_Name = jsonObj.storeInfo[0].storeName[0];
+            fieldsFetched++;
           }
         }
 
@@ -156,10 +177,19 @@ export class ItemDetailsService {
         if (jsonObj.storeInfo[0].storeURL != null) {
           if (jsonObj.storeInfo[0].storeURL[0] != null) {
             jsonContent.Buy_Product_At = jsonObj.storeInfo[0].storeURL[0];
+            fieldsFetched++;
           }
         }
 
       }
+    }
+
+    if (fieldsFetched == 0) {
+      jsonContent.Response_Status = 'Error';
+      jsonContent.Response_Message = 'No Records';
+    } else {
+      jsonContent.Response_Status = 'Success';
+      jsonContent.Response_Message = 'No Error';
     }
 
     return jsonContent;

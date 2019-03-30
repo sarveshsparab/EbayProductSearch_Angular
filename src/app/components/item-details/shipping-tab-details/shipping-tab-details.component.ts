@@ -7,11 +7,21 @@ import {ShippingContent} from './ShippingContent';
   styleUrls: ['./shipping-tab-details.component.css']
 })
 export class ShippingTabDetailsComponent implements OnInit {
-  @Input("shippingTab_content") content: ShippingContent;
+  @Input('shippingTab_content') content: ShippingContent;
+  errorState: any;
+  error_msg: any;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+    if (this.content.Response_Status == 'Error') {
+      this.errorState = true;
+      this.error_msg = this.content.Response_Message;
+    } else {
+      this.errorState = false;
+      this.error_msg = '';
+    }
   }
 
 }

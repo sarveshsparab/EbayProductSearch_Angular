@@ -1,4 +1,5 @@
-<div class="table-responsive">
+<div class="alert alert-warning" style="text-align: left" role="alert" *ngIf="errorState"> {{ error_msg }} </div>
+<div class="table-responsive" *ngIf="!errorState">
   <table class="table table-dark table-striped table-hover contentTable">
     <tbody>
     <tr *ngIf="content.Product_Images.length > 0">

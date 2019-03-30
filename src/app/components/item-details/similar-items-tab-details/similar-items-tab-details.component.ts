@@ -9,6 +9,8 @@ import {min} from 'rxjs/operators';
 })
 export class SimilarItemsTabDetailsComponent implements OnInit, OnChanges {
   @Input("similarItemsTab_content") content: SimilarItemContent[];
+  errorState: any;
+  error_msg: any;
 
   sortPref = [
     "Default",
@@ -32,6 +34,17 @@ export class SimilarItemsTabDetailsComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
+
+    if(this.content.length > 0){
+      if(this.content[0].Response_Status == 'Error'){
+        this.errorState = true;
+        this.error_msg = this.content[0].Response_Message;
+      } else {
+        this.errorState = false;
+        this.error_msg = '';
+      }
+    }
+
     this.simItemSortPref = 0;
     this.simItemOrderPref = 0;
     this.itemCount = Math.min(5, this.content.length);

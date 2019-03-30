@@ -5,4 +5,6 @@ export class ShippingContent {
   Expedited_Shipping: string;
   One_Day_Shipping: string;
   Return_Accepted: string;
+  Response_Status = '';
+  Response_Message = '';
 }

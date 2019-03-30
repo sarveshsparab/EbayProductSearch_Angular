@@ -6,4 +6,6 @@ export class SellerContent {
   Store_Name: string;
   Buy_Product_At: string;
   Seller_User_Name: string;
+  Response_Status = '';
+  Response_Message = '';
 }
