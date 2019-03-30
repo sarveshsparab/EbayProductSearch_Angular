@@ -17,7 +17,7 @@ function buildEbayUrl(psForm, zipCode) {
     tempEbayUrl += '&RESPONSE-DATA-FORMAT=JSON';
     tempEbayUrl += '&REST-PAYLOAD';
     tempEbayUrl += '&paginationInput.entriesPerPage=50';
-    tempEbayUrl += '&keywords=' + encodeURI(psForm.keyword);
+    tempEbayUrl += '&keywords=' + encodeURIComponent(psForm.keyword);
     tempEbayUrl += '&buyerPostalCode=' + zipCode;
     if (psForm.category != -1) {
         tempEbayUrl += '&categoryId=' + psForm.category;
