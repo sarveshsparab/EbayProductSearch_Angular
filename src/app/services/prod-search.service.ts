@@ -54,14 +54,13 @@ export class ProdSearchService {
       .set('zipcode', zipCode);
 
 
-    let tempEbayUrl = 'http://node-dot-csci-571-webtech-8.appspot.com/ebay/find/' + params;
+    let url = 'http://node-dot-csci-571-webtech-8.appspot.com/ebay/find/' + params;
     // let tempEbayUrl = 'http://localhost:3000/ebay/find/' + params;
     // let tempEbayUrl = Util.buildEbayFindingUrl(psForm, zipCode);
 
-    console.log(tempEbayUrl);
-    console.log(params);
+    console.log("URL Hit for ebay findings call : " + url);
 
-    let response = this.http.get(tempEbayUrl);
+    let response = this.http.get(url);
 
     response.subscribe(
       data => {
