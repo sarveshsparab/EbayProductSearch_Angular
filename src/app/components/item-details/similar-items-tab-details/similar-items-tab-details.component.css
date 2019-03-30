@@ -3,7 +3,7 @@
 }
 
 .card-row{
-  background-color: #2c2c2c;
+  background-color: #202429;
   text-align: unset;
 }
 
@@ -28,16 +28,16 @@
 }
 
 .card-product-name{
-  color: #78cfd2;
+  color: #5c979a;
 }
 .card-price{
-  color: #50c854;
+  color: #a4e093;
 }
 .card-shipping-cost{
-  color: #ffc523;
+  color: #dbb14f;
 }
 .card-days-left{
-  color: #ffffff;
+  color: #e7e7e8;
 }
 
 .showMoreLessBtn{
