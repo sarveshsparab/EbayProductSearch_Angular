@@ -8,7 +8,7 @@ const querystring = require('querystring');
 const apiKey = process.env.EBAY_API_KEY;
 
 function buildEbayUrl(psForm, zipCode) {
-    let itemFilterNameCount = 0
+    let itemFilterNameCount = 0;
 
     let tempEbayUrl = 'http://svcs.ebay.com/services/search/FindingService/v1?';
     tempEbayUrl += 'OPERATION-NAME=findItemsAdvanced';
