@@ -22,11 +22,14 @@
     </div>
   </div>
   <nav>
-    <div class="nav nav-pills mb-3 justify-content-end" id="nav-tabs" role="tablist" style="margin-bottom: 1px;">
+    <div class="nav nav-pills mb-3 justify-content-end" id="nav-tabs" role="tablist" style="margin-bottom: 3px !important;">
       <a href="#" *ngFor="let tab of itemDetailsTabs" [id]="tab.id" class="nav-item nav-link"
          [class.active]="tab.id === activeTab"
          role="tab" data-toggle="pill" [attr.aria-controls]="tab.id+'-panel'"
-         (click)="setActiveTab(tab.id)">{{tab.title}}</a>
+         (click)="setActiveTab(tab.id)">
+        <span class="full_name">{{tab.title}}</span>
+        <span class="half_name">{{tab.title_half}}</span>
+      </a>
     </div>
   </nav>
   <div *ngIf="!(isProductContentFetched && isItemDetailsFetched && isSimilarContentFetched && isPhotoContentFetched)">

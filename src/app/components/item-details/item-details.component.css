@@ -44,7 +44,9 @@ a:hover {
   color: #2c2c2c;
 }
 
-
+.half_name{
+  display: none;
+}
 
 
 @media screen and (max-width: 768px) {
@@ -53,7 +55,10 @@ a:hover {
     padding: 0.4rem 0.5rem;
     font-size: 14px;
   }
-  #similarTab_itemDetails{
-    content: "Related";
+  .half_name {
+    display: inline-block;
+  }
+  .full_name {
+    display: none;
   }
 }

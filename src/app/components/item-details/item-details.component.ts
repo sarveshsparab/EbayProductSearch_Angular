@@ -14,11 +14,11 @@ import {WishListContent} from '../wish-list/WishListContent';
 })
 export class ItemDetailsComponent implements OnInit {
   private itemDetailsTabs = [
-    { id: "productTab_itemDetails", title: "Product" },
-    { id: "photosTab_itemDetails", title: "Photos" },
-    { id: "shippingTab_itemDetails", title: "Shipping" },
-    { id: "sellerTab_itemDetails", title: "Seller" },
-    { id: "similarTab_itemDetails", title: "Similar Products" }
+    { id: "productTab_itemDetails", title: "Product", title_half: "Product" },
+    { id: "photosTab_itemDetails", title: "Photos", title_half: "Photos" },
+    { id: "shippingTab_itemDetails", title: "Shipping", title_half: "Shipping" },
+    { id: "sellerTab_itemDetails", title: "Seller", title_half: "Seller" },
+    { id: "similarTab_itemDetails", title: "Similar Products", title_half: "Related" }
   ];
 
   @Output() transmitEvent = new EventEmitter<string>();
