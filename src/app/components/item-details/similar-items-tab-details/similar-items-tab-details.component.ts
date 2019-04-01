@@ -103,6 +103,12 @@ export class SimilarItemsTabDetailsComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     this.orderedSimItems = this.makeCopy(this.content);
+    this.simItemSortPref = 0;
+    this.simItemOrderPref = 0;
+    this.itemCount = Math.min(5, this.content.length);
+    this.moreLessBtnLabel = 'Show More';
+    this.isMoreLessBtnNeeded = this.content.length >= 5;
+    this.orderSortDisabled = true;
   }
 
   makeCopy(original){
