@@ -32,7 +32,9 @@
           [class.table-warning]="rowdata.itemId[0] == selectedItem">
         <td scope="row">{{(currPage - 1) * 10 + i + 1}}</td>
         <td class="image-cell">
-          <img *ngIf="processImage(rowdata)!=''" [src]="processImage(rowdata)" alt="">
+          <a *ngIf="processImage(rowdata)!=''" [href]="processImage(rowdata)" target="_blank">
+            <img [src]="processImage(rowdata)" alt="">
+          </a>
           <span *ngIf="processImage(rowdata)==''">N/A</span>
         </td>
         <td>

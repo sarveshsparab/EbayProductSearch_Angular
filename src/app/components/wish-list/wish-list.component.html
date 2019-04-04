@@ -26,7 +26,9 @@
         [class.table-warning]="rowdata.ItemID == selectedItemId">
       <td scope="row">{{i + 1}}</td>
       <td class="image-cell">
-        <img *ngIf="rowdata.Image_URL!='N/A'" [src]="rowdata.Image_URL" alt="">
+        <a *ngIf="rowdata.Image_URL!='N/A'" [href]="rowdata.Image_URL" target="_blank">
+          <img [src]="rowdata.Image_URL" alt="">
+        </a>
         <span *ngIf="rowdata.Image_URL=='N/A'">N/A</span>
       </td>
       <td>
