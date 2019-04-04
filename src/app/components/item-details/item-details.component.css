@@ -17,7 +17,10 @@
 }
 
 .wishListBtn {
-  padding: 8px 0 0;
+  padding: 8px 5px 0;
+}
+.wishListBtn:hover{
+  background-color: #f2f2f2;
 }
 
 .backBtn {

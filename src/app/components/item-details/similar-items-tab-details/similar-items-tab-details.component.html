@@ -22,7 +22,9 @@
     <div class="card card-row-div">
       <div class="row no-gutters card-row">
         <div class="col-auto card-image">
-          <img *ngIf="item.Image_URL!=''" src="{{item.Image_URL}}" class="img-fluid" alt="">
+          <a *ngIf="item.Image_URL!=''" [href]="item.Image_URL" target="_blank">
+            <img src="{{item.Image_URL}}" class="img-fluid" alt="">
+          </a>
           <span *ngIf="item.Image_URL==''">N/A</span>
         </div>
         <div class="col card-contents" style="text-align: left;">
