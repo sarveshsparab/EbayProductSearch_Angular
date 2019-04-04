@@ -1,20 +1,31 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input, ViewChild} from '@angular/core';
 import {ProdSearchService} from '../../services/prod-search.service';
 import {trigger, state, style, transition, animate} from '@angular/animations';
+import {SearchListingComponent} from '../search-listing/search-listing.component';
 
 @Component({
   selector: 'app-prod-results',
   templateUrl: './prod-results.component.html',
   styleUrls: ['./prod-results.component.css'],
   animations: [
-    trigger('linearSiblingAnimation', [
+    trigger('detailsSiblingAnimation', [
       transition("* => listing", [
-        style({transform: 'translateX(100%)'}),
-        animate('500ms ease-in', style({transform: 'translateX(0%)'}))
+        style({transform: 'translateX(0%)'}),
+        animate('500ms ease-in', style({transform: 'translateX(-100%)'}))
       ]),
       transition("* => details", [
         style({transform: 'translateX(-100%)'}),
         animate('500ms ease-in', style({transform: 'translateX(0%)'}))
+      ])
+    ]),
+    trigger('listingSiblingAnimation', [
+      transition("* => listing", [
+        style({transform: 'translateX(100%)'}),
+        animate('800ms ease-in', style({transform: 'translateX(0%)'}))
+      ]),
+      transition("* => details", [
+        style({transform: 'translateX(0%)'}),
+        animate('500ms ease-in', style({transform: 'translateX(100%)'}))
       ])
     ])
 
@@ -43,6 +54,8 @@ export class ProdResultsComponent implements OnInit {
 
   @Input() submitEvent: boolean;
 
+  @ViewChild(SearchListingComponent) slc;
+
   constructor(private pss: ProdSearchService) {
     this.pss.clearTriggerOb.subscribe(data => {
       this.clearTriggered = true;
@@ -58,6 +71,7 @@ export class ProdResultsComponent implements OnInit {
       this.isListingShown = true;
       this.clearTriggered = false;
       this.submitEvent = false;
+      this.slc.currPage = 1;
     });
   }
 
@@ -111,4 +125,21 @@ export class ProdResultsComponent implements OnInit {
     this.activeSibling = 'default';
   }
 
+  listingSlideStart(event) {
+    if(this.activeSibling=='listing')
+      event.element.classList.remove('hide');
+  }
+  listingSlideDone(event) {
+    if(this.activeSibling=='details')
+      event.element.classList.add('hide');
+  }
+
+  detailsSlideStart(event) {
+    if(this.activeSibling=='details')
+      event.element.classList.remove('hide');
+  }
+  detailsSlideDone(event) {
+    if(this.activeSibling=='listing')
+      event.element.classList.add('hide');
+  }
 }

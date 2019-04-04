@@ -15,20 +15,16 @@
 
     <app-progress-bar *ngIf="submitEvent"></app-progress-bar>
 
-    <div id="pills-tabContent" [@linearSiblingAnimation]="activeSibling" class="tab-content" *ngIf="!clearTriggered">
-      <div class="slide-div" [class.hide]="activeSibling == 'listing'">
-        <div>
-          <app-item-details (transmitEvent)="hideDetailsAndShowListing($event)"></app-item-details>
-        </div>
+    <div id="pills-tabContent" class="tab-content" *ngIf="!clearTriggered">
+      <div class="slide-div" [@detailsSiblingAnimation]="activeSibling" (@detailsSiblingAnimation.start)="detailsSlideStart($event)" (@detailsSiblingAnimation.done)="detailsSlideDone($event)">
+        <app-item-details (transmitEvent)="hideDetailsAndShowListing($event)"></app-item-details>
       </div>
-      <div class="slide-div" [class.hide]="activeSibling == 'details'">
-        <div>
-          <div [className]="listingTabContentClass" id="pills-results" role="tabpanel" aria-labelledby="pills-results-tab">
-            <app-search-listing (transmitEvent)="hideListingAndShowDetails($event)" [class.hide]="!isListingShown" [itemId]="itemId"></app-search-listing>
-          </div>
-          <div [className]="wishListTabContentClass" id="pills-wishlist" role="tabpanel" aria-labelledby="pills-wishlist-tab">
-            <app-wish-list (transmitEvent)="hideListingAndShowDetails($event)" [class.hide]="!isWishListShown" [itemInfo]="itemInfo" [itemId]="wishItemId"></app-wish-list>
-          </div>
+      <div class="slide-div" [@listingSiblingAnimation]="activeSibling" (@listingSiblingAnimation.start)="listingSlideStart($event)" (@listingSiblingAnimation.done)="listingSlideDone($event)">
+        <div [className]="listingTabContentClass" id="pills-results" role="tabpanel" aria-labelledby="pills-results-tab">
+          <app-search-listing (transmitEvent)="hideListingAndShowDetails($event)" [class.hide]="!isListingShown" [itemId]="itemId"></app-search-listing>
+        </div>
+        <div [className]="wishListTabContentClass" id="pills-wishlist" role="tabpanel" aria-labelledby="pills-wishlist-tab">
+          <app-wish-list (transmitEvent)="hideListingAndShowDetails($event)" [class.hide]="!isWishListShown" [itemInfo]="itemInfo" [itemId]="wishItemId"></app-wish-list>
         </div>
       </div>
     </div>
