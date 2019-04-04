@@ -1,41 +1,42 @@
 <div id="details" *ngIf="entireItemDetailsDataReceived">
-  <div id="place-name">
-    <h3 class="itemTitle">{{itemName}}</h3>
-  </div>
-  <div id="navAndInfoButtons" class="navAndInfoButtons">
-    <div class="leftButtons">
-      <button class="btn btn-outline-secondary backBtn" (click)="backToListings()">
-        <i class="material-icons">chevron_left</i>
-        List
-      </button>
-    </div>
-    <div class="rightButtons">
-      <button class="btn">
-        <a [href]="fbShareLink" target="_blank">
-          <img id="fb_btn" class="fb_btn" src="http://csci571.com/hw/hw8/Images/facebook.png" alt="fb_btn">
-        </a>
-      </button>
-      <button class="btn wishListBtn" (click)="toggleItemInWishList()">
-        <i class="material-icons" *ngIf="!isAlreadyInWishList">add_shopping_cart</i>
-        <i class="material-icons selectedWishList" *ngIf="isAlreadyInWishList">remove_shopping_cart</i>
-      </button>
-    </div>
-  </div>
-  <nav>
-    <div class="nav nav-pills mb-3 justify-content-end" id="nav-tabs" role="tablist" style="margin-bottom: 3px !important;">
-      <a href="#" *ngFor="let tab of itemDetailsTabs" [id]="tab.id" class="nav-item nav-link"
-         [class.active]="tab.id === activeTab"
-         role="tab" data-toggle="pill" [attr.aria-controls]="tab.id+'-panel'"
-         (click)="setActiveTab(tab.id)">
-        <span class="full_name">{{tab.title}}</span>
-        <span class="half_name">{{tab.title_half}}</span>
-      </a>
-    </div>
-  </nav>
   <div *ngIf="!(isProductContentFetched && isItemDetailsFetched && isSimilarContentFetched && isPhotoContentFetched)">
     <app-progress-bar></app-progress-bar>
   </div>
   <div *ngIf="(isProductContentFetched && isItemDetailsFetched && isSimilarContentFetched && isPhotoContentFetched)">
+    <div id="place-name">
+      <h3 class="itemTitle">{{itemName}}</h3>
+    </div>
+    <div id="navAndInfoButtons" class="navAndInfoButtons">
+      <div class="leftButtons">
+        <button class="btn btn-outline-secondary backBtn" (click)="backToListings()">
+          <i class="material-icons">chevron_left</i>
+          List
+        </button>
+      </div>
+      <div class="rightButtons">
+        <button class="btn">
+          <a [href]="fbShareLink" target="_blank">
+            <img id="fb_btn" class="fb_btn" src="http://csci571.com/hw/hw8/Images/facebook.png" alt="fb_btn">
+          </a>
+        </button>
+        <button class="btn wishListBtn" (click)="toggleItemInWishList()">
+          <i class="material-icons" *ngIf="!isAlreadyInWishList">add_shopping_cart</i>
+          <i class="material-icons selectedWishList" *ngIf="isAlreadyInWishList">remove_shopping_cart</i>
+        </button>
+      </div>
+    </div>
+    <nav>
+      <div class="nav nav-pills mb-3 justify-content-end" id="nav-tabs" role="tablist"
+           style="margin-bottom: 3px !important;">
+        <a href="#" *ngFor="let tab of itemDetailsTabs" [id]="tab.id" class="nav-item nav-link"
+           [class.active]="tab.id === activeTab"
+           role="tab" data-toggle="pill" [attr.aria-controls]="tab.id+'-panel'"
+           (click)="setActiveTab(tab.id)">
+          <span class="full_name">{{tab.title}}</span>
+          <span class="half_name">{{tab.title_half}}</span>
+        </a>
+      </div>
+    </nav>
     <div class="tab-content" id="nav-tab-content">
       <div class="tab-pane" [class.active]="activeTab==='productTab_itemDetails'" role="tabpanel"
            id="productTab_itemDetails-panel"
