@@ -17,6 +17,17 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
         animate('500ms ease-in', style({transform: 'translateX(0%)'}))
       ])
     ])
+
+    // trigger('slideInOut', [
+    //   transition(':enter', [
+    //     style({transform: 'translateY(-100%)'}),
+    //     animate('200ms ease-in', style({transform: 'translateY(0%)'}))
+    //   ]),
+    //   transition(':leave', [
+    //     animate('200ms ease-in', style({transform: 'translateY(-100%)'}))
+    //   ])
+    // ])
+
   ]
 })
 export class ProdResultsComponent implements OnInit {
@@ -43,6 +54,7 @@ export class ProdResultsComponent implements OnInit {
     });
     this.pss.isDataReceivedOb.subscribe(data => {
       this.showListings();
+      this.activeSibling = 'default';
       this.isListingShown = true;
       this.clearTriggered = false;
       this.submitEvent = false;
@@ -96,6 +108,7 @@ export class ProdResultsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activeSibling = 'default';
   }
 
 }
