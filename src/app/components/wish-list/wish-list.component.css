@@ -13,6 +13,10 @@
   display: flex;
   border: none;
 }
+.details-btn:hover{
+  background-color: #f2f2f2;
+  color: #6c757d;
+}
 
 .category-icon {
   width: 40px;

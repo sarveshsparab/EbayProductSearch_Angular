@@ -24,6 +24,10 @@
   display: flex;
   border: none;
 }
+.backBtn:hover{
+  background-color: #f2f2f2;
+  color: #6c757d;
+}
 
 .itemTitle {
   font-size: 25px;
