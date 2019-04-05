@@ -2,6 +2,8 @@ import {Component, OnInit, ChangeDetectionStrategy, Input, ViewChild} from '@ang
 import {ProdSearchService} from '../../services/prod-search.service';
 import {trigger, state, style, transition, animate} from '@angular/animations';
 import {SearchListingComponent} from '../search-listing/search-listing.component';
+import {WishListComponent} from '../wish-list/wish-list.component';
+import {ItemDetailsComponent} from '../item-details/item-details.component';
 
 @Component({
   selector: 'app-prod-results',
@@ -55,6 +57,8 @@ export class ProdResultsComponent implements OnInit {
   @Input() submitEvent: boolean;
 
   @ViewChild(SearchListingComponent) slc;
+  @ViewChild(WishListComponent) wlc;
+  @ViewChild(ItemDetailsComponent) idc;
 
   constructor(private pss: ProdSearchService) {
     this.pss.clearTriggerOb.subscribe(data => {
@@ -64,6 +68,7 @@ export class ProdResultsComponent implements OnInit {
       this.itemInfo = null;
       this.showListings();
       this.isListingShown = false;
+      this.idc.resetIDC();
     });
     this.pss.isDataReceivedOb.subscribe(data => {
       this.showListings();
