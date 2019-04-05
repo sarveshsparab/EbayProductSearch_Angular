@@ -43,6 +43,8 @@ export class WishListComponent implements OnInit {
 
   removeFromWishList(wlObj){
     this.wls.removeFromWishList(wlObj);
+    this.selectedItemId = null;
+    this.selectedItemInfo = null;
   }
 
   ngOnInit() {
