@@ -99,6 +99,20 @@ export class ItemDetailsComponent implements OnInit {
     this.activeTab = "productTab_itemDetails";
   }
 
+  resetIDC(){
+    this.isItemDetailsFetched = false;
+    this.isPhotoContentFetched = false;
+    this.isProductContentFetched = false;
+    this.isSimilarContentFetched = false;
+    this.entireItemDetailsDataReceived = false;
+    this.activeTab = "productTab_itemDetails";
+    this.productTab_content = null;
+    this.photosTab_content = null;
+    this.shippingTab_content = null;
+    this.sellerTab_content = null;
+    this.similarItemsTab_content = null;
+  }
+
   setActiveTab(id) {
     this.activeTab = id;
   }
